@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import Login from "./components/login";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         >
           Learn React
         </a> */}
+        <Login/>
         <h2>
           <a href="#bottom">Scroll down</a>
         </h2>
