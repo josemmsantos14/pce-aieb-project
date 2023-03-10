@@ -1,54 +1,67 @@
-import {useState} from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState("");
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [msg, setMsg] = useState('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    console.log(email, password);
 
-        console.log(email, password);
-
-        try {
-            const response = await axios.post('http://localhost:3000/login', 
-                JSON.stringify({email, password}),
-                {
-                headers: {'Content-Type': 'application/json'}
-                }
-            )
-
-            console.log(response.data);
-            
-        } catch (error) {
-            if (error.response) {
-                setMsg(error.response.data.msg);
-            }
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/login", //ligação à porta do NodeJS
+        JSON.stringify({ email, password }),
+        {
+          headers: { "Content-Type": "application/json" },
         }
-    };
+      );
 
-    const handleLogout = async (e) => {
-        e.preventDefault();
+      console.log(response.data);
+    } catch (error) {
+      if (error.response) {
+        setMsg(error.response.data.msg);
+      }
+    }
+  };
 
-        setEmail('');
-        setPassword('');
-        setMsg('');
-    };
+  const handleLogout = async (e) => {
+    e.preventDefault();
 
-    return (
-        <div className="auth-form-container">
-            <h2>Login</h2>
-            <form className="login-form" onSubmit={handleSubmit}>
-                <label htmlFor="email">email</label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="youremail@gmail.com" id="email" name="email" />
-                <label htmlFor="password">password</label>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <button type="submit">Log In</button>
-            </form>
-        </div>
-    );
+    setEmail("");
+    setPassword("");
+    setMsg("");
+  };
+
+  return (
+    <div className="auth-form-container">
+      <h2>Login</h2>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <label htmlFor="email">email</label>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          placeholder="youremail@gmail.com"
+          id="email"
+          name="email"
+        />
+        <label htmlFor="password">password</label>
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          placeholder="********"
+          id="password"
+          name="password"
+        />
+        <button type="submit">Log In</button>
+      </form>
+    </div>
+  );
 }
 
 export default Login;
