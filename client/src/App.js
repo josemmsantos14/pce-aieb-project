@@ -9,7 +9,7 @@ function App() {
   const [currentForm, setCurrentForm] = useState('login');
   return (
     <div className="App">
-      <LoginPage />
+      <Login />
       {/*<header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {/* <p>
