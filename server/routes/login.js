@@ -10,7 +10,7 @@ const users = [
   },
 ];
 
-router.post("/", (req, res) => {
+router.post("/", function (req, res) {
   const { email, password } = req.body;
 
   const user = users.find(
@@ -18,9 +18,10 @@ router.post("/", (req, res) => {
   );
 
   if (user) {
+    console.log("User logged in!");
     return res.status(200).json(user);
   }
-
+  console.log("Invalid credentials!");
   return res.status(401).json({ message: "Invalid credentials." });
 });
 

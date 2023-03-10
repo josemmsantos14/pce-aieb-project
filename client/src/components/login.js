@@ -6,9 +6,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
     console.log(email, password);
 
     try {
@@ -19,14 +18,35 @@ function Login() {
           headers: { "Content-Type": "application/json" },
         }
       );
-
-      console.log(response.data);
+      console.log("Credentials sent!");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
       }
     }
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   console.log(email, password);
+
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:8080/login", //ligação à porta do NodeJS
+  //       JSON.stringify({ email, password }),
+  //       {
+  //         headers: { "Content-Type": "application/json" },
+  //       }
+  //     );
+
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     if (error.response) {
+  //       setMsg(error.response.data.msg);
+  //     }
+  //   }
+  // };
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -39,26 +59,28 @@ function Login() {
   return (
     <div className="auth-form-container">
       <h2>Login</h2>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <label htmlFor="email">email</label>
+      <form className="login-form">
+        <label htmlFor="email">Email</label>
         <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           type="email"
           placeholder="youremail@gmail.com"
           id="email"
           name="email"
+          required
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">Password</label>
         <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="********"
           id="password"
           name="password"
+          required
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Log In</button>
+        <button type="submit" onClick={(e) => handleLogin(e)}>
+          Log In
+        </button>
       </form>
     </div>
   );
