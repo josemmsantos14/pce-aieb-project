@@ -9,14 +9,14 @@ const users = [
     name: "user1",
     email: "user1@gmail.com",
     password: "12345",
-    admin: true,
+    isAdmin: true,
   },
   {
     id: 2,
     name: "user2",
     email: "user2@gmail.com",
     password: "12345",
-    admin: false,
+    isAdmin: false,
   },
 ];
 
@@ -35,9 +35,9 @@ router.post("/", function (req, res) {
 
     if (user) {
       console.log("User logged in!");
-      if (user.admin) {
+      if (user.isAdmin) {
         return res.redirect("/adminpage");
-      } else if (!user.admin) {
+      } else if (!user.isAdmin) {
         return res.redirect("/userpage");
       } else {
         return res.status(500).send("Error occurred!");

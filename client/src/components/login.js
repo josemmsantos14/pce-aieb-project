@@ -63,7 +63,7 @@ function Login() {
         <label htmlFor="email">Email</label>
         <input
           type="email"
-          placeholder="youremail@gmail.com"
+          placeholder="example@gmail.com"
           id="email"
           name="email"
           required
