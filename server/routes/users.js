@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const users = [];
+module.exports.users = [];
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
