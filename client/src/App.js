@@ -8,6 +8,7 @@ import SignUp from "./components/signup";
 import Home from "./components/home";
 import SendEmail from "./components/sendemail";
 import RecoverPass from "./components/recoverpass";
+import AdminPage from "./components/adminpage";
 
 function App() {
   const [currentForm, setCurrentForm] = useState("login");
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/sendemail" element={<SendEmail />} />
           <Route exact path="/recoverpass" element={<RecoverPass />} />
+          <Route exact path="/adminpage" element={<AdminPage />} />
           {/* <FrontPage /> */}
         </Routes>
       </Router>

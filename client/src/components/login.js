@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import AdminPage from "./adminpage";
 
 function Login() {
   let navigate = useNavigate();
@@ -16,17 +16,31 @@ function Login() {
     console.log(email, password);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/login", //ligação à porta do NodeJS
-        JSON.stringify({ email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log("Credentials sent!");
+      if (email != "" && password != "") {
+        const response = await axios.post(
+          "http://localhost:8080/login", //ligação à porta do NodeJS
+          JSON.stringify({ email, password }),
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        console.log("Credentials sent!");
+        navigate("/adminpage");
+      } else {
+        setMsg("Please input valid credentials.")
+      }
     } catch (error) {
-      if (error.response) {
-        setMsg(error.response.data.msg);
+      if (error.response.status == 204) {
+        console.error(error.message);
+        setMsg(error.message);
+      } else if (error.response.status == 401) {
+        console.error(error.message);
+        setMsg(error.response.data);
+      } else if (error.response.status == 500) {
+        console.error(error.message);
+        setMsg(error.message);
+      } else {
+        setMsg("Internal error ocurred!");
       }
     }
   };
@@ -53,60 +67,55 @@ function Login() {
   //   }
   // };
 
-  const handleLogout = async (e) => {
-    e.preventDefault();
-
-    setEmail("");
-    setPassword("");
-    setMsg("");
-  };
-
   return (
     <div className="auth-form-container">
       <button type="button" onClick={handleGoBack} class="goback">
         &#11164;
       </button>
-      <h2>Login</h2>
-      <form className="login-form">
-        <div class="inputbox">
-          <span>&#9993;</span>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label htmlFor="email">Email</label>
-          {/* corrigir css que vem para baixo nao tendo email valido */}
-        </div>
-        <div class="inputbox">
-          <span>&#128477;</span>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <label htmlFor="password">Password</label>
-        </div>
-        <button type="submit" onClick={(e) => handleLogin(e)}>
-          Log In
-        </button>
-      </form>
-      <footer class="after-form">
-        <span>
-          <a href="/signup" class="regist">
-            Create account
-          </a>
-        </span>
-        <span>
-          <a href="/sendemail" class="forgot">
-            Forgot my pass
-          </a>
-        </span>
-      </footer>
+        <div>
+        <h2>Login</h2>
+        <form className="login-form">
+          <div class="inputbox">
+            <span>&#9993;</span>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label htmlFor="email">Email</label>
+            {/* corrigir css que vem para baixo nao tendo email valido */}
+          </div>
+          <div class="inputbox">
+            <span>&#128477;</span>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label htmlFor="password">Password</label>
+          </div>
+          <button type="submit" onClick={(e) => handleLogin(e)}>
+            Log In
+          </button>
+        </form>
+        <footer class="after-form">
+          <span>
+            <a href="/signup" class="regist">
+              Create account
+            </a>
+          </span>
+          <span>
+            <a href="/sendemail" class="forgot">
+              Forgot my pass
+            </a>
+          </span>
+        </footer>
+        {msg && (<p className="error"> {msg} </p>)}
+      </div> 
     </div>
   );
 }
