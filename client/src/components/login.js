@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   let navigate = useNavigate();
@@ -77,6 +77,7 @@ function Login() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <label htmlFor="email">Email</label>
+          {/* corrigir css que vem para baixo nao tendo email valido */}
         </div>
         <div class="inputbox">
           <span>&#128477;</span>

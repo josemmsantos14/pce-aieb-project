@@ -44,7 +44,7 @@ router.post("/", function (req, res) {
       }
       // return res.status(200).json(user);
     }
-    console.log("Invalid credentials!");
+    alert("Invalid credentials.");
     return res.status(401).json({ message: "Invalid credentials." });
   }
 });

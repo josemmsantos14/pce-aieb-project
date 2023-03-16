@@ -59,10 +59,19 @@
 }
 
 input:focus ~ label,
-input:focus ~ :valid,
 input:valid ~ label {
   top: -5px;
 }
+
+/* input:not(:empty) ~ label {
+  top: -5px;
+  color: #04dafa;
+} */
+
+/* input:required:invalid:not(::content) + label {
+  top: -5px;
+  color: red;
+} */
 
 button {
   position: relative;
@@ -122,4 +131,9 @@ button.goback {
 button.goback:hover {
   box-shadow: none;
   transform: none;
+}
+
+button:active {
+  background: #084a5c;
+  color: white;
 }

@@ -1,7 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
-module.exports.users = [];
+// module.exports.
+users = [];
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -12,11 +13,13 @@ router.get("/", function (req, res, next) {
 /* POST new users. */
 router.post("/", function (req, res) {
   const userInput = {
-    id: req.body.id,
+    // id: req.body.id,
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
   };
+
+  console.log(userInput);
   const user = users.find(
     (user) =>
       user.email === userInput.email && user.password === userInput.password
