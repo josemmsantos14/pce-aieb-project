@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
 function Login() {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -96,12 +97,12 @@ function Login() {
       </form>
       <footer class="after-form">
         <span>
-          <a href="#signup" class="regist">
+          <a href="/signup" class="regist">
             Create account
           </a>
         </span>
         <span>
-          <a href="#forgotpass" class="forgot">
+          <a href="/sendemail" class="forgot">
             Forgot my pass
           </a>
         </span>
