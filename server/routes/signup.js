@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 // module.exports.
-users = [];
+let users = [];
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -13,7 +13,6 @@ router.get("/", function (req, res, next) {
 /* POST new users. */
 router.post("/", function (req, res) {
   const userInput = {
-    // id: req.body.id,
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
@@ -26,9 +25,13 @@ router.post("/", function (req, res) {
   );
   if (!user) {
     users.push(userInput);
-    return res.status(201).send("Created"); //201-Created
+    return res
+      .status(201)
+      .json({ status: "Created", message: "User created." }); //201-Created
   } else {
-    return res.status(403).send("Already exists"); //403-Already Exists
+    return res
+      .status(403)
+      .json({ status: "Already exists", message: "User already exists." }); //403-Already Exists
   }
 });
 

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import AdminPage from "./adminpage";
 
 function Login() {
   let navigate = useNavigate();
@@ -16,7 +15,7 @@ function Login() {
     console.log(email, password);
 
     try {
-      if (email != "" && password != "") {
+      if (email !== "" && password !== "") {
         const response = await axios.post(
           "http://localhost:8080/login", //ligação à porta do NodeJS
           JSON.stringify({ email, password }),
@@ -24,19 +23,25 @@ function Login() {
             headers: { "Content-Type": "application/json" },
           }
         );
-        console.log("Credentials sent!");
-        navigate("/adminpage");
+        console.log(response.data.body.isAdmin);
+
+        // console.log("Credentials sent!");
+        if (response.data.body.isAdmin === true) {
+          navigate("/adminpage");
+        } else {
+          navigate("/userpage");
+        }
       } else {
         setMsg("Please input valid credentials.");
       }
     } catch (error) {
-      if (error.response.status == 204) {
+      if (error.response.status === 204) {
         console.error(error.message);
         setMsg(error.message);
-      } else if (error.response.status == 401) {
+      } else if (error.response.status === 401) {
         console.error(error.message);
         setMsg(error.response.data);
-      } else if (error.response.status == 500) {
+      } else if (error.response.status === 500) {
         console.error(error.message);
         setMsg(error.message);
       } else {
@@ -44,28 +49,6 @@ function Login() {
       }
     }
   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   console.log(email, password);
-
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost:8080/login", //ligação à porta do NodeJS
-  //       JSON.stringify({ email, password }),
-  //       {
-  //         headers: { "Content-Type": "application/json" },
-  //       }
-  //     );
-
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     if (error.response) {
-  //       setMsg(error.response.data.msg);
-  //     }
-  //   }
-  // };
 
   return (
     <div className="auth-form-container">

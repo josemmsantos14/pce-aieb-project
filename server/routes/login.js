@@ -36,15 +36,14 @@ router.post("/", function (req, res) {
     if (user) {
       console.log("User logged in!");
       if (user.isAdmin) {
-        return res.redirect("/adminpage");
+        return res.status(200).json({ status: "Accepted", body: user });
       } else if (!user.isAdmin) {
-        return res.redirect("/userpage");
+        return res.status(200).json({ status: "Accepted", body: user });
       } else {
         return res.status(500).send("Error occurred!");
       }
       // return res.status(200).json(user);
     }
-    alert("Invalid credentials.");
     return res.status(401).json({ message: "Invalid credentials." });
   }
 });

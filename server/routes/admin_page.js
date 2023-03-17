@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var userCreds = require("./users");
+var userCreds = require("./signup");
 var users = userCreds.users;
 
 /* GET users listing. */

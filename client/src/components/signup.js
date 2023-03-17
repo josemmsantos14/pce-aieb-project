@@ -16,18 +16,21 @@ function SignUp() {
     console.log(name, email, password);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/users", //ligação à porta do NodeJS
-        JSON.stringify({ name, email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log("Credentials sent!");
-    } catch (error) {
-      if (error.response) {
-        setMsg(error.response.data.msg);
+      if (name !== "" && email !== "" && password !== "") {
+        const response = await axios.post(
+          "http://localhost:8080/signup", //ligação à porta do NodeJS
+          JSON.stringify({ name, email, password }),
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        console.log("Credentials sent!");
+      } else {
+        setMsg("Inputed credentials not valid.");
       }
+    } catch (error) {
+      console.error(error.message);
+      setMsg(error.message);
     }
   };
 
