@@ -137,3 +137,8 @@ button:active {
   background: #084a5c;
   color: white;
 }
+
+p.error {
+  background: rgba(255, 0, 0, 0.4);
+  padding: 5px 0;
+}

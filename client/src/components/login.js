@@ -27,7 +27,7 @@ function Login() {
         console.log("Credentials sent!");
         navigate("/adminpage");
       } else {
-        setMsg("Please input valid credentials.")
+        setMsg("Please input valid credentials.");
       }
     } catch (error) {
       if (error.response.status == 204) {
@@ -72,7 +72,7 @@ function Login() {
       <button type="button" onClick={handleGoBack} class="goback">
         &#11164;
       </button>
-        <div>
+      <div>
         <h2>Login</h2>
         <form className="login-form">
           <div class="inputbox">
@@ -114,8 +114,8 @@ function Login() {
             </a>
           </span>
         </footer>
-        {msg && (<p className="error"> {msg} </p>)}
-      </div> 
+        {msg && <p className="error"> {msg} </p>}
+      </div>
     </div>
   );
 }

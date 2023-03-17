@@ -17,7 +17,7 @@ function RecoverPass() {
     try {
       const response = await axios.post(
         "http://localhost:8080/users", //ligação à porta do NodeJS
-        JSON.stringify({password, passwordverify}),
+        JSON.stringify({ password, passwordverify }),
         {
           headers: { "Content-Type": "application/json" },
         }
@@ -32,6 +32,9 @@ function RecoverPass() {
 
   return (
     <div className="auth-form-container">
+      <button type="button" onClick={handleGoBack} class="goback">
+        &#11164;
+      </button>
       <h2>Recover Password</h2>
       <form className="login-form">
         <div class="inputbox">

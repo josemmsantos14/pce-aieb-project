@@ -10,7 +10,6 @@ function FrontPage() {
 
   const handleSignup = async () => navigate("/signup");
 
-
   return (
     <div className="auth-form-container">
       <h2>Welcome to our page!</h2>
