@@ -63,6 +63,15 @@ input:valid ~ label {
   top: -5px;
 }
 
+input:required:invalid:not(:placeholder-shown) ~ label {
+  color: red;
+  top: -5px;
+}
+
+input::placeholder {
+  opacity: 0;
+}
+
 /* input:not(:empty) ~ label {
   top: -5px;
   color: #04dafa;

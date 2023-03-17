@@ -44,6 +44,7 @@ function SignUp() {
             type="text"
             id="name"
             name="name"
+            placeholder="name"
             required
             onChange={(e) => setName(e.target.value)}
           />
@@ -55,6 +56,7 @@ function SignUp() {
             type="email"
             id="email"
             name="email"
+            placeholder="email"
             required
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -66,6 +68,7 @@ function SignUp() {
             type="password"
             id="password"
             name="password"
+            placeholder="password"
             required
             onChange={(e) => setPassword(e.target.value)}
           />

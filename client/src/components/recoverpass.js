@@ -43,6 +43,7 @@ function RecoverPass() {
             type="password"
             id="password"
             name="password"
+            placeholder="new password"
             required
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -54,6 +55,7 @@ function RecoverPass() {
             type="password"
             id="passwordverify"
             name="passwordverify"
+            placeholder="verify password"
             required
             onChange={(e) => setPasswordverify(e.target.value)}
           />

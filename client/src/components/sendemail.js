@@ -16,7 +16,7 @@ function SendEmail() {
     try {
       const response = await axios.post(
         "http://localhost:8080/users", //ligação à porta do NodeJS
-        JSON.stringify({email}),
+        JSON.stringify({ email }),
         {
           headers: { "Content-Type": "application/json" },
         }
@@ -42,6 +42,7 @@ function SendEmail() {
             type="email"
             id="email"
             name="email"
+            placeholder="email"
             required
             onChange={(e) => setEmail(e.target.value)}
           />
