@@ -3,22 +3,22 @@ var router = express.Router();
 // var userCreds = require("./users.js");
 // var users = userCreds.users;
 
-const users = [
-  {
-    id: 1,
-    name: "user1",
-    email: "user1@gmail.com",
-    password: "12345",
-    isAdmin: true,
-  },
-  {
-    id: 2,
-    name: "user2",
-    email: "user2@gmail.com",
-    password: "12345",
-    isAdmin: false,
-  },
-];
+// const users = [
+//   {
+//     id: 1,
+//     name: "user1",
+//     email: "user1@gmail.com",
+//     password: "12345",
+//     isAdmin: true,
+//   },
+//   {
+//     id: 2,
+//     name: "user2",
+//     email: "user2@gmail.com",
+//     password: "12345",
+//     isAdmin: false,
+//   },
+// ];
 
 /* POST credentials to login. */
 router.post("/", function (req, res) {

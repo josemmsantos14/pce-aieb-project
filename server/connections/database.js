@@ -1,32 +1,41 @@
-var mysql = require("mysql");
+// Esta conexão está feita no ficheiro app.js
 
-var conn = mysql.createConnection({
-  host: "localhost",
-  database: "usersdb",
-  user: "root",
-  password: "",
-});
+// const mongoose = require("mongoose");
 
-module.exports.query = function (queryString) {
-  try {
-    conn.connect();
+// mongoose
+//   .connect("mongodb://localhost:9000/projeto_aieb_pce", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then((result) => {
+//     console.log("Connection Established");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
-    conn.query(queryString, function (err, result, fields) {
-      if (err) {
-        console.log("ERROR : " + err);
-      }
-      // console.log("The solution is: ", result);
+// module.exports.uri = "mongodb://localhost:9000/projeto_aieb_pce";
 
-      // callback(rows[0].solution);
+// module.exports.query = function (queryString) {
+//   try {
+//     conn.connect();
 
-      return result;
-    });
-    // callback();
+//     conn.query(queryString, function (err, result, fields) {
+//       if (err) {
+//         console.log("ERROR : " + err);
+//       }
+//       // console.log("The solution is: ", result);
 
-    conn.end();
-  } catch (error) {
-    console.log("Exception: " + error);
-  }
-};
+//       // callback(rows[0].solution);
 
-// module.exports = conn;
+//       return result;
+//     });
+//     // callback();
+
+//     conn.end();
+//   } catch (error) {
+//     console.log("Exception: " + error);
+//   }
+// };
+
+// // module.exports = conn;
