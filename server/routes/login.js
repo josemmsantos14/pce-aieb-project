@@ -3,6 +3,8 @@ var router = express.Router();
 // var userCreds = require("./users.js");
 // var users = userCreds.users;
 
+
+// ---------DEPOIS TENTAR ALTERAR PARA IR BUSCAR OS USERS À BASE DE DADOS---------
 const users = [
   {
     id: 1,
@@ -19,6 +21,7 @@ const users = [
     isAdmin: false,
   },
 ];
+
 
 /* POST credentials to login. */
 router.post("/", function (req, res) {
