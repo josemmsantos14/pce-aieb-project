@@ -33,3 +33,6 @@ module.exports.listUsers = async () => {
     return { success: false, response: err };
   }
 };
+
+
+// acrescentar função para validar credenciais e depois substituir no routes/login.js a maior parte da lógica que lá está por esta função

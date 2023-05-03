@@ -5,6 +5,7 @@ var router = express.Router();
 
 
 // ---------DEPOIS TENTAR ALTERAR PARA IR BUSCAR OS USERS À BASE DE DADOS---------
+// VER CONTROLLER USER.JS
 const users = [
   {
     id: 1,
