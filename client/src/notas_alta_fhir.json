@@ -37,7 +37,7 @@
                 },
                 "sender": {
                     "reference": "Organization/78e24234",
-                    "display": "LABORATÓRIO"
+                    "display": "Serviços Partilhados do Ministério da Saúde"
                 },
                 "timestamp": "2017-10-05T23:10:00.358+00:00",
                 "source": {
@@ -51,20 +51,35 @@
                 ]
             }
         },
-        // é preciso meter o Parameters e Encounter??
+        {
+            "id": "ce7c149d-46e2-42b0-8caf-478564c436b3",
+            "parameter" : [
+                {
+                "name": "NNU",
+                "value": {
+
+                    }
+                },
+                {
+                "name": "Encounter",
+                "resource": {
+                    "resourceType": "Encounter",
+                    "id": "6ee6cae1-0400-4247-8121-86a0396770d6",
+                    "identifier": [{
+                        "system": ": http://spms.min-saude.pt/fhir/identifiers/num-episodio",
+                        "value": "000000"
+                    }
+                    ],
+                    "status": "finished"
+                }
+                }
+            ]
+        },
         {
             "fullUrl": "http://spms.min-saude.pt/fhir/Patient/987654321",
             "resource": {
                 "resourceType": "Patient",
                 "id": "987654321",
-                "extension": [
-                    {
-                        "url": "http://spms.min-saude.pt/pnb/extensions/patient-coverage",
-                        "valueReference": {
-                            "reference": "Coverage/ADSE"
-                        }
-                    }
-                ],
                 "identifier": [
                     {
                         "type": {
@@ -75,19 +90,41 @@
                                     "display": "Health Card Number"
                                 }
                             ],
-                            "text": "SNS"
+                            "text": "NNU (Número Nacional de Utente)"
                         },
                         "system": "http://spms.min-saude.pt/rnu/identifiers/patient-id",
-                        "value": "987654321"
-                    }
-                ],
-                "name": [
+                        "value": "987654321",
+                        "period": {
+                            "start": "0000-00-00",
+                            "end": "0000-00-00"
+                        }
+                    },
                     {
-                        "text": "PAULO EXEMPLO DE NOME DA SILVA"
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://hl7.org/fhir/v2/0203",
+                                    "code": "MR",
+                                    "display": "Medical Record Number"
+                                }
+                            ],
+                            "text": "Número do Processo"
+                        },
+                        "system": "http://spms.min-saude.pt/rnu/identifiers/patient-id",
+                        "value": "987654321",
+                        "period": {
+                            "start": "0000-00-00",
+                            "end": "0000-00-00"
+                        } 
                     }
                 ],
                 "gender": "male",
-                "birthDate": "1970-01-01",
+                "name": [
+                    {
+                        "text": "PAULO EXEMPLO DE NOME",
+                        "family": "DA SILVA"
+                    }
+                ],
                 "address": [
                     {
                         "text": "Rua de Exemplo, nº 99 9999-999 EXEMPLO"
@@ -96,154 +133,227 @@
             }
         },
         {
-            "fullUrl": "http://spms.min-saude.pt/fhir/DiagnosticReport/101",
-            "resource": {
-                "resourceType": "DiagnosticReport",
-                "id": "101",
-                "meta": {
-                    "security": [
-                        {
-                            "system": "http://hl7.org/fhir/v3/Confidentiality",
-                            "code": "R",
-                            "display": "Restricted"
-                        }
-                    ]
+            "resourceType": "AllergyIntolerance",
+            "id": "b6fd6286-e0e9-4123-bcca-4756ed5573c2",
+            "verificationStatus": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+                  "code": "unconfirmed",
+                  "display": "Unconfirmed"
                 },
-                "basedOn": [
-                    {
-                        "identifier": {
-                            "system": "https://spms.min-saude.pt/bdnr/identifiers/mcdt-request-id",
-                            "value": "RQ2313-234"
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+                    "code": "presumed",
+                    "display": "Presumed"
+                },
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+                    "code": "confirmed",
+                    "display": "Confirmed"
+                },
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+                    "code": "refuted",
+                    "display": "Refuted"
+                },
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+                    "code": "entered-in-error",
+                    "display": "Entered in Error"
+                }
+              ]
+            },
+            "patient": {
+              "reference": "Patient/987654321"
+            },
+            "reaction": [
+              {
+                "manifestation": [
+                  {
+                    "coding": [
+                      {
+                        "system": "http://snomed.info/sct",
+                        "code": "39579001",
+                        "display": "Anaphylactic reaction"
+                      }
+                    ],
+                    "text": "Reação anafilática"
+                  }
+                ]
+              }
+            ]
+        },
+        {
+            "resourceType": "Encounter",
+            "id": "1bb497b9-ad6c-4141-85c4-9ef8262b54db",
+            "identifier": [
+                {
+                    "system": ": http://spms.min-saude.pt/fhir/identifiers/num-episodio",
+                    "value": "1bb497b9-ad6c-4141-85c4-9ef8262b54db"
+                }
+            ],
+            "status": "finished",
+            "subject": {
+                "reference": "Patient/987654321"
+            },
+            "participant": [
+                {
+                    "type": [
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "DIS",
+                            "display": "discharger"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "ADM",
+                            "display": "admitter"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "ATND",
+                            "display": "attender"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "CALLBCK",
+                            "display": "callback contact"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "CON",
+                            "display": "consultant"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "ESC",
+                            "display": "escort"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "REF",
+                            "display": "referrer"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "SPRF",
+                            "display": "secondary performer"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "PPRF",
+                            "display": "primary performer"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "PART",
+                            "display": "Participation"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "translator",
+                            "display": "Translator"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/participant-type",
+                            "code": "emergency",
+                            "display": "Emergency"
                         }
+                    ],
+                    "individual": {
+                        "reference": "Practitioner/97af8d57-d864-41a2-a287-c4c5bcc7ada8"
                     }
-                ],
-                "status": "final",
-                "category": {
-                    "coding": [
-                        {
-                            "system": "http://www.acss.min-saude.pt/mcdt/valueset/clinical-areas",
-                            "code": "C",
-                            "display": "Cardiologia"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/v2/0074",
-                            "code": "EC",
-                            "display": "Electrocardiac"
-                        }
-                    ]
+                }
+            ],
+            "period": {
+                "start": "2019-06-01",
+                "end": "2019-06-03"
+            },
+            "extension": {
+                "url": "http://spms.min-saude.pt/rse/extensions/encounter_administrative_date",
+                "value": "2019-01-14T23:10:23+00:00"
+                
+            },
+            "diagnosis": [
+                {
+                    "condition": "Condition/e3e790e3-5caf-4978-b0e2-f655c31727ce",
+                    "role": {
+                        "system": "http://hl7.org/fhir/diagnosis-role",
+                        "code": "AD",
+                        "display": "Admission diagnosis"
+                    }
                 },
-                "code": {
-                    "coding": [
-                        {
-                            "system": "http://snomed.info/sct",
-                            "code": "268400002",
-                            "display": "12 lead electrocardiogram "
-                        },
-                        {
-                            "system": "https://www.acss.min-saude.pt/category/prestadores/convencionados/#tab_tabelas-meios-complementaresde-diagnostico-e-terapeutica",
-                            "code": "40301",
-                            "display": "Eletrocardiograma de 12 derivações"
-                        }
-                    ]
-                },
-                "subject": {
-                    "reference": "Patient/987654321"
-                },
-                "issued": "2017-11-14T11:45:33+11:00",
-                "performer": [
+                {
+                    "condition": "Condition/95302699-06e4-49da-9554-457576be2954",
+                    "role": {
+                        "system": "http://hl7.org/fhir/diagnosis-role",
+                        "code": "DD",
+                        "display": "Discharge diagnosis"
+                    }
+                }
+            ],
+            "hospitalization": {
+                "destination": "Location/cd46b0ba-759a-4ad3-99a9-147f82c4b7f3",
+                "dischargeDisposition": [
                     {
-                        "actor": {
-                            "reference": "Organization/78e24234",
-                            "display": "LABORATÓRIO"
-                        }
+                        "system": "http://hl7.org/fhir/discharge-disposition",
+                        "code": "home",
+                        "display": "Home"
                     },
                     {
-                        "role": {
-                            "coding": [
-                                {
-                                    "system": "http://snomed.info/sct",
-                                    "code": "159036002",
-                                    "display": "ECG technician"
-                                }
-                            ]
-                        },
-                        "actor": {
-                            "reference": "Practitioner/99999",
-                            "display": "Dra. Remedios"
-                        }
-                    }
-                ],
-                "result": [
+                        "system": "http://hl7.org/fhir/discharge-disposition",
+                        "code": "other-hcf",
+                        "display": "Other healthcare facility"
+                    },
                     {
-                        "reference": "Observation/item2001000000005034600003"
-                    }
-                ],
-                "conclusion": "Resultados fora do normal. O paciente revelou batidas cardíacas acima do normal",
-                "presentedForm": [
+                        "system": "http://hl7.org/fhir/discharge-disposition",
+                        "code": "hosp",
+                        "display": "Hospice"
+                    },
                     {
-                        "contentType": "application/pdf",
-                        "language": "pt",
-                        "data": "U291IGEgbmF2ZWdhbnRlIGRhIGx1YSBlIGVtIG5vbWUgZGEgbHVhIHZhaXMgc2VyIGNhc3RpZ2FkbyA6RA==",
-                        "title": "Access key"
+                        "system": "http://hl7.org/fhir/discharge-disposition",
+                        "code": "long",
+                        "display": "Long-term care"
+                    },
+                    {
+                        "system": "http://hl7.org/fhir/discharge-disposition",
+                        "code": "aadvice",
+                        "display": "Left against advice"
+                    },
+                    {
+                        "system": "http://hl7.org/fhir/discharge-disposition",
+                        "code": "exp",
+                        "display": "Expired"
+                    },
+                    {
+                        "system": "http://hl7.org/fhir/discharge-disposition",
+                        "code": "psy",
+                        "display": "Psychiatric hospital"
+                    },
+                    {
+                        "system": "http://hl7.org/fhir/discharge-disposition",
+                        "code": "rehab",
+                        "display": "Rehabilitation"
+                    },
+                    {
+                        "system": "http://hl7.org/fhir/discharge-disposition",
+                        "code": "snf",
+                        "display": "Skilled nursing facility"
+                    },
+                    {
+                        "system": "http://hl7.org/fhir/discharge-disposition",
+                        "code": "oth",
+                        "display": "Other"
                     }
                 ]
             }
         },
         {
-            "fullUrl": "http://spms.min-saude.pt/fhir/Observation/item2001000000005034600003",
-            "resource": {
-                "resourceType": "Observation",
-                "id": "item-2001000000005034600003",
-                "status": "final",
-                "code": {
-                    "coding": [
-                        {
-                            "system": "http://www.acss.minsaude.pt/2016/10/03/tabelas-meios-complementares-de-diagnostico-eterapeutica/codigo-sns",
-                            "code": "40301",
-                            "display": "12 lead electrocardiogram "
-                        },
-                        {
-                            "system": "http://snomed.info/sct",
-                            "code": "268400002",
-                            "display": "12 lead electrocardiogram (procedure)"
-                        }
-                    ]
-                },
-                "subject": {
-                    "reference": "Patient/987654321"
-                },
-                "effectiveDateTime": "2017-11-15T09:30:35+01:00",
-                "performer": [
-                    {
-                        "reference": "Practitioner/99999",
-                        "display": "Dra. Remedios"
-                    }
-                ],
-                "valueQuantity": {
-                    "value": 20,
-                    "unit": "{beats}/min",
-                    "system": "http://unitsofmeasure.org",
-                    "code": "258983007"
-                },
-                "interpretation": {
-                    "coding": [
-                        {
-                            "system": "http://hl7.org/fhir/v2/0078",
-                            "code": "A",
-                            "display": "Abnormal"
-                        }
-                    ]
-                },
-                "device": {
-                    "display": "12 lead EKG Device Metric"
-                }
-            }
-        },
-        {
-            "fullUrl": "http://spms.min-saude.pt/fhir/Practitioner/99999",
+            "fullUrl": "http://spms.min-saude.pt/fhir/Practitioner/97af8d57-d864-41a2-a287-c4c5bcc7ada8",
             "resource": {
                 "resourceType": "Practitioner",
-                "id": "99999",
+                "id": "97af8d57-d864-41a2-a287-c4c5bcc7ada8",
                 "identifier": [
                     {
                         "type": {
@@ -253,33 +363,16 @@
                                     "code": "MD",
                                     "display": "Medical License number"
                                 }
-                            ]
+                            ],
+                            "text": "OM"
                         },
                         "system": "https://www.ordemdosmedicos.pt",
-                        "value": "99999"
+                        "value": "97af8d57-d864-41a2-a287-c4c5bcc7ada8"
                     }
                 ],
                 "name": [
                     {
-                        "text": "Dra. Remedios"
-                    }
-                ]
-            }
-        },
-        {
-            "fullUrl": "http://spms.min-saude.pt/fhir/Coverage/ADSE",
-            "resource": {
-                "resourceType": "Coverage",
-                "id": "ADSE",
-                "identifier": [
-                    {
-                        "system": "https://www.adse.pt/identifiers/adsenumber",
-                        "value": "1424034247823241232"
-                    }
-                ],
-                "payor": [
-                    {
-                        "reference": "Organization/ADSE"
+                        "text": "Dra. Exemplo Remedios"
                     }
                 ]
             }
@@ -302,15 +395,108 @@
             "fullUrl": "http://spms.min-saude.pt/fhir/Organization/78e24234",
             "resource": {
                 "resourceType": "Organization",
-                "id": "78e24234",
+                "id": "07770443-88ff-441e-87fb-ab02a92817cb",
                 "identifier": [
                     {
-                        "system": "http://spms.min-saude.pt/sges/identifiers/providing-entity-id",
-                        "value": "78e24234"
+                        "system": ": http://spms.min-saude.pt/sges/identifiers/pole-id",
+                        "value": "3113405"
                     }
                 ],
-                "name": "LABORATÓRIO"
+                "type": [
+                    {
+                        "code": "prov",
+                        "display": "Healthcare Provider"
+                    },
+                    {
+                        "code": "dept",
+                        "display": "Hospital Departmente"
+                    },
+                    {
+                        "code": "govt",
+                        "display": "Government"
+                    },
+                    {
+                        "code": "ins",
+                        "display": "Insurance Company"
+                    },
+                    {
+                        "code": "edu",
+                        "display": "Educational Institute"
+                    },
+                    {
+                        "code": "reli",
+                        "display": "Religious Institution"
+                    },
+                    {
+                        "code": "crs",
+                        "display": "Clinical Research Sponsor"
+                    },
+                    {
+                        "code": "cg",
+                        "display": "Community Group"
+                    },
+                    {
+                        "code":"bus",
+                        "display": "Non-Healthcare Business or Corporation"
+                    },
+                    {
+                        "code": "other",
+                        "display": "Other"
+                    }
+                ],
+                "name": "Hospital Exemplo"
             }
+        },
+        {
+            "resourceType": "Location",
+            "id": "fa56ccda-6426-4f61-84e9-d51521185f17",
+            "identifier": [
+                {
+                    "system": "http://spms.min-saude.pt/sges/identifiers/entity-id",
+                    "value": "fa56ccda-6426-4f61-84e9-d51521185f17"
+                }
+            ],
+            "name": "Hospital de Destino Exemplo"
+        },
+        {
+            "resourceType": "Condition",
+            "id": "e3e790e3-5caf-4978-b0e2-f655c31727ce",
+            "subject": "Patient/987654321",
+            "asserter": "Practitioner/97af8d57-d864-41a2-a287-c4c5bcc7ada8"
+        },
+        {
+            "resourceType": "MedicationAdministration",
+            "id": "4c5892f5-f291-45ea-b622-a7053f33a531",
+            "status": "completed",
+            "medication": {
+                "medicationCodableConcept": {
+                    "code": "261000",
+                    "display": "Codeine phosphate"
+                },
+                "medicationReference": "Medication/82b2a6d1-7967-475a-b965-ff3386c132b1"
+            },
+            "subject": "Patient/987654321",
+            "effective": {
+                "effectiveDateTime": "2017-11-15T12:16:00.358+00:00"
+            },
+            "dosage": {
+                "dose": "100"
+            }
+        },
+        {
+            "resourceType": "Medication",
+            "id": "82b2a6d1-7967-475a-b965-ff3386c132b1"
+        },
+        {
+            "resourceType": "List",
+            "status": "current",
+            "mode": "working",
+            "entry": [
+                {
+                    "title": "Médico de Família",
+                    "item": "Practitioner/97af8d57-d864-41a2-a287-c4c5bcc7ada8"
+                }
+            ]
         }
     ]
 }
