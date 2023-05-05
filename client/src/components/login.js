@@ -58,7 +58,7 @@ function Login() {
       <div>
         <h2>Login</h2>
         <form className="login-form">
-          <div class="inputbox">
+          <div className="inputbox">
             <span>&#9993;</span>
             <input
               type="email"
@@ -71,7 +71,7 @@ function Login() {
             <label htmlFor="email">Email</label>
             {/* corrigir css que vem para baixo nao tendo email valido */}
           </div>
-          <div class="inputbox">
+          <div className="inputbox">
             <span>&#128477;</span>
             <input
               type="password"
@@ -87,14 +87,14 @@ function Login() {
             Log In
           </button>
         </form>
-        <footer class="after-form">
+        <footer className="after-form">
           <span>
-            <a href="/signup" class="regist">
+            <a href="/signup" className="regist">
               Create account
             </a>
           </span>
           <span>
-            <a href="/sendemail" class="forgot">
+            <a href="/sendemail" className="forgot">
               Forgot my pass
             </a>
           </span>

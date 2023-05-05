@@ -7,19 +7,20 @@ function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [type, setType] = useState("");
   const [msg, setMsg] = useState("");
 
   const handleGoBack = async () => navigate(-1);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    console.log(name, email, password);
+    console.log(name, email, password, type);
 
     try {
-      if (name !== "" && email !== "" && password !== "") {
+      if (name !== "" && email !== "" && password !== "" && type !== '') {
         const response = await axios.post(
           "http://localhost:8080/signup", //ligação à porta do NodeJS
-          JSON.stringify({ name, email, password }),
+          JSON.stringify({ name, email, password, type }),
           {
             headers: { "Content-Type": "application/json" },
           }
@@ -76,6 +77,13 @@ function SignUp() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <label htmlFor="password">Password</label>
+        </div>
+        <div class="inputbox">
+          <label for="exampleFormControlSelect1">Type</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Admin</option>
+            <option>User</option>
+          </select>
         </div>
         <button type="submit" onClick={(e) => handleSignUp(e)}>
           Sign Up

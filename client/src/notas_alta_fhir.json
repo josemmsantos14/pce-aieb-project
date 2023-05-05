@@ -1,0 +1,316 @@
+{
+    "resourceType": "Bundle",
+    "id": "55f0d652-fd37-40a3-ab93-3a73168e022d",
+    "meta": {
+        "lastUpdated": "2017-11-15T12:16:00.358+00:00",
+        "profile": [
+            "http://spms.min-saude.pt/iop/profiles/discharge-summary-query/v0100"
+        ]
+    },
+    "type": "message",
+    "entry": [
+        {
+            "fullUrl": "http://spms.min-saude.pt/fhir/MessageHeader/ac185937-cc34-4e42-9459-ae5e1306c34d",
+            "resource": {
+                "resourceType": "MessageHeader",
+                "id": "123bbafa-099b-4cbc-bfaf-771b192efb8d",
+                "meta": {
+                    "lastUpdated": "2017-11-15T12:16:00.358+00:00",
+                    "profile": [
+                        "http://spms.min-saude.pt/iop/profiles/dischargesummary-query-msh/v0100"
+                    ]
+                },
+                "event": {
+                    "system": " http://spms.min-saude.pt/iop/events",
+                    "code": "11435",
+                    "display": "DISCHARGE_SUMMARY_QUERY"
+                },
+                "destination": [
+                    {
+                        "name": "SClínicoHospitalar",
+                        "endpoint": "SPMS/SClínicoHospitalar"
+                    }
+                ],
+                "receiver": {
+                    "reference": "Organization/9999999",
+                    "display": "CS Exemplo"
+                },
+                "sender": {
+                    "reference": "Organization/78e24234",
+                    "display": "LABORATÓRIO"
+                },
+                "timestamp": "2017-10-05T23:10:00.358+00:00",
+                "source": {
+                    "name": "RSE",
+                    "endpoint": "SPMS/RSE"
+                },
+                "focus": [
+                    {
+                        "reference": "Parameters/ce7c149d-46e2-42b0-8caf-478564c436b3"
+                    }
+                ]
+            }
+        },
+        // é preciso meter o Parameters e Encounter??
+        {
+            "fullUrl": "http://spms.min-saude.pt/fhir/Patient/987654321",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "987654321",
+                "extension": [
+                    {
+                        "url": "http://spms.min-saude.pt/pnb/extensions/patient-coverage",
+                        "valueReference": {
+                            "reference": "Coverage/ADSE"
+                        }
+                    }
+                ],
+                "identifier": [
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://hl7.org/fhir/v2/0203",
+                                    "code": "HC",
+                                    "display": "Health Card Number"
+                                }
+                            ],
+                            "text": "SNS"
+                        },
+                        "system": "http://spms.min-saude.pt/rnu/identifiers/patient-id",
+                        "value": "987654321"
+                    }
+                ],
+                "name": [
+                    {
+                        "text": "PAULO EXEMPLO DE NOME DA SILVA"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1970-01-01",
+                "address": [
+                    {
+                        "text": "Rua de Exemplo, nº 99 9999-999 EXEMPLO"
+                    }
+                ]
+            }
+        },
+        {
+            "fullUrl": "http://spms.min-saude.pt/fhir/DiagnosticReport/101",
+            "resource": {
+                "resourceType": "DiagnosticReport",
+                "id": "101",
+                "meta": {
+                    "security": [
+                        {
+                            "system": "http://hl7.org/fhir/v3/Confidentiality",
+                            "code": "R",
+                            "display": "Restricted"
+                        }
+                    ]
+                },
+                "basedOn": [
+                    {
+                        "identifier": {
+                            "system": "https://spms.min-saude.pt/bdnr/identifiers/mcdt-request-id",
+                            "value": "RQ2313-234"
+                        }
+                    }
+                ],
+                "status": "final",
+                "category": {
+                    "coding": [
+                        {
+                            "system": "http://www.acss.min-saude.pt/mcdt/valueset/clinical-areas",
+                            "code": "C",
+                            "display": "Cardiologia"
+                        },
+                        {
+                            "system": "http://hl7.org/fhir/v2/0074",
+                            "code": "EC",
+                            "display": "Electrocardiac"
+                        }
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "268400002",
+                            "display": "12 lead electrocardiogram "
+                        },
+                        {
+                            "system": "https://www.acss.min-saude.pt/category/prestadores/convencionados/#tab_tabelas-meios-complementaresde-diagnostico-e-terapeutica",
+                            "code": "40301",
+                            "display": "Eletrocardiograma de 12 derivações"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "Patient/987654321"
+                },
+                "issued": "2017-11-14T11:45:33+11:00",
+                "performer": [
+                    {
+                        "actor": {
+                            "reference": "Organization/78e24234",
+                            "display": "LABORATÓRIO"
+                        }
+                    },
+                    {
+                        "role": {
+                            "coding": [
+                                {
+                                    "system": "http://snomed.info/sct",
+                                    "code": "159036002",
+                                    "display": "ECG technician"
+                                }
+                            ]
+                        },
+                        "actor": {
+                            "reference": "Practitioner/99999",
+                            "display": "Dra. Remedios"
+                        }
+                    }
+                ],
+                "result": [
+                    {
+                        "reference": "Observation/item2001000000005034600003"
+                    }
+                ],
+                "conclusion": "Resultados fora do normal. O paciente revelou batidas cardíacas acima do normal",
+                "presentedForm": [
+                    {
+                        "contentType": "application/pdf",
+                        "language": "pt",
+                        "data": "U291IGEgbmF2ZWdhbnRlIGRhIGx1YSBlIGVtIG5vbWUgZGEgbHVhIHZhaXMgc2VyIGNhc3RpZ2FkbyA6RA==",
+                        "title": "Access key"
+                    }
+                ]
+            }
+        },
+        {
+            "fullUrl": "http://spms.min-saude.pt/fhir/Observation/item2001000000005034600003",
+            "resource": {
+                "resourceType": "Observation",
+                "id": "item-2001000000005034600003",
+                "status": "final",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://www.acss.minsaude.pt/2016/10/03/tabelas-meios-complementares-de-diagnostico-eterapeutica/codigo-sns",
+                            "code": "40301",
+                            "display": "12 lead electrocardiogram "
+                        },
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "268400002",
+                            "display": "12 lead electrocardiogram (procedure)"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "Patient/987654321"
+                },
+                "effectiveDateTime": "2017-11-15T09:30:35+01:00",
+                "performer": [
+                    {
+                        "reference": "Practitioner/99999",
+                        "display": "Dra. Remedios"
+                    }
+                ],
+                "valueQuantity": {
+                    "value": 20,
+                    "unit": "{beats}/min",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "258983007"
+                },
+                "interpretation": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/v2/0078",
+                            "code": "A",
+                            "display": "Abnormal"
+                        }
+                    ]
+                },
+                "device": {
+                    "display": "12 lead EKG Device Metric"
+                }
+            }
+        },
+        {
+            "fullUrl": "http://spms.min-saude.pt/fhir/Practitioner/99999",
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "99999",
+                "identifier": [
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://hl7.org/fhir/v2/0203",
+                                    "code": "MD",
+                                    "display": "Medical License number"
+                                }
+                            ]
+                        },
+                        "system": "https://www.ordemdosmedicos.pt",
+                        "value": "99999"
+                    }
+                ],
+                "name": [
+                    {
+                        "text": "Dra. Remedios"
+                    }
+                ]
+            }
+        },
+        {
+            "fullUrl": "http://spms.min-saude.pt/fhir/Coverage/ADSE",
+            "resource": {
+                "resourceType": "Coverage",
+                "id": "ADSE",
+                "identifier": [
+                    {
+                        "system": "https://www.adse.pt/identifiers/adsenumber",
+                        "value": "1424034247823241232"
+                    }
+                ],
+                "payor": [
+                    {
+                        "reference": "Organization/ADSE"
+                    }
+                ]
+            }
+        },
+        {
+            "fullUrl": "http://spms.min-saude.pt/fhir/Organization/9999999",
+            "resource": {
+                "resourceType": "Organization",
+                "id": "9999999",
+                "identifier": [
+                    {
+                        "system": "http://spms.min-saude.pt/sges/identifiers/entity-id",
+                        "value": "9999999"
+                    }
+                ],
+                "name": "CS Exemplo"
+            }
+        },
+        {
+            "fullUrl": "http://spms.min-saude.pt/fhir/Organization/78e24234",
+            "resource": {
+                "resourceType": "Organization",
+                "id": "78e24234",
+                "identifier": [
+                    {
+                        "system": "http://spms.min-saude.pt/sges/identifiers/providing-entity-id",
+                        "value": "78e24234"
+                    }
+                ],
+                "name": "LABORATÓRIO"
+            }
+        }
+    ]
+}

@@ -16,6 +16,7 @@ router.post("/", function (req, res) {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    type: req.body.type
   };
 
   console.log(userInput);

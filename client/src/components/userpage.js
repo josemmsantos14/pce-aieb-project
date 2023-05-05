@@ -3,7 +3,8 @@ import { redirect, useNavigate } from "react-router";
 
 import { Form } from "protected-aidaforms";
 
-let json = require("../template_jdt.json");
+let json = require("../jdt_notas_alta.json");
+let style_json = require("../style_notas_alta.json")
 
 function UserPage() {
   const [email, setEmail] = useState("");
@@ -63,7 +64,7 @@ function UserPage() {
         canSubmit={true}
         canSave={true}
         canCancel={true}
-        patientData={{
+       /*  patientData={{
           numSequencial: 1904865,
           episodio: 21016848,
           modulo: "INT",
@@ -98,7 +99,7 @@ function UserPage() {
             value: "José da Silva Pinto",
             formVisible: true,
           },
-        ]}
+        ]} */
         submitButtonDisabled={false}
         saveButtonDisabled={false}
       />
