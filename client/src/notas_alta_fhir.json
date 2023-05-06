@@ -57,21 +57,23 @@
                 {
                 "name": "NNU",
                 "value": {
-
+                        "type": {
+                            "coding": {
+                                "code": {
+                                    "code": "HC",
+                                    "system": "http://hl7.org/fhir/v2/0203"
+                                },
+                                "display": "Health Card Number"
+                            },
+                            "text": "NNU (Número Nacional de Utente)",
+                            "system": "http://spms.min-saude.pt/rnu/identifiers/patient-id",
+                            "value": "987654321",
+                            "period": {
+                                "start": "0000-00-00",
+                                "end": "0000-00-00"
+                            }
+                        }
                     }
-                },
-                {
-                "name": "Encounter",
-                "resource": {
-                    "resourceType": "Encounter",
-                    "id": "6ee6cae1-0400-4247-8121-86a0396770d6",
-                    "identifier": [{
-                        "system": ": http://spms.min-saude.pt/fhir/identifiers/num-episodio",
-                        "value": "000000"
-                    }
-                    ],
-                    "status": "finished"
-                }
                 }
             ]
         },
@@ -98,24 +100,6 @@
                             "start": "0000-00-00",
                             "end": "0000-00-00"
                         }
-                    },
-                    {
-                        "type": {
-                            "coding": [
-                                {
-                                    "system": "http://hl7.org/fhir/v2/0203",
-                                    "code": "MR",
-                                    "display": "Medical Record Number"
-                                }
-                            ],
-                            "text": "Número do Processo"
-                        },
-                        "system": "http://spms.min-saude.pt/rnu/identifiers/patient-id",
-                        "value": "987654321",
-                        "period": {
-                            "start": "0000-00-00",
-                            "end": "0000-00-00"
-                        } 
                     }
                 ],
                 "gender": "male",
@@ -133,370 +117,311 @@
             }
         },
         {
-            "resourceType": "AllergyIntolerance",
-            "id": "b6fd6286-e0e9-4123-bcca-4756ed5573c2",
-            "verificationStatus": {
-              "coding": [
-                {
-                  "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
-                  "code": "unconfirmed",
-                  "display": "Unconfirmed"
-                },
-                {
-                    "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
-                    "code": "presumed",
-                    "display": "Presumed"
-                },
-                {
-                    "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
-                    "code": "confirmed",
-                    "display": "Confirmed"
-                },
-                {
-                    "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
-                    "code": "refuted",
-                    "display": "Refuted"
-                },
-                {
-                    "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
-                    "code": "entered-in-error",
-                    "display": "Entered in Error"
-                }
-              ]
+            "title": "Episódio",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "34133-9",
+                "display": "Summary of episode note"
             },
-            "patient": {
-              "reference": "Patient/987654321"
-            },
-            "reaction": [
-              {
-                "manifestation": [
-                  {
-                    "coding": [
-                      {
-                        "system": "http://snomed.info/sct",
-                        "code": "39579001",
-                        "display": "Anaphylactic reaction"
-                      }
-                    ],
-                    "text": "Reação anafilática"
-                  }
-                ]
-              }
-            ]
-        },
-        {
-            "resourceType": "Encounter",
-            "id": "1bb497b9-ad6c-4141-85c4-9ef8262b54db",
-            "identifier": [
-                {
-                    "system": ": http://spms.min-saude.pt/fhir/identifiers/num-episodio",
-                    "value": "1bb497b9-ad6c-4141-85c4-9ef8262b54db"
-                }
-            ],
-            "status": "finished",
-            "subject": {
-                "reference": "Patient/987654321"
-            },
-            "participant": [
-                {
-                    "type": [
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "DIS",
-                            "display": "discharger"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "ADM",
-                            "display": "admitter"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "ATND",
-                            "display": "attender"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "CALLBCK",
-                            "display": "callback contact"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "CON",
-                            "display": "consultant"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "ESC",
-                            "display": "escort"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "REF",
-                            "display": "referrer"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "SPRF",
-                            "display": "secondary performer"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "PPRF",
-                            "display": "primary performer"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "PART",
-                            "display": "Participation"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "translator",
-                            "display": "Translator"
-                        },
-                        {
-                            "system": "http://hl7.org/fhir/participant-type",
-                            "code": "emergency",
-                            "display": "Emergency"
-                        }
-                    ],
-                    "individual": {
-                        "reference": "Practitioner/97af8d57-d864-41a2-a287-c4c5bcc7ada8"
+            "entry": {
+                "resourceType": "Encounter",
+                "id": "1bb497b9-ad6c-4141-85c4-9ef8262b54db",
+                "identifier": [
+                    {
+                        "system": "http://spms.min-saude.pt/fhir/identifiers/num-episodio",
+                        "value": "1bb497b9-ad6c-4141-85c4-9ef8262b54db"
                     }
-                }
-            ],
-            "period": {
-                "start": "2019-06-01",
-                "end": "2019-06-03"
-            },
-            "extension": {
-                "url": "http://spms.min-saude.pt/rse/extensions/encounter_administrative_date",
-                "value": "2019-01-14T23:10:23+00:00"
-                
-            },
-            "diagnosis": [
-                {
-                    "condition": "Condition/e3e790e3-5caf-4978-b0e2-f655c31727ce",
-                    "role": {
-                        "system": "http://hl7.org/fhir/diagnosis-role",
-                        "code": "AD",
-                        "display": "Admission diagnosis"
+                ],
+                "status": "finished",
+                "subject": {
+                    "reference": "Patient/987654321"
+                },
+                "period": {
+                    "start": "0000-00-00",
+                    "end": "0000-00-00"
+                },
+                "reason": "Exemplo de motivo",
+                "participant": {
+                    "name": "Nome Exemplo",
+                    "type": {
+                        "system": "http://hl7.org/fhir/v3/ParticipationType",
+                        "code": "ATND",
+                        "display": "attender"
                     }
                 },
-                {
-                    "condition": "Condition/95302699-06e4-49da-9554-457576be2954",
-                    "role": {
-                        "system": "http://hl7.org/fhir/diagnosis-role",
-                        "code": "DD",
-                        "display": "Discharge diagnosis"
-                    }
-                }
-            ],
-            "hospitalization": {
-                "destination": "Location/cd46b0ba-759a-4ad3-99a9-147f82c4b7f3",
-                "dischargeDisposition": [
-                    {
-                        "system": "http://hl7.org/fhir/discharge-disposition",
-                        "code": "home",
-                        "display": "Home"
-                    },
-                    {
-                        "system": "http://hl7.org/fhir/discharge-disposition",
-                        "code": "other-hcf",
-                        "display": "Other healthcare facility"
-                    },
-                    {
+                "hospitalization": {
+                    "dischargeDisposition": {
                         "system": "http://hl7.org/fhir/discharge-disposition",
                         "code": "hosp",
                         "display": "Hospice"
                     },
+                    "location": "Location/cd46b0ba-759a-4ad3-99a9-147f82c4b7f3"
+                }
+            }
+        },
+        {
+            "title": "Alergia",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "48765-2",
+                "display": "Allergies"
+            },
+            "entry": {
+                "resourceType": "AllergyIntolerance",
+                "id": "b6fd6286-e0e9-4123-bcca-4756ed5573c2",
+                "patient": {
+                    "reference": "Patient/987654321"
+                },
+                "substance": {
+                    "system": "http://snomed.info/sct",
+                    "code": "3718001",
+                    "display": "Cow's milk"
+                },
+                "criticality": {
+                    "system": "http://hl7.org/fhir/allergy-intolerance-criticality",
+                    "code": "low",
+                    "display": "Low risk"
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                        "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+                        "code": "unconfirmed",
+                        "display": "Unconfirmed"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "title": "Evolução no Internamento",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "8648-8",
+                "display": "Hospital course Narrative"
+            },
+            "entry": {
+                "id": "3f2dcaa8-e0b1-4bdd-ad8a-139e08edd85f",
+                "resourceType": "Observation",
+                "status": "final",
+                "code": {
+                    "coding": [
                     {
-                        "system": "http://hl7.org/fhir/discharge-disposition",
-                        "code": "long",
-                        "display": "Long-term care"
+                        "system": "http://loinc.org",
+                        "code": "8648-8",
+                        "display": "Hospital course Narrative"
+                    }
+                    ]
+                },
+                "comment": "Comentário exemplo."
+            }
+        },
+        {
+            "title": "Diagnóstico de admissão",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "42347-5",
+                "display": "Admission diagnosis (narrative)"
+            },
+            "entry": {
+                "resourceType": "Encounter",
+                "id": "1bb497b9-ad6c-4141-85c4-9ef8262b54db",
+                "identifier": [
+                    {
+                        "system": "http://spms.min-saude.pt/fhir/identifiers/num-episodio",
+                        "value": "1bb497b9-ad6c-4141-85c4-9ef8262b54db"
+                    }
+                ],
+                "status": "finished",
+                "subject": {
+                    "reference": "Patient/987654321"
+                },
+                "reason": {
+                    "system": "http://snomed.info/sct",
+                    "code": "109006",
+                    "display": "Anxiety disorder of childhood OR adolescence"
+                },
+                "description": "Descrição exemplo.",
+                "participant": {
+                    "type": {
+                        "system": "http://hl7.org/fhir/v3/ParticipationType",
+                        "code": "ADM",
+                        "display": "admitter"
                     },
+                    "name": "Nome Exemplo"
+                }
+            }
+        },
+        {
+            "title": "Diagnóstico de alta",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "78375-3",
+                "display": "Discharge diagnosis Narrative"
+            },
+            "entry": {
+                "resourceType": "Encounter",
+                "id": "1bb497b9-ad6c-4141-85c4-9ef8262b54db",
+                "identifier": [
                     {
-                        "system": "http://hl7.org/fhir/discharge-disposition",
-                        "code": "aadvice",
-                        "display": "Left against advice"
+                        "system": "http://spms.min-saude.pt/fhir/identifiers/num-episodio",
+                        "value": "1bb497b9-ad6c-4141-85c4-9ef8262b54db"
+                    }
+                ],
+                "status": "finished",
+                "subject": {
+                    "reference": "Patient/987654321"
+                },
+                "reason": {
+                    "system": "http://snomed.info/sct",
+                    "code": "109006",
+                    "display": "Anxiety disorder of childhood OR adolescence"
+                },
+                "description": "Descrição exemplo.",
+                "participant": {
+                    "type": {
+                        "system": "http://hl7.org/fhir/v3/ParticipationType",
+                        "code": "DIS",
+                        "dispflay": "discharger"
                     },
+                    "name": "Nome Exemplo"
+                }
+            }
+        },
+        {
+            "title": "Terapêutica efetuada",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "42346-7",
+                "display": "Medications on admission (narrative)"
+            },
+            "entry": {
+                "resourceType": "MedicationAdministration",
+                "id": "4c5892f5-f291-45ea-b622-a7053f33a531",
+                "status": "completed",
+                "medication": {
+                    "medicationCodableConcept": {
+                        "code": "261000",
+                        "display": "Codeine phosphate"
+                    }
+                },
+                "dosage": {
+                    "dose": "100",
+                    "text": "Exemplo de descrição"
+                },
+                "subject": "Patient/987654321",
+                "effective": {
+                    "effectiveDateTime": "2017-11-15T12:16:00.358+00:00"
+                }
+            }
+        },
+        {
+            "title": "História clínica",
+            "code": {
+                "system": "http://spms.min-saude.pt/ce/valueset/document-sections",
+                "code": "10164-2",
+                "display": "History of Present illness Narrative"
+            },
+            "entry": {
+                "id": "3f2dcaa8-e0b1-4bdd-ad8a-139e08edd85f",
+                "resourceType": "Observation",
+                "status": "final",
+                "code": {
+                    "coding": [
                     {
-                        "system": "http://hl7.org/fhir/discharge-disposition",
-                        "code": "exp",
-                        "display": "Expired"
-                    },
+                        "system": "http://loinc.org",
+                        "code": "8648-8",
+                        "display": "Hospital course Narrative"
+                    }
+                    ]
+                },
+                "comment": "Comentário exemplo."
+            }
+        },
+        {
+            "title": "Diários",
+            "code": {
+                "system": "http://spms.min-saude.pt/ce/valueset/document-sections",
+                "code": "10164-2",
+                "display": "History of Present illness Narrative"
+            },
+            "entry": {
+                "id": "3f2dcaa8-e0b1-4bdd-ad8a-139e08edd85f",
+                "resourceType": "Observation",
+                "status": "final",
+                "code": {
+                    "coding": [
                     {
-                        "system": "http://hl7.org/fhir/discharge-disposition",
-                        "code": "psy",
-                        "display": "Psychiatric hospital"
-                    },
+                        "system": "http://loinc.org",
+                        "code": "8648-8",
+                        "display": "Hospital course Narrative"
+                    }
+                    ]
+                },
+                "comment": "Comentário exemplo."
+            }
+        },
+        {
+            "title": "Identificadores administrativos",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "87504-7",
+                "display": "Administrative information"
+            },
+            "entry": {
+                "patient": "Patient/987654321",
+                "encounter": "Encounter/1bb497b9-ad6c-4141-85c4-9ef8262b54db",
+                "list": [
                     {
-                        "system": "http://hl7.org/fhir/discharge-disposition",
-                        "code": "rehab",
-                        "display": "Rehabilitation"
-                    },
-                    {
-                        "system": "http://hl7.org/fhir/discharge-disposition",
-                        "code": "snf",
-                        "display": "Skilled nursing facility"
-                    },
-                    {
-                        "system": "http://hl7.org/fhir/discharge-disposition",
-                        "code": "oth",
-                        "display": "Other"
+                        "resourceType": "List",
+                        "status": "current",
+                        "mode": "working",
+                        "entry": [
+                            {
+                                "title": "Médico de Família",
+                                "item": "Practitioner/97af8d57-d864-41a2-a287-c4c5bcc7ada8"
+                            }
+                        ]
                     }
                 ]
-            }
-        },
-        {
-            "fullUrl": "http://spms.min-saude.pt/fhir/Practitioner/97af8d57-d864-41a2-a287-c4c5bcc7ada8",
-            "resource": {
-                "resourceType": "Practitioner",
-                "id": "97af8d57-d864-41a2-a287-c4c5bcc7ada8",
-                "identifier": [
-                    {
-                        "type": {
-                            "coding": [
-                                {
-                                    "system": "http://hl7.org/fhir/v2/0203",
-                                    "code": "MD",
-                                    "display": "Medical License number"
-                                }
-                            ],
-                            "text": "OM"
-                        },
-                        "system": "https://www.ordemdosmedicos.pt",
-                        "value": "97af8d57-d864-41a2-a287-c4c5bcc7ada8"
-                    }
-                ],
-                "name": [
-                    {
-                        "text": "Dra. Exemplo Remedios"
-                    }
-                ]
-            }
-        },
-        {
-            "fullUrl": "http://spms.min-saude.pt/fhir/Organization/9999999",
-            "resource": {
-                "resourceType": "Organization",
-                "id": "9999999",
-                "identifier": [
-                    {
-                        "system": "http://spms.min-saude.pt/sges/identifiers/entity-id",
-                        "value": "9999999"
-                    }
-                ],
-                "name": "CS Exemplo"
-            }
-        },
-        {
-            "fullUrl": "http://spms.min-saude.pt/fhir/Organization/78e24234",
-            "resource": {
-                "resourceType": "Organization",
-                "id": "07770443-88ff-441e-87fb-ab02a92817cb",
-                "identifier": [
-                    {
-                        "system": ": http://spms.min-saude.pt/sges/identifiers/pole-id",
-                        "value": "3113405"
-                    }
-                ],
-                "type": [
-                    {
-                        "code": "prov",
-                        "display": "Healthcare Provider"
-                    },
-                    {
-                        "code": "dept",
-                        "display": "Hospital Departmente"
-                    },
-                    {
-                        "code": "govt",
-                        "display": "Government"
-                    },
-                    {
-                        "code": "ins",
-                        "display": "Insurance Company"
-                    },
-                    {
-                        "code": "edu",
-                        "display": "Educational Institute"
-                    },
-                    {
-                        "code": "reli",
-                        "display": "Religious Institution"
-                    },
-                    {
-                        "code": "crs",
-                        "display": "Clinical Research Sponsor"
-                    },
-                    {
-                        "code": "cg",
-                        "display": "Community Group"
-                    },
-                    {
-                        "code":"bus",
-                        "display": "Non-Healthcare Business or Corporation"
-                    },
-                    {
-                        "code": "other",
-                        "display": "Other"
-                    }
-                ],
-                "name": "Hospital Exemplo"
             }
         },
         {
             "resourceType": "Location",
-            "id": "fa56ccda-6426-4f61-84e9-d51521185f17",
+            "id": "cd46b0ba-759a-4ad3-99a9-147f82c4b7f3",
             "identifier": [
                 {
                     "system": "http://spms.min-saude.pt/sges/identifiers/entity-id",
-                    "value": "fa56ccda-6426-4f61-84e9-d51521185f17"
+                    "value": "999999"
                 }
             ],
-            "name": "Hospital de Destino Exemplo"
+            "name": "Hospital Exemplo"
         },
         {
-            "resourceType": "Condition",
-            "id": "e3e790e3-5caf-4978-b0e2-f655c31727ce",
-            "subject": "Patient/987654321",
-            "asserter": "Practitioner/97af8d57-d864-41a2-a287-c4c5bcc7ada8"
-        },
-        {
-            "resourceType": "MedicationAdministration",
-            "id": "4c5892f5-f291-45ea-b622-a7053f33a531",
-            "status": "completed",
-            "medication": {
-                "medicationCodableConcept": {
-                    "code": "261000",
-                    "display": "Codeine phosphate"
-                },
-                "medicationReference": "Medication/82b2a6d1-7967-475a-b965-ff3386c132b1"
-            },
-            "subject": "Patient/987654321",
-            "effective": {
-                "effectiveDateTime": "2017-11-15T12:16:00.358+00:00"
-            },
-            "dosage": {
-                "dose": "100"
-            }
-        },
-        {
-            "resourceType": "Medication",
-            "id": "82b2a6d1-7967-475a-b965-ff3386c132b1"
-        },
-        {
-            "resourceType": "List",
-            "status": "current",
-            "mode": "working",
-            "entry": [
+            "resourceType": "Practitioner",
+            "id": "97af8d57-d864-41a2-a287-c4c5bcc7ada8",
+            "name": [
                 {
-                    "title": "Médico de Família",
-                    "item": "Practitioner/97af8d57-d864-41a2-a287-c4c5bcc7ada8"
+                    "text": "Dra. Exemplo Remedios"
                 }
-            ]
+            ],
+            "identifier": [
+                {
+                    "type": {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/v2/0203",
+                                "code": "MD",
+                                "display": "Medical License number"
+                            }
+                        ],
+                        "text": "OM"
+                    },
+                    "system": "https://www.ordemdosmedicos.pt",
+                    "value": "97af8d57-d864-41a2-a287-c4c5bcc7ada8"
+                }
+            ],
+            "role": "Role exemplo"
         }
     ]
 }
