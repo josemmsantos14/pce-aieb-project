@@ -1,9 +1,9 @@
 let CompositionModel = require('../model/composition');
 
-// adicionar composition
-module.exports.newComposition = async (items) => {
+// adicionar composition e mensagem fhir
+module.exports.newComposition = async (items, fhir) => {
     try {
-        let composition = new CompositionModel ({ composition: items });
+        let composition = new CompositionModel ({ composition: items, fhirMessage: fhir });
         let response = await composition.save();
         return { success: true, response };
     } catch(err) {

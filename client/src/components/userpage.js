@@ -8,7 +8,7 @@ import axios from "axios";
 import { Form } from "protected-aidaforms";
 
 let json = require("../jdt_notas_alta.json");
-let style_json = require("../style_notas_alta.json");
+let style = require("../style_notas_alta.json");
 
 let values_extracted = [];
 let keys = [];
@@ -79,57 +79,57 @@ function UserPage() {
 
     console.log("SAVED VALUES: ", values, "CHANGED FIELDS: ", changedFields);
 
+    //------------------- Criação da mensagem fhir com os campos do form -------------------
+    const fhirMessage = require('../notas_alta_fhir_2.json');
+    //console.log(fhirMessage); // campos da mensagem fhir
+
+    const form = JSON.parse(values); 
+    const keysForm = getAllKeys(form); // keys do form
+    const valuesFhir = addAllValues(fhirMessage); // values da mensagem fhir
+
+    for (const value in valuesFhir) {
+      for (const item in keysForm) {
+        if (valuesFhir[value] === keysForm[item]) {
+          // console.log(values_extracted[value]);
+          let key = getKeysByValue(fhirMessage, valuesFhir[value]) // keys do fhir
+          /* if (typeof form[keysForm[item]] === 'object') {
+            console.log("BLOCKS")
+            console.log(form[keysForm[item]]["blocks"][0]["text"]);
+          } else if (form[keysForm[item]] === null) {
+            console.log("UNDEFINED")
+            console.log(form[keysForm[item]]);
+          } else {
+            console.log("NORMAL")
+            console.log(form[keysForm[item]]);
+          } */
+          fhirMessage[key] = form[keysForm[item]] // substituição na mensagem
+          //console.log(fhirMessage[key]);
+
+          // ainda não funciona: 
+          // - não há divisão das keys do form em code e display (eg. aparece items.0.0.items.0.items.2.items.4.value quando devia aparecer items.0.0.items.0.items.2.items.4.value.code e items.0.0.items.0.items.2.items.4.value.text)
+          // - não é possivel chegar ao campo text quando o value do form é um objeto
+        } 
+      }
+    }
+    console.log(fhirMessage);
+    //------------------- Fim da criação da mensagem fhir -------------------
+
     try {
       const response = await axios.post(
         "http://localhost:8080/userpage/new-composition", //ligação à porta do NodeJS e ao respetivo caminho correspondente à acção de post de uma nova composition
-        JSON.stringify({ composition }),
+        JSON.stringify({ composition, fhirMessage }),
         {
           headers: { "Content-Type": "application/json" },
         }
       );
       if (response.status === 200) {
-        alert("Composition adicionada com sucesso!");
-
-        const fhirMessage = require('../notas_alta_fhir_2.json');
-        //console.log(fhirMessage); campos da mensagem fhir
-
-        const form = JSON.parse(values); 
-        const keysForm = getAllKeys(form);
-        // console.log(values_j); keys do form
-
-        const valuesFhir = addAllValues(fhirMessage); // values da mensagem fhir
-
-        for (const value in valuesFhir) {
-          for (const item in keysForm) {
-            if (valuesFhir[value] == keysForm[item]) {
-              // console.log(values_extracted[value]);
-              let key = getKeysByValue(fhirMessage, valuesFhir[value]) // keys do fhir
-              /* if (typeof form[keysForm[item]] === 'object') {
-                console.log("BLOCKS")
-                console.log(form[keysForm[item]]["blocks"][0]["text"]);
-              } else if (form[keysForm[item]] === null) {
-                console.log("UNDEFINED")
-                console.log(form[keysForm[item]]);
-              } else {
-                console.log("NORMAL")
-                console.log(form[keysForm[item]]);
-              } */
-              fhirMessage[key] = form[keysForm[item]] // substituição na mensagem
-              //console.log(fhirMessage[key]);
-
-              // ainda não funciona: 
-              // - não há divisão das keys do form em code e display (eg. aparece items.0.0.items.0.items.2.items.4.value quando devia aparecer items.0.0.items.0.items.2.items.4.value.code e items.0.0.items.0.items.2.items.4.value.text)
-              // - não é possivel chegar ao campo text quando o value do form é um objeto
-            } 
-          }
-        }
-        console.log(fhirMessage);
+        alert("Composition added!");
       }
       
     } catch (error) {
       console.error(error.response.status);
       if (error.response.status === 400) {
-        alert("Composition não adicionada! Algo correu mal");
+        alert("Composition not added! Something went wrong.");
       }
     }
   };
@@ -188,6 +188,7 @@ function UserPage() {
           canCancel={true}
           submitButtonDisabled={false}
           saveButtonDisabled={false}
+          formDesign={JSON.stringify(style)}
         />
       </div>
     </div>
