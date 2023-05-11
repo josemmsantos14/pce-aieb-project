@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import { useState } from "react";
 import { redirect, useNavigate } from "react-router";
 import axios from "axios";
@@ -8,7 +8,7 @@ import axios from "axios";
 import { Form } from "protected-aidaforms";
 
 let json = require("../jdt_notas_alta.json");
-let style_json = require("../style_notas_alta.json")
+let style_json = require("../style_notas_alta.json");
 
 function UserPage() {
   const [email, setEmail] = useState("");
@@ -25,18 +25,13 @@ function UserPage() {
     navigate("/login");
   };
 
-  const [composition, setComposition] = React.useState('');
+  const [composition, setComposition] = React.useState("");
 
   // função que faz comunicação react-node para adicionar composition
   const handleAdd = async (values, changedFields) => {
     setComposition(values);
 
-    console.log(
-      "SAVED VALUES: ",
-      values,
-      "CHANGED FIELDS: ",
-      changedFields
-    )
+    console.log("SAVED VALUES: ", values, "CHANGED FIELDS: ", changedFields);
 
     try {
       const response = await axios.post(
@@ -47,20 +42,21 @@ function UserPage() {
         }
       );
       if (response.status === 200) {
-        alert("Composition adicionada com sucesso!")
+        alert("Composition adicionada com sucesso!");
       }
     } catch (error) {
       console.error(error.response.status);
-      if ( error.response.status === 400 ){
-        alert("Composition não adicionada! Algo correu mal")}
+      if (error.response.status === 400) {
+        alert("Composition não adicionada! Algo correu mal");
       }
-  }
-  
+    }
+  };
+
   // const formRef = React.useRef();
 
   return (
     <div>
-        <div className="auth-form-container">
+      <div className="auth-form-container">
         <button type="button" onClick={handleGoBack} class="goback">
           &#11164;
         </button>
@@ -71,45 +67,38 @@ function UserPage() {
       </div>
 
       <div className="App">
-      <Form
-        onSubmit={(values, changedFields) => handleAdd(values, changedFields)}
-
-        onSave={(values, changedFields) =>
-          console.log(
-            "SAVED VALUES: ",
-            values,
-            "CHANGED FIELDS: ",
-            changedFields
-          )
-        }
-        
-        onCancel={(status) => console.log("CANCELLED:", status)}
-        
-        template={json}
-        dlm={{}}
-        showPrint={true}
-        editMode={true}
-        professionalTasks={[
-          "Registar Pedido",
-          "Consultar Pedido",
-          "Anular Pedido",
-        ]}
-        
-        canSubmit={true}
-        canSave={true}
-        canCancel={true}
-        
-        submitButtonDisabled={false}
-        saveButtonDisabled={false}
-      />
+        <Form
+          onSubmit={(values, changedFields) => handleAdd(values, changedFields)}
+          onSave={(values, changedFields) =>
+            console.log(
+              "SAVED VALUES: ",
+              values,
+              "CHANGED FIELDS: ",
+              changedFields
+            )
+          }
+          onCancel={(status) => console.log("CANCELLED:", status)}
+          template={json}
+          dlm={{}}
+          showPrint={true}
+          editMode={true}
+          professionalTasks={[
+            "Registar Pedido",
+            "Consultar Pedido",
+            "Anular Pedido",
+          ]}
+          canSubmit={true}
+          canSave={true}
+          canCancel={true}
+          submitButtonDisabled={false}
+          saveButtonDisabled={false}
+        />
       </div>
     </div>
-    
   );
 }
 
 export default UserPage;
-
 
 /*  patientData={{
           numSequencial: 1904865,

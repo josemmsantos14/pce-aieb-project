@@ -17,7 +17,7 @@ function SignUp() {
     console.log(name, email, password, type);
 
     try {
-      if (name !== "" && email !== "" && password !== "" && type !== '') {
+      if (name !== "" && email !== "" && password !== "" && type !== "") {
         const response = await axios.post(
           "http://localhost:8080/signup", //ligação à porta do NodeJS
           JSON.stringify({ name, email, password, type }),
@@ -36,7 +36,7 @@ function SignUp() {
   };
 
   return (
-    <div className="auth-form-container">
+    <div className="auth-form-container signup-container">
       <button type="button" onClick={handleGoBack} class="goback">
         &#11164;
       </button>
@@ -79,10 +79,10 @@ function SignUp() {
           <label htmlFor="password">Password</label>
         </div>
         <div class="inputbox">
-          <label for="exampleFormControlSelect1">Type</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>Admin</option>
-            <option>User</option>
+          <select class="select-type" id="select-type">
+            <option>Select type...</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
           </select>
         </div>
         <button type="submit" onClick={(e) => handleSignUp(e)}>

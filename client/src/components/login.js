@@ -83,7 +83,11 @@ function Login() {
             />
             <label htmlFor="password">Password</label>
           </div>
-          <button type="submit" onClick={(e) => handleLogin(e)}>
+          <button
+            type="submit"
+            class="btn-login"
+            onClick={(e) => handleLogin(e)}
+          >
             Log In
           </button>
         </form>

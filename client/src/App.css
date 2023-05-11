@@ -15,13 +15,47 @@
 }
 
 .auth-form-container {
-  width: 20%;
-  height: 90%;
-  padding: 4rem;
+  width: 25rem;
+  height: 30rem;
+  padding: 3rem 3rem;
   border: 0px solid white;
   border-radius: 10px;
   margin: 0.5rem;
   background-color: rgba(235, 235, 235, 1);
+}
+
+.signup-container {
+  height: 35rem;
+}
+
+.home-container {
+  height: 15rem;
+}
+
+.btns-redirect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* background-color: red; */
+  padding: 3rem 0;
+}
+
+.btn-in-home {
+  width: 15rem;
+  padding: 0 3rem;
+  margin-bottom: 1rem;
+}
+
+.auth-form-container h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-weight: 600;
+}
+
+.login-form {
+  align-self: center;
+  margin-top: 1rem;
 }
 
 .inputbox {
@@ -68,7 +102,10 @@ input:required:invalid:not(:placeholder-shown) ~ label {
   top: -5px;
 }
 
-input::placeholder {
+::placeholder,
+::-webkit-input-placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder {
   opacity: 0;
 }
 
@@ -82,9 +119,25 @@ input::placeholder {
   color: red;
 } */
 
+.select-type {
+  background: none;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  padding: 0rem 3rem;
+  width: 100%;
+  text-align: left;
+}
+
+.select-type option {
+  /* background-color: red; */
+  background: none;
+  text-align: left;
+}
+
 button {
   position: relative;
-  border: none;
+  /* border: none; */
+  box-shadow: 2px 2px 0.3rem 0 black;
   background-color: #171828;
   padding: 10px;
   margin-top: 10%;
@@ -103,11 +156,15 @@ button:hover {
   font-weight: 700;
 }
 
+button[type="submit"] {
+  margin-top: 1.5rem;
+}
+
 .after-form {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
 a.regist,
