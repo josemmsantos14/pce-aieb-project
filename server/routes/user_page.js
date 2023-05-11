@@ -6,6 +6,7 @@ var CompositionController = require("../controller/composition.js");
 router.post("/new-composition", async (req, res) => {
   let { composition } = req.body;
   const compositionResponse = await CompositionController.newComposition(JSON.parse(composition));
+  
   if (!compositionResponse.success) {
    return res.status(400).json({ response: compositionResponse.response});
   }

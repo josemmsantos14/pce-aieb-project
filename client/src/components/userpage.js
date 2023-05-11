@@ -69,6 +69,7 @@ function UserPage() {
       <div className="App">
         <Form
           onSubmit={(values, changedFields) => handleAdd(values, changedFields)}
+          
           onSave={(values, changedFields) =>
             console.log(
               "SAVED VALUES: ",
@@ -77,7 +78,9 @@ function UserPage() {
               changedFields
             )
           }
+          
           onCancel={(status) => console.log("CANCELLED:", status)}
+          
           template={json}
           dlm={{}}
           showPrint={true}
@@ -87,6 +90,7 @@ function UserPage() {
             "Consultar Pedido",
             "Anular Pedido",
           ]}
+          
           canSubmit={true}
           canSave={true}
           canCancel={true}

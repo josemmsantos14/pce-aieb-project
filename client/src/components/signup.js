@@ -26,11 +26,18 @@ function SignUp() {
           }
         );
         console.log("Credentials sent!");
+        // console.log(response);
+        if (response.status === 201) {
+          alert("Utilizador criado com sucesso!");
+        }
       } else {
         setMsg("Inputed credentials not valid.");
       }
     } catch (error) {
       console.error(error.message);
+      if (error.response.status === 403) {
+        alert("Utilizador já existe!");
+      }
       setMsg(error.message);
     }
   };
@@ -79,7 +86,7 @@ function SignUp() {
           <label htmlFor="password">Password</label>
         </div>
         <div class="inputbox">
-          <select class="select-type" id="select-type">
+          <select class="select-type" id="select-type" onChange={(e) => setType(e.target.value)}>
             <option>Select type...</option>
             <option value="admin">Admin</option>
             <option value="user">User</option>
@@ -89,6 +96,7 @@ function SignUp() {
           Sign Up
         </button>
       </form>
+      {msg && <p className="error"> {msg}</p>}
     </div>
   );
 }

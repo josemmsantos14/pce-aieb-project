@@ -17,16 +17,17 @@ function Login() {
     try {
       if (email !== "" && password !== "") {
         const response = await axios.post(
-          "http://localhost:8080/login", //ligação à porta do NodeJS
+          "http://localhost:8080/login", //ligação à porta do NodeJS e ao respetivo caminho relativo ao login
           JSON.stringify({ email, password }),
           {
             headers: { "Content-Type": "application/json" },
           }
         );
-        console.log(response.data.body.isAdmin);
+        let user = response.data.body;
+        console.log(user);
 
         // console.log("Credentials sent!");
-        if (response.data.body.isAdmin === true) {
+        if (user.response.UserType === "admin") {
           navigate("/adminpage");
         } else {
           navigate("/userpage");
