@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { redirect, useNavigate } from "react-router";
+import { redirect, useNavigate, useLocation } from "react-router";
 import axios from "axios";
 
 // o user vai ter o form para preencher e tmb terá de ter acesso a uma tabela com todas as compositions guardadas na base de dados
@@ -60,6 +60,7 @@ function UserPage() {
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleGoBack = async () => navigate(-1);
 
@@ -137,20 +138,33 @@ function UserPage() {
 
   return (
     <div>
-      <div className="auth-form-container">
-        <button type="button" onClick={handleGoBack} className="goback">
-          &#11164;
-        </button>
-        {/* <h2>Hello User!</h2> */}
-        <button type="button" onClick={handleLogout} className="logout">
-          Logout
-        </button>
-      </div>
+      <navbar className="navbar">
+        <ul className="navbar-left-items">
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="#">Help</a>
+          </li>
+        </ul>
+        <div className="navbar-right-items">
+          <h5 className="user-name">{location.state.name}</h5>
+          <button type="button" onClick={handleLogout} className="btn-logout">
+            Logout
+          </button>
+        </div>
+      </navbar>
+      {/* <button type="button" onClick={handleGoBack} className="goback">
+        &#11164;
+      </button> */}
+      {/* <h2>Hello User!</h2> */}
 
       <div className="App">
         <Form
           onSubmit={(values, changedFields) => handleAdd(values, changedFields)}
-          
           onSave={(values, changedFields) =>
             console.log(
               "SAVED VALUES: ",
@@ -159,9 +173,7 @@ function UserPage() {
               changedFields
             )
           }
-          
           onCancel={(status) => console.log("CANCELLED:", status)}
-          
           template={json}
           dlm={{}}
           showPrint={true}
@@ -171,7 +183,6 @@ function UserPage() {
             "Consultar Pedido",
             "Anular Pedido",
           ]}
-          
           canSubmit={true}
           canSave={true}
           canCancel={true}

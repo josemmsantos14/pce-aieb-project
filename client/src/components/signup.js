@@ -29,6 +29,7 @@ function SignUp() {
         // console.log(response);
         if (response.status === 201) {
           alert("User created!");
+          navigate("/login");
         }
       } else {
         setMsg("Inputed credentials not valid.");
@@ -86,7 +87,11 @@ function SignUp() {
           <label htmlFor="password">Password</label>
         </div>
         <div className="inputbox">
-          <select className="select-type" id="select-type" onChange={(e) => setType(e.target.value)}>
+          <select
+            className="select-type"
+            id="select-type"
+            onChange={(e) => setType(e.target.value)}
+          >
             <option>Select type...</option>
             <option value="admin">Admin</option>
             <option value="user">User</option>

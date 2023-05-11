@@ -25,15 +25,22 @@ function Login() {
         );
         let user = response.data.body;
         console.log(user);
-
+        console.log(user.response.UserName);
         // console.log("Credentials sent!");
         if (user.response.UserType === "admin") {
-          navigate("/adminpage");
+          navigate("/adminpage", {
+            state: {
+              name: user.response.UserName,
+            },
+          });
         } else if (user.response.UserType === "user") {
-          navigate("/userpage");
-        }
-        else {
-          alert("Invalid User!")
+          navigate("/userpage", {
+            state: {
+              name: user.response.UserName,
+            },
+          });
+        } else {
+          alert("Invalid User!");
           // navigate("/login");
         }
       } else {

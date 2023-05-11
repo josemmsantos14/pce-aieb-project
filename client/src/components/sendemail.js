@@ -30,7 +30,7 @@ function SendEmail() {
   };
 
   return (
-    <div className="auth-form-container">
+    <div className="auth-form-container sendemail-container">
       <button type="button" onClick={handleGoBack} className="goback">
         &#11164;
       </button>

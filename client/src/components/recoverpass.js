@@ -10,7 +10,7 @@ function RecoverPass() {
 
   const handleGoBack = async () => navigate(-1);
 
-  const handleRecorerpass = async (e) => {
+  const handleRecoverpass = async (e) => {
     e.preventDefault();
     console.log(password, passwordverify);
 
@@ -31,7 +31,7 @@ function RecoverPass() {
   };
 
   return (
-    <div className="auth-form-container">
+    <div className="auth-form-container recover-container">
       <button type="button" onClick={handleGoBack} className="goback">
         &#11164;
       </button>
@@ -61,7 +61,7 @@ function RecoverPass() {
           />
           <label htmlFor="passwordverify">Confirm password</label>
         </div>
-        <button type="submit" onClick={(e) => handleRecorerpass(e)}>
+        <button type="submit" onClick={(e) => handleRecoverpass(e)}>
           Reset password
         </button>
       </form>

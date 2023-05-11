@@ -8,6 +8,55 @@
   background-color: #084a5c;
 }
 
+.navbar {
+  height: 4rem;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-left-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.navbar-right-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navbar-right-items * {
+  width: 5rem;
+  height: 2rem;
+  margin: 0 1rem;
+}
+.navbar-right-items .user-name {
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+.navbar-left-items li {
+  width: 5rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-left-items li:hover {
+  color: #04dafa;
+}
+.navbar-left-items li a:active {
+  border: #04dafa;
+}
+
 .auth-form-container,
 .login-form {
   display: flex;
@@ -30,6 +79,14 @@
 
 .home-container {
   height: 15rem;
+}
+
+.sendemail-container {
+  height: 20rem;
+}
+
+.recover-container {
+  height: 25rem;
 }
 
 .btns-redirect {
@@ -105,7 +162,8 @@ input:required:invalid:not(:placeholder-shown) ~ label {
 ::placeholder,
 ::-webkit-input-placeholder,
 :-ms-input-placeholder,
-::-ms-input-placeholder {
+::-ms-input-placeholder,
+input::placeholder {
   opacity: 0;
 }
 
@@ -132,6 +190,10 @@ input:required:invalid:not(:placeholder-shown) ~ label {
   /* background-color: red; */
   background: none;
   text-align: left;
+}
+
+.signup-container.inputbox:last-child {
+  border: none;
 }
 
 button {
@@ -202,6 +264,11 @@ button.goback:hover {
 button:active {
   background: #084a5c;
   color: white;
+}
+
+.btn-logout {
+  width: 5rem;
+  height: 2rem;
 }
 
 p.error {

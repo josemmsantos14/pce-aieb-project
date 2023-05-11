@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 var UserController = require("../controller/user.js");
 
-
 /* POST credentials to login. */
 router.post("/", async function (req, res) {
   let { email, password } = req.body;
@@ -13,8 +12,11 @@ router.post("/", async function (req, res) {
     res.status(204).json({ status: "Failed", message: "Empty credentials" });
   } else {
     try {
-      const user = await UserController.getUserByEmailAndPassword(email, password);
-      console.log(user);
+      const user = await UserController.getUserByEmailAndPassword(
+        email,
+        password
+      );
+      // console.log(user);
 
       if (user.exists) {
         console.log("User logged in!");
