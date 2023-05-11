@@ -68,7 +68,7 @@ function Login() {
         &#11164;
       </button>
       <div>
-        <h2>Login</h2>
+        <h2 className="title">Login</h2>
         <form className="login-form">
           <div className="inputbox">
             <span>&#9993;</span>
@@ -97,7 +97,7 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="btn-login"
+            className="btn btn-login"
             onClick={(e) => handleLogin(e)}
           >
             Log In

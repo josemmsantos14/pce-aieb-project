@@ -35,7 +35,7 @@ function RecoverPass() {
       <button type="button" onClick={handleGoBack} className="goback">
         &#11164;
       </button>
-      <h2>Recover Password</h2>
+      <h2 className="title">Recover Password</h2>
       <form className="login-form">
         <div className="inputbox">
           <span>&#128477;</span>
@@ -61,7 +61,11 @@ function RecoverPass() {
           />
           <label htmlFor="passwordverify">Confirm password</label>
         </div>
-        <button type="submit" onClick={(e) => handleRecoverpass(e)}>
+        <button
+          className="btn btn-recover"
+          type="submit"
+          onClick={(e) => handleRecoverpass(e)}
+        >
           Reset password
         </button>
       </form>

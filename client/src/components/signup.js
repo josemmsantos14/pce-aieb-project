@@ -10,7 +10,7 @@ function SignUp() {
   const [type, setType] = useState("");
   const [msg, setMsg] = useState("");
 
-  const handleGoBack = async () => navigate("/");
+  const handleGoBack = async () => navigate(-1);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ function SignUp() {
       <button type="button" onClick={handleGoBack} className="goback">
         &#11164;
       </button>
-      <h2>Sign Up</h2>
+      <h2 className="title">Sign Up</h2>
       <form className="login-form">
         <div className="inputbox">
           <span>&#10077;</span>
@@ -97,7 +97,11 @@ function SignUp() {
             <option value="user">User</option>
           </select>
         </div>
-        <button type="submit" onClick={(e) => handleSignUp(e)}>
+        <button
+          className="btn btn-signup"
+          type="submit"
+          onClick={(e) => handleSignUp(e)}
+        >
           Sign Up
         </button>
       </form>

@@ -34,7 +34,7 @@ function SendEmail() {
       <button type="button" onClick={handleGoBack} className="goback">
         &#11164;
       </button>
-      <h2>Forgot your password?</h2>
+      <h2 className="title">Forgot your password?</h2>
       <form className="login-form">
         <div className="inputbox">
           <span>&#9993;</span>
@@ -48,8 +48,12 @@ function SendEmail() {
           />
           <label htmlFor="email">Email</label>
         </div>
-        <button type="submit" onClick={(e) => handleSendemail(e)}>
-          Recover Password
+        <button
+          className="btn btn-sendemail"
+          type="submit"
+          onClick={(e) => handleSendemail(e)}
+        >
+          Send Email
         </button>
       </form>
     </div>

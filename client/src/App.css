@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   color: black;
-  background-color: #084a5c;
+  background-color: #1f69a5;
 }
 
 .navbar {
@@ -50,7 +50,9 @@
   align-items: center;
 }
 
-.navbar-left-items li:hover {
+.navbar-left-items li a:hover {
+  width: 5rem;
+  height: 2rem;
   color: #04dafa;
 }
 .navbar-left-items li a:active {
@@ -87,6 +89,10 @@
 
 .recover-container {
   height: 25rem;
+}
+
+.title {
+  color: #4299e1;
 }
 
 .btns-redirect {
@@ -200,7 +206,7 @@ button {
   position: relative;
   /* border: none; */
   box-shadow: 2px 2px 0.3rem 0 black;
-  background-color: #171828;
+  /* background-color: #171828; */
   padding: 10px;
   margin-top: 10%;
   border-radius: 0;
@@ -247,13 +253,13 @@ a.forgot:hover {
 
 button.goback {
   position: absolute;
-  width: auto;
-  height: auto;
+  width: 3.2rem;
+  height: 3.2rem;
   margin: 0.5rem;
-  padding: 10px;
   top: 0;
   left: 0;
   font-size: 150%;
+  border-radius: 10rem;
 }
 
 button.goback:hover {
@@ -274,4 +280,8 @@ button:active {
 p.error {
   background: rgba(255, 0, 0, 0.4);
   padding: 5px 0;
+}
+
+.form-principal > button {
+  box-shadow: none;
 }
