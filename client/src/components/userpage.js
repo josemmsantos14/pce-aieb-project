@@ -10,10 +10,9 @@ import { Form } from "protected-aidaforms";
 let json = require("../jdt_notas_alta.json");
 let style = require("../style_notas_alta.json");
 
+// ----------------------- Para criação da mensagem Fhir -----------------------
 let values_extracted = [];
 let keys = [];
-
-
 function addAllValues(fieldMapping) {
 
   for (const field in fieldMapping) {
@@ -53,6 +52,7 @@ function getKeysByValue(obj, value) {
   }
   return keys;
 }
+// ----------------------------------------------
 
 
 function UserPage() {
@@ -152,7 +152,11 @@ function UserPage() {
         </ul>
         <div className="navbar-right-items">
           <h5 className="user-name">{location.state.name}</h5>
-          <button type="button" onClick={handleLogout} className="btn-logout">
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="btn btn-logout"
+          >
             Logout
           </button>
         </div>
@@ -164,6 +168,7 @@ function UserPage() {
 
       <div className="App">
         <Form
+          className="form-principal"
           onSubmit={(values, changedFields) => handleAdd(values, changedFields)}
           onSave={(values, changedFields) =>
             console.log(
