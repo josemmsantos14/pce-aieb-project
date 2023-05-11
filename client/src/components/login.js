@@ -29,11 +29,15 @@ function Login() {
         // console.log("Credentials sent!");
         if (user.response.UserType === "admin") {
           navigate("/adminpage");
-        } else {
+        } else if (user.response.UserType === "user") {
           navigate("/userpage");
         }
+        else {
+          alert("Invalid User!")
+          // navigate("/login");
+        }
       } else {
-        setMsg("Please input valid credentials.");
+        alert("Please input valid credentials.");
       }
     } catch (error) {
       if (error.response.status === 204) {
@@ -104,7 +108,7 @@ function Login() {
             </a>
           </span>
         </footer>
-        {msg && <p className="error"> {msg} </p>}
+        {msg && <p className="error"> {msg.message} </p>}
       </div>
     </div>
   );
