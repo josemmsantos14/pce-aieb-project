@@ -1,0 +1,432 @@
+{
+    "resourceType": "Bundle",
+    "id": "55f0d652-fd37-40a3-ab93-3a73168e022d",
+    "meta": {
+        "lastUpdated": "2017-11-15T12:16:00.358+00:00",
+        "profile": [
+            "http://spms.min-saude.pt/iop/profiles/discharge-summary-query/v0100"
+        ]
+    },
+    "type": "message",
+    "entry": [
+        {
+            "fullUrl": "http://spms.min-saude.pt/fhir/MessageHeader/ac185937-cc34-4e42-9459-ae5e1306c34d",
+            "resource": {
+                "resourceType": "MessageHeader",
+                "id": "123bbafa-099b-4cbc-bfaf-771b192efb8d",
+                "meta": {
+                    "lastUpdated": "2017-11-15T12:16:00.358+00:00",
+                    "profile": [
+                        "http://spms.min-saude.pt/iop/profiles/dischargesummary-query-msh/v0100"
+                    ]
+                },
+                "event": {
+                    "system": " http://spms.min-saude.pt/iop/events",
+                    "code": "11435",
+                    "display": "DISCHARGE_SUMMARY_QUERY"
+                },
+                "destination": [
+                    {
+                        "name": "SClínicoHospitalar",
+                        "endpoint": "SPMS/SClínicoHospitalar"
+                    }
+                ],
+                "receiver": {
+                    "reference": "Organization/9999999",
+                    "display": "CS Exemplo"
+                },
+                "sender": {
+                    "reference": "Organization/78e24234",
+                    "display": "Serviços Partilhados do Ministério da Saúde"
+                },
+                "timestamp": "2017-10-05T23:10:00.358+00:00",
+                "source": {
+                    "name": "RSE",
+                    "endpoint": "SPMS/RSE"
+                },
+                "focus": [
+                    {
+                        "reference": "Parameters/ce7c149d-46e2-42b0-8caf-478564c436b3"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "ce7c149d-46e2-42b0-8caf-478564c436b3",
+            "parameter" : [
+                {
+                "name": "NNU",
+                "value": {
+                        "type": {
+                            "coding": {
+                                "code": {
+                                    "code": "HC",
+                                    "system": "http://hl7.org/fhir/v2/0203"
+                                },
+                                "display": "Health Card Number"
+                            },
+                            "text": "NNU (Número Nacional de Utente)",
+                            "system": "http://spms.min-saude.pt/rnu/identifiers/patient-id",
+                            "value": "987654321",
+                            "period": {
+                                "start": "0000-00-00",
+                                "end": "0000-00-00"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "fullUrl": "http://spms.min-saude.pt/fhir/Patient/987654321",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "987654321",
+                "identifier": [
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://hl7.org/fhir/v2/0203",
+                                    "code": "HC",
+                                    "display": "Health Card Number"
+                                }
+                            ],
+                            "text": "NNU (Número Nacional de Utente)"
+                        },
+                        "system": "http://spms.min-saude.pt/rnu/identifiers/patient-id",
+                        "value": "987654321",
+                        "period": {
+                            "start": "0000-00-00",
+                            "end": "0000-00-00"
+                        }
+                    }
+                ],
+                "gender": "items.0.0.items.0.items.0.value.code, items.0.0.items.0.items.0.value.text",
+                "name": [
+                    {
+                        "text": "items.0.0.items.0.items.1.items.0.value",
+                        "family": "items.0.0.items.0.items.1.items.1.value"
+                    }
+                ],
+                "address": [
+                    {
+                        "text": "items.0.0.items.0.items.2.items.0.value",
+                        "city": "items.0.0.items.0.items.2.items.1.value",
+                        "district":"items.0.0.items.0.items.2.items.2.value",
+                        "postalcode":"items.0.0.items.0.items.2.items.3.value",
+                        "country":"items.0.0.items.0.items.2.items.4.value"
+                    }
+                ]
+            }
+        },
+        {
+            "title": "Episódio",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "34133-9",
+                "display": "Summary of episode note"
+            },
+            "entry": {
+                "resourceType": "Encounter",
+                "id": "items.0.1.items.0.value",
+                "identifier": [
+                    {
+                        "system": "http://spms.min-saude.pt/fhir/identifiers/num-episodio",
+                        "value": "1bb497b9-ad6c-4141-85c4-9ef8262b54db"
+                    }
+                ],
+                "status": "finished",
+                "subject": {
+                    "reference": "Patient/987654321"
+                },
+                "period": {
+                    "start": "items.0.1.items.1.value.date, items.0.1.items.1.value.time",
+                    "end": "items.0.1.items.4.value.date, items.0.1.items.4.value.time"
+                },
+                "reason": "items.0.1.items.2.value",
+                "participant": {
+                    "name": "items.0.1.items.3.items.0.value",
+                    "type": {
+                        "system": "http://hl7.org/fhir/v3/ParticipationType",
+                        "code": "items.0.1.items.3.items.1.value.code",
+                        "display": "items.0.1.items.3.items.1.value.text"
+                    }
+                },
+                "hospitalization": {
+                    "dischargeDisposition": {
+                        "system": "http://hl7.org/fhir/discharge-disposition",
+                        "code": "items.0.1.items.5.value.code",
+                        "display": "items.0.1.items.5.value.text"
+                    },
+                    "location": "Location/cd46b0ba-759a-4ad3-99a9-147f82c4b7f3"
+                }
+            }
+        },
+        {
+            "resourceType": "Location",
+            "id": "cd46b0ba-759a-4ad3-99a9-147f82c4b7f3",
+            "identifier": [
+                {
+                    "system": "http://spms.min-saude.pt/sges/identifiers/entity-id",
+                    "value": "items.0.1.items.6.items.1.value"
+                }
+            ],
+            "name": "items.0.1.items.6.items.0.value"
+        },
+        {
+            "title": "Alergia",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "48765-2",
+                "display": "Allergies"
+            },
+            "entry": {
+                "resourceType": "AllergyIntolerance",
+                "id": "b6fd6286-e0e9-4123-bcca-4756ed5573c2",
+                "patient": {
+                    "reference": "Patient/987654321"
+                },
+                "substance": {
+                    "system": "http://snomed.info/sct",
+                    "code": "items.0.2.items.0.value.code",
+                    "display": "items.0.2.items.0.value.text"
+                },
+                "criticality": {
+                    "system": "http://hl7.org/fhir/allergy-intolerance-criticality",
+                    "code": "items.0.2.items.1.value.code",
+                    "display": "items.0.2.items.1.value.text"
+                },
+                "verificationStatus": {
+                    "coding": [
+                        {
+                        "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+                        "code": "items.0.2.items.2.items.0.value.code",
+                        "display": "items.0.2.items.2.items.0.value.text"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "title": "Evolução no Internamento",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "8648-8",
+                "display": "Hospital course Narrative"
+            },
+            "entry": {
+                "id": "3f2dcaa8-e0b1-4bdd-ad8a-139e08edd85f",
+                "resourceType": "Observation",
+                "status": "final",
+                "code": {
+                    "coding": [
+                    {
+                        "system": "http://loinc.org",
+                        "code": "8648-8",
+                        "display": "Hospital course Narrative"
+                    }
+                    ]
+                },
+                "comment": "items.0.3.items.0.value"
+            }
+        },
+        {
+            "title": "Diagnóstico de admissão",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "items.0.4.items.0.value.code",
+                "display": "items.0.4.items.0.value.text"
+            },
+            "entry": {
+                "resourceType": "Encounter",
+                "id": "1bb497b9-ad6c-4141-85c4-9ef8262b54db",
+                "identifier": [
+                    {
+                        "system": "http://spms.min-saude.pt/fhir/identifiers/num-episodio",
+                        "value": "1bb497b9-ad6c-4141-85c4-9ef8262b54db"
+                    }
+                ],
+                "status": "finished",
+                "subject": {
+                    "reference": "Patient/987654321"
+                },
+                "reason": {
+                    "system": "http://snomed.info/sct",
+                    "code": "109006",
+                    "display": "Anxiety disorder of childhood OR adolescence"
+                },
+                "description": "items.0.4.items.1.value",
+                "participant": {
+                    "type": {
+                        "system": "http://hl7.org/fhir/v3/ParticipationType",
+                        "code": "ADM",
+                        "display": "admitter"
+                    },
+                    "name": "items.0.4.items.3.items.0.value"
+                }
+            }
+        },
+        {
+            "title": "Diagnóstico de alta",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "items.0.5.items.0.value.code",
+                "display": "items.0.5.items.0.value.text"
+            },
+            "entry": {
+                "resourceType": "Encounter",
+                "id": "1bb497b9-ad6c-4141-85c4-9ef8262b54db",
+                "identifier": [
+                    {
+                        "system": "http://spms.min-saude.pt/fhir/identifiers/num-episodio",
+                        "value": "1bb497b9-ad6c-4141-85c4-9ef8262b54db"
+                    }
+                ],
+                "status": "finished",
+                "subject": {
+                    "reference": "Patient/987654321"
+                },
+                "reason": {
+                    "system": "http://snomed.info/sct",
+                    "code": "109006",
+                    "display": "Anxiety disorder of childhood OR adolescence"
+                },
+                "description": "items.0.5.items.1.value",
+                "participant": {
+                    "type": {
+                        "system": "http://hl7.org/fhir/v3/ParticipationType",
+                        "code": "DIS",
+                        "dispflay": "discharger"
+                    },
+                    "name": "items.0.5.items.3.items.0.value"
+                }
+            }
+        },
+        {
+            "title": "Terapêutica efetuada",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "42346-7",
+                "display": "Medications on admission (narrative)"
+            },
+            "entry": {
+                "resourceType": "MedicationAdministration",
+                "id": "4c5892f5-f291-45ea-b622-a7053f33a531",
+                "status": "completed",
+                "medication": {
+                    "medicationCodableConcept": {
+                        "code": "items.0.6.items.0.value.code",
+                        "display": "items.0.6.items.0.value.text"
+                    }
+                },
+                "dosage": {
+                    "dose": "items.0.6.items.1.items.0.value.unit, items.0.6.items.1.items.0.value.value",
+                    "text": "items.0.6.items.1.items.1.value"
+                },
+                "subject": "Patient/987654321",
+                "effective": {
+                    "effectiveDateTime": "items.0.6.items.2.value.date, items.0.6.items.2.value.time"
+                }
+            }
+        },
+        {
+            "title": "História clínica",
+            "code": {
+                "system": "http://spms.min-saude.pt/ce/valueset/document-sections",
+                "code": "10164-2",
+                "display": "History of Present illness Narrative"
+            },
+            "entry": {
+                "id": "3f2dcaa8-e0b1-4bdd-ad8a-139e08edd85f",
+                "resourceType": "Observation",
+                "status": "final",
+                "code": {
+                    "coding": [
+                    {
+                        "system": "http://loinc.org",
+                        "code": "8648-8",
+                        "display": "Hospital course Narrative"
+                    }
+                    ]
+                },
+                "comment": "items.0.7.items.0.value"
+            }
+        },
+        {
+            "title": "Diários",
+            "code": {
+                "system": "http://spms.min-saude.pt/ce/valueset/document-sections",
+                "code": "10164-2",
+                "display": "History of Present illness Narrative"
+            },
+            "entry": {
+                "id": "3f2dcaa8-e0b1-4bdd-ad8a-139e08edd85f",
+                "resourceType": "Observation",
+                "status": "final",
+                "code": {
+                    "coding": [
+                    {
+                        "system": "http://loinc.org",
+                        "code": "8648-8",
+                        "display": "Hospital course Narrative"
+                    }
+                    ]
+                },
+                "comment": "items.0.8.items.0.value"
+            }
+        },
+        {
+            "title": "Identificadores administrativos",
+            "code": {
+                "system": "http://loinc.org",
+                "code": "87504-7",
+                "display": "Administrative information"
+            },
+            "entry": {
+                "patient": "Patient/987654321",
+                "encounter": "Encounter/1bb497b9-ad6c-4141-85c4-9ef8262b54db",
+                "list": [
+                    {
+                        "resourceType": "List",
+                        "status": "current",
+                        "mode": "working",
+                        "entry": [
+                            {
+                                "title": "Médico de Família",
+                                "item": "Practitioner/97af8d57-d864-41a2-a287-c4c5bcc7ada8"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        
+        {
+            "resourceType": "Practitioner",
+            "id": "97af8d57-d864-41a2-a287-c4c5bcc7ada8",
+            "name": [
+                {
+                    "text": "items.0.8.items.0.value"
+                }
+            ],
+            "identifier": [
+                {
+                    "type": {
+                        "coding": [
+                            {
+                                "system": "http://hl7.org/fhir/v2/0203",
+                                "code": "MD",
+                                "display": "Medical License number"
+                            }
+                        ],
+                        "text": "OM"
+                    },
+                    "system": "https://www.ordemdosmedicos.pt",
+                    "value": "items.0.2.items.5.value"
+                }
+            ],
+            "role": "items.0.9.items.0.value"
+        }
+    ]
+}
