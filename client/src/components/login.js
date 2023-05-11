@@ -8,7 +8,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
 
-  const handleGoBack = async () => navigate(-1);
+  const handleGoBack = async () => navigate("/");
 
   const handleLogin = async (e) => {
     e.preventDefault();

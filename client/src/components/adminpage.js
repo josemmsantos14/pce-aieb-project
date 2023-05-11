@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { redirect, useNavigate } from "react-router";
 
+
+// o admin vai ter uma tabela com as compositions já submetidas, ou seja, os forms já submetidos
+// e tmb as mensagens fhir
+// não precisa do form visto que vai só consultar o que já existe
+
+
 function AdminPage () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

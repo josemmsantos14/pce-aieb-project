@@ -1,5 +1,9 @@
+import * as React from 'react';
 import { useState } from "react";
 import { redirect, useNavigate } from "react-router";
+import axios from "axios";
+
+// o user vai ter o form para preencher e tmb terá de ter acesso a uma tabela com todas as compositions guardadas na base de dados
 
 import { Form } from "protected-aidaforms";
 
@@ -21,6 +25,39 @@ function UserPage() {
     navigate("/login");
   };
 
+  const [composition, setComposition] = React.useState('');
+
+  // função que faz comunicação react-node para adicionar composition
+  const handleAdd = async (values, changedFields) => {
+    setComposition(values);
+
+    console.log(
+      "SAVED VALUES: ",
+      values,
+      "CHANGED FIELDS: ",
+      changedFields
+    )
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/userpage/new-composition", //ligação à porta do NodeJS e ao respetivo caminho correspondente à acção de post de uma nova composition
+        JSON.stringify({ composition }),
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      if (response.status === 200) {
+        alert("Composition adicionada com sucesso!")
+      }
+    } catch (error) {
+      console.error(error.response.status);
+      if ( error.response.status === 400 ){
+        alert("Composition não adicionada! Algo correu mal")}
+      }
+  }
+  
+  // const formRef = React.useRef();
+
   return (
     <div>
         <div className="auth-form-container">
@@ -35,14 +72,8 @@ function UserPage() {
 
       <div className="App">
       <Form
-        onSubmit={(values, changedFields) =>
-          console.log(
-            "SUBMITTED VALUES: ",
-            values,
-            "CHANGED FIELDS: ",
-            changedFields
-          )
-        }
+        onSubmit={(values, changedFields) => handleAdd(values, changedFields)}
+
         onSave={(values, changedFields) =>
           console.log(
             "SAVED VALUES: ",
@@ -51,7 +82,9 @@ function UserPage() {
             changedFields
           )
         }
+        
         onCancel={(status) => console.log("CANCELLED:", status)}
+        
         template={json}
         dlm={{}}
         showPrint={true}
@@ -61,10 +94,24 @@ function UserPage() {
           "Consultar Pedido",
           "Anular Pedido",
         ]}
+        
         canSubmit={true}
         canSave={true}
         canCancel={true}
-       /*  patientData={{
+        
+        submitButtonDisabled={false}
+        saveButtonDisabled={false}
+      />
+      </div>
+    </div>
+    
+  );
+}
+
+export default UserPage;
+
+
+/*  patientData={{
           numSequencial: 1904865,
           episodio: 21016848,
           modulo: "INT",
@@ -100,13 +147,3 @@ function UserPage() {
             formVisible: true,
           },
         ]} */
-        submitButtonDisabled={false}
-        saveButtonDisabled={false}
-      />
-      </div>
-    </div>
-    
-  );
-}
-
-export default UserPage;

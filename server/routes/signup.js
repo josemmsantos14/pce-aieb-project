@@ -6,7 +6,6 @@ let users = [];
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-  // res.send("Welcome to our users page!");
   res.json(users);
 });
 

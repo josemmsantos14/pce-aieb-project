@@ -10,7 +10,7 @@ function SignUp() {
   const [type, setType] = useState("");
   const [msg, setMsg] = useState("");
 
-  const handleGoBack = async () => navigate(-1);
+  const handleGoBack = async () => navigate("/");
 
   const handleSignUp = async (e) => {
     e.preventDefault();
