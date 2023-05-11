@@ -28,7 +28,7 @@ function SignUp() {
         console.log("Credentials sent!");
         // console.log(response);
         if (response.status === 201) {
-          alert("Utilizador criado com sucesso!");
+          alert("User created!");
         }
       } else {
         setMsg("Inputed credentials not valid.");
@@ -36,7 +36,7 @@ function SignUp() {
     } catch (error) {
       console.error(error.message);
       if (error.response.status === 403) {
-        alert("Utilizador já existe!");
+        alert("User already exists!");
       }
       setMsg(error.message);
     }
@@ -44,12 +44,12 @@ function SignUp() {
 
   return (
     <div className="auth-form-container signup-container">
-      <button type="button" onClick={handleGoBack} class="goback">
+      <button type="button" onClick={handleGoBack} className="goback">
         &#11164;
       </button>
       <h2>Sign Up</h2>
       <form className="login-form">
-        <div class="inputbox">
+        <div className="inputbox">
           <span>&#10077;</span>
           <input
             type="text"
@@ -61,7 +61,7 @@ function SignUp() {
           />
           <label htmlFor="name">Name</label>
         </div>
-        <div class="inputbox">
+        <div className="inputbox">
           <span>&#9993;</span>
           <input
             type="email"
@@ -73,7 +73,7 @@ function SignUp() {
           />
           <label htmlFor="email">Email</label>
         </div>
-        <div class="inputbox">
+        <div className="inputbox">
           <span>&#128477;</span>
           <input
             type="password"
@@ -85,8 +85,8 @@ function SignUp() {
           />
           <label htmlFor="password">Password</label>
         </div>
-        <div class="inputbox">
-          <select class="select-type" id="select-type" onChange={(e) => setType(e.target.value)}>
+        <div className="inputbox">
+          <select className="select-type" id="select-type" onChange={(e) => setType(e.target.value)}>
             <option>Select type...</option>
             <option value="admin">Admin</option>
             <option value="user">User</option>

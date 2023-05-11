@@ -31,12 +31,12 @@ function SendEmail() {
 
   return (
     <div className="auth-form-container">
-      <button type="button" onClick={handleGoBack} class="goback">
+      <button type="button" onClick={handleGoBack} className="goback">
         &#11164;
       </button>
       <h2>Forgot your password?</h2>
       <form className="login-form">
-        <div class="inputbox">
+        <div className="inputbox">
           <span>&#9993;</span>
           <input
             type="email"

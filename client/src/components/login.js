@@ -57,7 +57,7 @@ function Login() {
 
   return (
     <div className="auth-form-container">
-      <button type="button" onClick={handleGoBack} class="goback">
+      <button type="button" onClick={handleGoBack} className="goback">
         &#11164;
       </button>
       <div>
@@ -90,7 +90,7 @@ function Login() {
           </div>
           <button
             type="submit"
-            class="btn-login"
+            className="btn-login"
             onClick={(e) => handleLogin(e)}
           >
             Log In

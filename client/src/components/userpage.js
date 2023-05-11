@@ -57,11 +57,11 @@ function UserPage() {
   return (
     <div>
       <div className="auth-form-container">
-        <button type="button" onClick={handleGoBack} class="goback">
+        <button type="button" onClick={handleGoBack} className="goback">
           &#11164;
         </button>
         {/* <h2>Hello User!</h2> */}
-        <button type="button" onClick={handleLogout} class="logout">
+        <button type="button" onClick={handleLogout} className="logout">
           Logout
         </button>
       </div>

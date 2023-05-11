@@ -13,11 +13,11 @@ function FrontPage() {
   return (
     <div className="auth-form-container home-container">
       <h2>Welcome to our page!</h2>
-      <div class="btns-redirect">
+      <div className="btns-redirect">
         <button
           type="button"
           name="login"
-          class="btn-in-home"
+          className="btn-in-home"
           onClick={handleLogin}
         >
           Login
@@ -25,7 +25,7 @@ function FrontPage() {
         <button
           type="button"
           name="signup"
-          class="btn-in-home"
+          className="btn-in-home"
           onClick={handleSignup}
         >
           Sign Up
