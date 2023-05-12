@@ -14,9 +14,8 @@ let style = require("../style_notas_alta.json");
 let values_extracted = [];
 let keys = [];
 function addAllValues(fieldMapping) {
-
   for (const field in fieldMapping) {
-    if (typeof fieldMapping[field] === 'object') {
+    if (typeof fieldMapping[field] === "object") {
       addAllValues(fieldMapping[field]);
     } else {
       values_extracted.push(fieldMapping[field]);
@@ -31,8 +30,10 @@ function getAllKeys(obj) {
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       keys.push(key);
-      if (typeof obj[key] === 'object') {
-        keys = keys.concat(getAllKeys(obj[key]).map(subKey => `${key}.${subKey}`));
+      if (typeof obj[key] === "object") {
+        keys = keys.concat(
+          getAllKeys(obj[key]).map((subKey) => `${key}.${subKey}`)
+        );
       }
     }
   }
@@ -45,15 +46,16 @@ function getKeysByValue(obj, value) {
     if (obj.hasOwnProperty(key)) {
       if (obj[key] === value) {
         keys.push(key);
-      } else if (typeof obj[key] === 'object') {
-        keys = keys.concat(getKeysByValue(obj[key], value).map(subKey => `${key}.${subKey}`));
+      } else if (typeof obj[key] === "object") {
+        keys = keys.concat(
+          getKeysByValue(obj[key], value).map((subKey) => `${key}.${subKey}`)
+        );
       }
     }
   }
   return keys;
 }
 // ----------------------------------------------
-
 
 function UserPage() {
   const [email, setEmail] = useState("");
@@ -80,10 +82,10 @@ function UserPage() {
     console.log("SAVED VALUES: ", values, "CHANGED FIELDS: ", changedFields);
 
     //------------------- Criação da mensagem fhir com os campos do form -------------------
-    const fhirMessage = require('../notas_alta_fhir_2.json');
+    const fhirMessage = require("../notas_alta_fhir_2.json");
     //console.log(fhirMessage); // campos da mensagem fhir
 
-    const form = JSON.parse(values); 
+    const form = JSON.parse(values);
     const keysForm = getAllKeys(form); // keys do form
     const valuesFhir = addAllValues(fhirMessage); // values da mensagem fhir
 
@@ -91,7 +93,7 @@ function UserPage() {
       for (const item in keysForm) {
         if (valuesFhir[value] === keysForm[item]) {
           // console.log(values_extracted[value]);
-          let key = getKeysByValue(fhirMessage, valuesFhir[value]) // keys do fhir
+          let key = getKeysByValue(fhirMessage, valuesFhir[value]); // keys do fhir
           /* if (typeof form[keysForm[item]] === 'object') {
             console.log("BLOCKS")
             console.log(form[keysForm[item]]["blocks"][0]["text"]);
@@ -102,13 +104,13 @@ function UserPage() {
             console.log("NORMAL")
             console.log(form[keysForm[item]]);
           } */
-          fhirMessage[key] = form[keysForm[item]] // substituição na mensagem
+          fhirMessage[key] = form[keysForm[item]]; // substituição na mensagem
           //console.log(fhirMessage[key]);
 
-          // ainda não funciona: 
+          // ainda não funciona:
           // - não há divisão das keys do form em code e display (eg. aparece items.0.0.items.0.items.2.items.4.value quando devia aparecer items.0.0.items.0.items.2.items.4.value.code e items.0.0.items.0.items.2.items.4.value.text)
           // - não é possivel chegar ao campo text quando o value do form é um objeto
-        } 
+        }
       }
     }
     console.log(fhirMessage);
@@ -125,7 +127,6 @@ function UserPage() {
       if (response.status === 200) {
         alert("Composition added!");
       }
-      
     } catch (error) {
       console.error(error.response.status);
       if (error.response.status === 400) {
@@ -151,7 +152,10 @@ function UserPage() {
           </li>
         </ul>
         <div className="navbar-right-items">
-          <h5 className="user-name">{location.state.name}</h5>
+          <div className="user-creds">
+            <h5 className="user-name">{location.state.user.UserName}</h5>
+            <h5 className="user-type">{location.state.user.UserType}</h5>
+          </div>
           <button
             type="button"
             onClick={handleLogout}

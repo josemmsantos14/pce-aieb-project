@@ -24,19 +24,19 @@ function Login() {
           }
         );
         let user = response.data.body;
-        console.log(user);
-        console.log(user.response.UserName);
+        console.log("user: ", user);
+
         // console.log("Credentials sent!");
         if (user.response.UserType === "admin") {
           navigate("/adminpage", {
             state: {
-              name: user.response.UserName,
+              user: user.response,
             },
           });
         } else if (user.response.UserType === "user") {
           navigate("/userpage", {
             state: {
-              name: user.response.UserName,
+              user: user.response,
             },
           });
         } else {

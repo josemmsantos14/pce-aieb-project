@@ -8,12 +8,20 @@
   background-color: #1f69a5;
 }
 
+.main-container {
+  width: 100vw;
+  height: 100vh;
+}
+
 .navbar {
+  top: 0;
+  width: 100vw;
   height: 4rem;
   padding: 0.5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0px 3px 8px 2px grey;
 }
 
 .navbar-left-items {
@@ -34,12 +42,27 @@
   height: 2rem;
   margin: 0 1rem;
 }
-.navbar-right-items .user-name {
+.navbar-right-items .user-name,
+.navbar-right-items .user-type {
+  position: absolute;
+  right: 10rem;
   display: grid;
   place-items: center;
   font-weight: 700;
   letter-spacing: 0.2rem;
   text-transform: uppercase;
+  transition: all 0.4s 0.2s ease-in;
+}
+.navbar-right-items .user-type {
+  opacity: 0;
+}
+.user-creds:hover .user-type {
+  opacity: 1;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+}
+.user-creds:hover .user-name {
+  opacity: 0;
 }
 
 .navbar-left-items li {
@@ -91,6 +114,10 @@
   height: 25rem;
 }
 
+.admin-container {
+  height: 10rem;
+}
+
 .title {
   color: #4299e1;
 }
@@ -134,6 +161,7 @@
   transform: translateY(-50%);
   color: black;
   transition: 0.5s;
+  background-color: rgba(235, 235, 235, 1);
 }
 
 .inputbox input {
@@ -165,12 +193,10 @@ input:required:invalid:not(:placeholder-shown) ~ label {
   top: -5px;
 }
 
-::placeholder,
+.inputbox input::placeholder,
 ::-webkit-input-placeholder,
-:-ms-input-placeholder,
-::-ms-input-placeholder,
-input::placeholder {
-  opacity: 0;
+:-ms-input-placeholder {
+  color: red !important;
 }
 
 /* input:not(:empty) ~ label {
