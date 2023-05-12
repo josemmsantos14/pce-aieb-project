@@ -102,7 +102,7 @@
                         }
                     }
                 ],
-                "gender": "items.0.0.items.0.items.0.value.code, items.0.0.items.0.items.0.value.text",
+                "gender": "items.0.0.items.0.items.0.value, items.0.0.items.0.items.0.value",
                 "name": [
                     {
                         "text": "items.0.0.items.0.items.1.items.0.value",
@@ -149,15 +149,15 @@
                     "name": "items.0.1.items.3.items.0.value",
                     "type": {
                         "system": "http://hl7.org/fhir/v3/ParticipationType",
-                        "code": "items.0.1.items.3.items.1.value.code",
-                        "display": "items.0.1.items.3.items.1.value.text"
+                        "code": "items.0.1.items.3.items.1.value",
+                        "display": "items.0.1.items.3.items.1.value"
                     }
                 },
                 "hospitalization": {
                     "dischargeDisposition": {
                         "system": "http://hl7.org/fhir/discharge-disposition",
-                        "code": "items.0.1.items.5.value.code",
-                        "display": "items.0.1.items.5.value.text"
+                        "code": "items.0.1.items.5.value",
+                        "display": "items.0.1.items.5.value"
                     },
                     "location": "Location/cd46b0ba-759a-4ad3-99a9-147f82c4b7f3"
                 }
@@ -189,20 +189,20 @@
                 },
                 "substance": {
                     "system": "http://snomed.info/sct",
-                    "code": "items.0.2.items.0.value.code",
-                    "display": "items.0.2.items.0.value.text"
+                    "code": "items.0.2.items.0.value",
+                    "display": "items.0.2.items.0.value"
                 },
                 "criticality": {
                     "system": "http://hl7.org/fhir/allergy-intolerance-criticality",
-                    "code": "items.0.2.items.1.value.code",
-                    "display": "items.0.2.items.1.value.text"
+                    "code": "items.0.2.items.1.value",
+                    "display": "items.0.2.items.1.value"
                 },
                 "verificationStatus": {
                     "coding": [
                         {
                         "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
-                        "code": "items.0.2.items.2.items.0.value.code",
-                        "display": "items.0.2.items.2.items.0.value.text"
+                        "code": "items.0.2.items.2.items.0.value",
+                        "display": "items.0.2.items.2.items.0.value"
                         }
                     ]
                 }
@@ -235,8 +235,8 @@
             "title": "Diagnóstico de admissão",
             "code": {
                 "system": "http://loinc.org",
-                "code": "items.0.4.items.0.value.code",
-                "display": "items.0.4.items.0.value.text"
+                "code": "items.0.4.items.0.value",
+                "display": "items.0.4.items.0.value"
             },
             "entry": {
                 "resourceType": "Encounter",
@@ -271,8 +271,8 @@
             "title": "Diagnóstico de alta",
             "code": {
                 "system": "http://loinc.org",
-                "code": "items.0.5.items.0.value.code",
-                "display": "items.0.5.items.0.value.text"
+                "code": "items.0.5.items.0.value",
+                "display": "items.0.5.items.0.value"
             },
             "entry": {
                 "resourceType": "Encounter",
@@ -316,8 +316,8 @@
                 "status": "completed",
                 "medication": {
                     "medicationCodableConcept": {
-                        "code": "items.0.6.items.0.value.code",
-                        "display": "items.0.6.items.0.value.text"
+                        "code": "items.0.6.items.0.value",
+                        "display": "items.0.6.items.0.value"
                     }
                 },
                 "dosage": {
@@ -407,7 +407,7 @@
             "id": "97af8d57-d864-41a2-a287-c4c5bcc7ada8",
             "name": [
                 {
-                    "text": "items.0.8.items.0.value"
+                    "text": "items.0.9.items.0.value"
                 }
             ],
             "identifier": [
@@ -423,7 +423,7 @@
                         "text": "OM"
                     },
                     "system": "https://www.ordemdosmedicos.pt",
-                    "value": "items.0.2.items.5.value"
+                    "value": "items.0.9.items.0.value"
                 }
             ],
             "role": "items.0.9.items.0.value"

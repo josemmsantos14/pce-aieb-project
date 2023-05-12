@@ -81,41 +81,90 @@ function UserPage() {
 
     console.log("SAVED VALUES: ", values, "CHANGED FIELDS: ", changedFields);
 
-    //------------------- Criação da mensagem fhir com os campos do form -------------------
-    const fhirMessage = require("../notas_alta_fhir_2.json");
-    //console.log(fhirMessage); // campos da mensagem fhir
+    // //------------------- Criação da mensagem fhir com os campos do form -------------------
+    // const fhirMessage = require("../notas_alta_fhir_2.json");
+    // //console.log(fhirMessage); // campos da mensagem fhir
 
-    const form = JSON.parse(values);
-    const keysForm = getAllKeys(form); // keys do form
-    const valuesFhir = addAllValues(fhirMessage); // values da mensagem fhir
+    // const form = JSON.parse(values);
+    // const keysForm = getAllKeys(form); // keys do form
+    // const valuesFhir = addAllValues(fhirMessage); // values da mensagem fhir
 
-    for (const value in valuesFhir) {
-      for (const item in keysForm) {
-        if (valuesFhir[value] === keysForm[item]) {
-          // console.log(values_extracted[value]);
-          let key = getKeysByValue(fhirMessage, valuesFhir[value]); // keys do fhir
-          /* if (typeof form[keysForm[item]] === 'object') {
-            console.log("BLOCKS")
-            console.log(form[keysForm[item]]["blocks"][0]["text"]);
-          } else if (form[keysForm[item]] === null) {
-            console.log("UNDEFINED")
-            console.log(form[keysForm[item]]);
-          } else {
-            console.log("NORMAL")
-            console.log(form[keysForm[item]]);
-          } */
-          fhirMessage[key] = form[keysForm[item]]; // substituição na mensagem
-          //console.log(fhirMessage[key]);
 
-          // ainda não funciona:
-          // - não há divisão das keys do form em code e display (eg. aparece items.0.0.items.0.items.2.items.4.value quando devia aparecer items.0.0.items.0.items.2.items.4.value.code e items.0.0.items.0.items.2.items.4.value.text)
-          // - não é possivel chegar ao campo text quando o value do form é um objeto
-        }
-      }
-    }
-    console.log(fhirMessage);
+    // for (const value in valuesFhir) {
+    //   for (const item in keysForm) {
+    //     if (valuesFhir[value] === keysForm[item]) {
+    //       let text = "";
+    //       // console.log(values_extracted[value]);
+    //       let key = getKeysByValue(fhirMessage, valuesFhir[value]); // keys do fhir
+    //       console.log(item)
+    //       console.log(keysForm[item])
+    //       console.log("item: ", form[keysForm[item]])
+    //       console.log("tipo do item: ", typeof form[keysForm[item]])
+
+    //       try {
+    //         let parse = JSON.parse(form[keysForm[item]])
+    //         console.log("parse: ",parse)
+            
+    //         // caso dos blocks, em que é necessário fazer parse para voltar a ser um objeto JSON
+    //         if (parse) {
+    //           for (let i = 0; i < parse["blocks"].length; i++) {
+    //             text = text + "\n" + parse["blocks"][`${i}`]["text"];
+    //           }
+    //           fhirMessage[key] = text; // substituição na mensagem no caso de se tratar de um objeto blocks
+    //         }
+
+    //         else if (!parse){
+    //           console.log("tenho parse nulo")
+    //         }
+
+    //         // // restantes casos em que os elementos já são objetos
+    //         // else if (!parse){
+    //         //   // fhirMessage[key] = form[keysForm[item]];
+    //         //   // caso dos participants
+    //         //   if (fhirMessage[key].type) {
+    //         //     fhirMessage[key].code = form[keysForm[item]].code;
+    //         //     fhirMessage[key].display = form[keysForm[item]].text;
+    //         //   }
+    //         //   // caso dos practitioners
+    //         //   else if (typeof fhirMessage[key] === 'array') {
+    //         //     console.log("entrei aqui, sou um array!!!")
+    //         //   }
+    //         //   // caso dos identifiers
+    //         //   // else if (fhirMessage[key].value) {
+    //         //   //   // console.log("entrei aqui?")
+    //         //   //   fhirMessage[key].value = form[keysForm[item]]["0"]["value"];
+    //         //   // }
+                
+    //         // }
+    //         // else {
+    //         //   // caso dos coded text
+    //         //   if (fhirMessage[key].code) {
+    //         //     console.log(fhirMessage[key].length)
+    //         //     for (let j = 0; j < fhirMessage[key].length; j++) {
+    //         //       fhirMessage[key].code.push(form[keysForm[item]][`${j}`].code);
+    //         //       fhirMessage[key].display.push(form[keysForm[item]][`${j}`].text);
+    //         //       // text = text + "\n" + parse["blocks"][`${i}`]["text"];
+    //         //     }
+    //         //     console.log("entrei aqui, sou um array!!!", fhirMessage[key])
+    //         //   }
+    //         // }
+    //       } catch {
+    //         // elementos já são OBJETOS
+    //         console.log("não tenho parse??")
+    //       }
+
+    //       console.log("value na msg fhir: ", fhirMessage[key])
+
+    //       // ainda não funciona:
+    //       // - não há divisão das keys do form em code e display (eg. aparece items.0.0.items.0.items.2.items.4.value quando devia aparecer items.0.0.items.0.items.2.items.4.value.code e items.0.0.items.0.items.2.items.4.value.text)
+    //       // - não é possivel chegar ao campo text quando o value do form é um objeto
+    //     }
+    //   }
+    // }
+    // console.log(fhirMessage);
     //------------------- Fim da criação da mensagem fhir -------------------
 
+    let fhirMessage = "";
     try {
       const response = await axios.post(
         "http://localhost:8080/userpage/new-composition", //ligação à porta do NodeJS e ao respetivo caminho correspondente à acção de post de uma nova composition
