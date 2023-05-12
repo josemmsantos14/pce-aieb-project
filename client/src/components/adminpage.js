@@ -49,7 +49,20 @@ function AdminPage() {
       </navbar>
       <div className="App">
         <div className="auth-form-container admin-container">
-          <h2>Hello Admin!</h2>
+          <h2>Notas de Alta</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Entry</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* {[1, 2, 3, 4, 5].map((object, i) => (
+                <ObjectRow obj={object} key={i} />
+              ))} */}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

@@ -146,6 +146,7 @@
 .login-form {
   align-self: center;
   margin-top: 1rem;
+  /* width: 20rem; */
 }
 
 .inputbox {
