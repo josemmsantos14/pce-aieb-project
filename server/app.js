@@ -14,6 +14,7 @@ var signupRouter = require("./routes/signup");
 var loginRouter = require("./routes/login");
 var userPageRouter = require("./routes/user_page");
 var adminPageRouter = require("./routes/admin_page");
+var sendEmailRouter = require("./routes/sendemail");
 
 var app = express();
 
@@ -37,5 +38,6 @@ app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/userpage", userPageRouter);
 app.use("/adminpage", adminPageRouter);
+app.use("/sendemail", sendEmailRouter);
 
 module.exports = app;

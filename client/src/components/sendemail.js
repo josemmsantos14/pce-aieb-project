@@ -11,21 +11,32 @@ function SendEmail() {
 
   const handleSendemail = async (e) => {
     e.preventDefault();
-    console.log(email);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/users", //ligação à porta do NodeJS
-        JSON.stringify({ email }),
-        {
-          headers: { "Content-Type": "application/json" },
+      if (email !== "") {
+        const response = await axios.post(
+          "http://localhost:8080/sendemail", //ligação à porta do NodeJS
+          JSON.stringify({ email }),
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        console.log("Credentials sent!");
+        // console.log(response);
+        if (response.status === 204) {
+          alert("Email sent!");
+          navigate("/");
         }
-      );
-      console.log("Credentials sent!");
-    } catch (error) {
-      if (error.response) {
-        setMsg(error.response.data.msg);
+      } else {
+        setMsg("Inputed credentials not valid.");
       }
+    } catch (error) {
+      console.error(error.message);
+      if (error.response.status === 401) {
+        alert("Invalid credentials!");
+      }
+      setMsg(error.message);
+      console.log(msg);
     }
   };
 

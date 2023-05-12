@@ -51,7 +51,7 @@
   font-weight: 700;
   letter-spacing: 0.2rem;
   text-transform: uppercase;
-  transition: all 0.4s 0.2s ease-in;
+  transition: all 0.3s 0.5s linear;
 }
 .navbar-right-items .user-type {
   opacity: 0;
