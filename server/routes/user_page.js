@@ -80,7 +80,7 @@ router.post("/new-composition", async (req, res) => {
     
   }
 
-  console.log("NOVA COMPOSITION: ", new_composition)
+  //console.log("NOVA COMPOSITION: ", new_composition)
 
   const keysComposition = getAllKeys(new_composition); // keys da composition
   const valuesFhir = addAllValues(fhirMessage); // values da mensagem fhir
@@ -88,14 +88,16 @@ router.post("/new-composition", async (req, res) => {
   for (var key of keysComposition) {
     for (var value of valuesFhir) {
       if (key === value) {
-        fhirKey = Object.keys(fhirMessage).find(key => fhirMessage[key] === value)
+        //fhirKey = Object.keys(fhirMessage).find(key => fhirMessage[key] === value)
+        fhirKey = getKeysByValue(fhirMessage, value)
+        //console.log(fhirKey)
         fhirMessage[fhirKey] = new_composition[key]
-        // console.log("NEW VALUE: ", fhirMessage[fhirKey])
+        //console.log("NEW VALUE: ", fhirMessage[fhirKey])
       }
     }
   }
 
-  console.log("FHIR MESSAGE: ", fhirMessage);
+  //console.log("FHIR MESSAGE: ", fhirMessage);
   // -----------------------------------------------------------
   
   // console.log("COMPOSITION!!!!!!!!", composition);

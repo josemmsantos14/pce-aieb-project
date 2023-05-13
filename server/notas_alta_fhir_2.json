@@ -102,7 +102,10 @@
                         }
                     }
                 ],
-                "gender": "items.0.0.items.0.items.0.value, items.0.0.items.0.items.0.value",
+                "gender": {
+                    "code": "items.0.0.items.0.items.0.value",
+                    "text": "items.0.0.items.0.items.0.value"
+                },
                 "name": [
                     {
                         "text": "items.0.0.items.0.items.1.items.0.value",
@@ -133,7 +136,7 @@
                 "identifier": [
                     {
                         "system": "http://spms.min-saude.pt/fhir/identifiers/num-episodio",
-                        "value": "1bb497b9-ad6c-4141-85c4-9ef8262b54db"
+                        "value": "items.0.1.items.0.value"
                     }
                 ],
                 "status": "finished",
@@ -141,8 +144,14 @@
                     "reference": "Patient/987654321"
                 },
                 "period": {
-                    "start": "items.0.1.items.1.value.date, items.0.1.items.1.value.time",
-                    "end": "items.0.1.items.4.value.date, items.0.1.items.4.value.time"
+                    "start": {
+                        "date": "items.0.1.items.1.value.date",
+                        "time": "items.0.1.items.1.value.time"
+                    },
+                    "end": {
+                        "date": "items.0.1.items.4.value.date",
+                        "time": "items.0.1.items.4.value.time"
+                    }
                 },
                 "reason": "items.0.1.items.2.value",
                 "participant": {
@@ -235,8 +244,8 @@
             "title": "Diagnóstico de admissão",
             "code": {
                 "system": "http://loinc.org",
-                "code": "items.0.4.items.0.value",
-                "display": "items.0.4.items.0.value"
+                "code": "42347-5",
+                "display": "Admission diagnosis (narrative)"
             },
             "entry": {
                 "resourceType": "Encounter",
@@ -253,8 +262,8 @@
                 },
                 "reason": {
                     "system": "http://snomed.info/sct",
-                    "code": "109006",
-                    "display": "Anxiety disorder of childhood OR adolescence"
+                    "code": "items.0.4.items.0.value",
+                    "display": "items.0.4.items.0.value"
                 },
                 "description": "items.0.4.items.1.value",
                 "participant": {
@@ -271,8 +280,8 @@
             "title": "Diagnóstico de alta",
             "code": {
                 "system": "http://loinc.org",
-                "code": "items.0.5.items.0.value",
-                "display": "items.0.5.items.0.value"
+                "code": "78375-3",
+                "display": "Discharge diagnosis Narrative"
             },
             "entry": {
                 "resourceType": "Encounter",
@@ -289,8 +298,8 @@
                 },
                 "reason": {
                     "system": "http://snomed.info/sct",
-                    "code": "109006",
-                    "display": "Anxiety disorder of childhood OR adolescence"
+                    "code": "items.0.5.items.0.value",
+                    "display": "items.0.5.items.0.value"
                 },
                 "description": "items.0.5.items.1.value",
                 "participant": {
@@ -321,12 +330,15 @@
                     }
                 },
                 "dosage": {
-                    "dose": "items.0.6.items.1.items.0.value.unit, items.0.6.items.1.items.0.value.value",
+                    "dose": "items.0.6.items.1.items.0.value.value",
                     "text": "items.0.6.items.1.items.1.value"
                 },
                 "subject": "Patient/987654321",
                 "effective": {
-                    "effectiveDateTime": "items.0.6.items.2.value.date, items.0.6.items.2.value.time"
+                    "effectiveDateTime": {
+                        "date": "items.0.6.items.2.value.date",
+                        "time": "items.0.6.items.2.value.time"
+                    }
                 }
             }
         },
@@ -394,7 +406,7 @@
                         "entry": [
                             {
                                 "title": "Médico de Família",
-                                "item": "Practitioner/97af8d57-d864-41a2-a287-c4c5bcc7ada8"
+                                "item": "Practitioner/items.0.9.items.0.items.1.value"
                             }
                         ]
                     }
@@ -404,7 +416,7 @@
         
         {
             "resourceType": "Practitioner",
-            "id": "97af8d57-d864-41a2-a287-c4c5bcc7ada8",
+            "id": "items.0.9.items.0.items.1.value",
             "name": [
                 {
                     "text": "items.0.9.items.0.value"
@@ -423,10 +435,10 @@
                         "text": "OM"
                     },
                     "system": "https://www.ordemdosmedicos.pt",
-                    "value": "items.0.9.items.0.value"
+                    "value": "items.0.9.items.0.items.1.value"
                 }
             ],
-            "role": "items.0.9.items.0.value"
+            "role": "items.0.9.items.0.items.3.value"
         }
     ]
 }
