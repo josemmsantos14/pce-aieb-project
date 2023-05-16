@@ -25,7 +25,7 @@ function AdminPage() {
   const tableCreater = data.map((val, key) => {
     return (
       <tr key={key}>
-        <Link to={{ pathname: "/adminpage/" + val.id, state: user }}>
+        <Link to={"/adminpage/" + val.id}>
           <td>{val.name}</td>
           <td>{val.age}</td>
         </Link>

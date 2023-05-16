@@ -39,8 +39,9 @@ function Login() {
               user: user.response,
             },
           });
-          alert("Invalid User!");
           // navigate("/login");
+        } else {
+          alert("Invalid User!");
         }
       } else {
         alert("Please input valid credentials.");
