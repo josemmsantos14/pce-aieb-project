@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
-import { redirect, useNavigate, useLocation } from "react-router";
+import { useNavigate, useLocation } from "react-router";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 // o user vai ter o form para preencher e tmb terá de ter acesso a uma tabela com todas as compositions guardadas na base de dados
@@ -10,7 +11,6 @@ import { Form } from "protected-aidaforms";
 let json = require("../jdt_notas_alta.json");
 let style = require("../style_notas_alta.json");
 
-
 function UserPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +18,7 @@ function UserPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleGoBack = async () => navigate(-1);
+  // const handleGoBack = async () => navigate(-1);
 
   const handleLogout = async () => {
     setEmail("");
@@ -61,13 +61,13 @@ function UserPage() {
       <navbar className="navbar">
         <ul className="navbar-left-items">
           <li>
-            <a href="#">Home</a>
+            <Link to="#">Home</Link>
           </li>
           <li>
-            <a href="#">About</a>
+            <Link to="#">About</Link>
           </li>
           <li>
-            <a href="#">Help</a>
+            <Link to="#">Help</Link>
           </li>
         </ul>
         <div className="navbar-right-items">
@@ -89,7 +89,7 @@ function UserPage() {
       </button> */}
       {/* <h2>Hello User!</h2> */}
 
-      <div className="App">
+      <div className="body">
         <Form
           className="form-principal"
           onSubmit={(values, changedFields) => handleAdd(values, changedFields)}

@@ -39,7 +39,6 @@ function Login() {
               user: user.response,
             },
           });
-        } else {
           alert("Invalid User!");
           // navigate("/login");
         }

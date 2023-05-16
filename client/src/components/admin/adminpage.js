@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { redirect, useNavigate, useLocation } from "react-router";
+import { useNavigate, useLocation } from "react-router";
+import { Link } from "react-router-dom";
 
 // o admin vai ter uma tabela com as compositions já submetidas, ou seja, os forms já submetidos
 // e tmb as mensagens fhir
@@ -11,6 +12,26 @@ function AdminPage() {
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const user = location.state.user;
+
+  let data = [
+    { id: 123, name: "Anom", age: 19 },
+    { id: 456, name: "Megha", age: 19 },
+    { id: 789, name: "Subham", age: 25 },
+    { id: 321, name: "Jose", age: 24 },
+    { id: 654, name: "Santos", age: 30 },
+  ];
+
+  const tableCreater = data.map((val, key) => {
+    return (
+      <tr key={key}>
+        <Link to={{ pathname: "/adminpage/" + val.id, state: user }}>
+          <td>{val.name}</td>
+          <td>{val.age}</td>
+        </Link>
+      </tr>
+    );
+  });
 
   const handleLogout = async () => {
     setEmail("");
@@ -24,13 +45,13 @@ function AdminPage() {
       <navbar className="navbar">
         <ul className="navbar-left-items">
           <li>
-            <a href="#">Home</a>
+            <Link to="#">Home</Link>
           </li>
           <li>
-            <a href="#">About</a>
+            <Link to="#">About</Link>
           </li>
           <li>
-            <a href="#">Help</a>
+            <Link to="#">Help</Link>
           </li>
         </ul>
         <div className="navbar-right-items">
@@ -47,9 +68,9 @@ function AdminPage() {
           </button>
         </div>
       </navbar>
-      <div className="App">
+      <div className="body">
         <div className="auth-form-container admin-container">
-          <h2>Notas de Alta</h2>
+          <h2 className="admin-title">Notas de Alta</h2>
           <table>
             <thead>
               <tr>
@@ -57,11 +78,7 @@ function AdminPage() {
                 <th>Description</th>
               </tr>
             </thead>
-            <tbody>
-              {/* {[1, 2, 3, 4, 5].map((object, i) => (
-                <ObjectRow obj={object} key={i} />
-              ))} */}
-            </tbody>
+            <tbody>{tableCreater}</tbody>
           </table>
         </div>
       </div>

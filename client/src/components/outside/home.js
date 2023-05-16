@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function FrontPage() {
   let navigate = useNavigate();
-  const [msg, setMsg] = useState("");
+  // const [msg, setMsg] = useState("");
 
   const handleLogin = async () => navigate("/login");
 

@@ -13,6 +13,12 @@
   height: 100vh;
 }
 
+.body {
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 4rem);
+}
+
 .navbar {
   top: 0;
   width: 100vw;
@@ -21,7 +27,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 3px 8px 2px grey;
+  background: #134d7c;
+  /* box-shadow: 0px 3px 8px 2px grey; */
+  border-bottom: 1px solid black;
 }
 
 .navbar-left-items {
@@ -51,7 +59,7 @@
   font-weight: 700;
   letter-spacing: 0.2rem;
   text-transform: uppercase;
-  transition: all 0.3s 0.5s linear;
+  transition: all 1.5s;
 }
 .navbar-right-items .user-type {
   opacity: 0;
@@ -115,7 +123,61 @@
 }
 
 .admin-container {
+  height: auto;
+  width: 50rem;
+}
+
+.form-container {
+  width: 10rem;
   height: 10rem;
+  background: red;
+}
+
+.pacient-form-container {
+  width: auto;
+  height: auto;
+}
+
+.admin-title {
+  margin-bottom: 3rem;
+}
+
+table {
+  display: grid;
+  place-items: center;
+}
+
+table tr {
+  border-bottom: 1px solid black;
+  height: 2.5rem;
+  width: 40rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+table thead tr:first-child {
+  background: rgba(128, 128, 128, 0.195);
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+}
+
+table tr:hover {
+  background: rgba(128, 128, 128, 0.195);
+}
+
+table tbody tr:last-child {
+  border: none;
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
+}
+
+tr th,
+tr td {
+  margin: 0 3rem;
+  width: 20rem;
+  justify-self: center;
+  text-align: center;
 }
 
 .title {
@@ -141,6 +203,10 @@
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-weight: 600;
+}
+
+.id {
+  font-size: 10rem;
 }
 
 .login-form {
