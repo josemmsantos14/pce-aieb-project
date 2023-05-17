@@ -8,8 +8,8 @@ import axios from "axios";
 
 import { Form } from "protected-aidaforms";
 
-let json = require("../jdt_notas_alta.json");
-let style = require("../style_notas_alta.json");
+let json = require("../../jdt_notas_alta.json");
+let style = require("../../style_notas_alta.json");
 
 function UserPage() {
   const [email, setEmail] = useState("");
@@ -68,6 +68,9 @@ function UserPage() {
           </li>
           <li>
             <Link to="#">Help</Link>
+          </li>
+          <li>
+            <Link to="forms">Forms</Link>
           </li>
         </ul>
         <div className="navbar-right-items">

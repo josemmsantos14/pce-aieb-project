@@ -111,4 +111,14 @@ router.post("/new-composition", async (req, res) => {
   }
 });
 
+router.get("/list", async (req, res) => {
+  const compositionResponse = await CompositionController.listCompositions();
+  res.status(200).json(compositionResponse.response)
+});
+
+router.get("/list/:id", async (req, res) => {
+  const compositionResponse = await CompositionController.findCompositionByID(req.params.id);
+  res.status(200).json(compositionResponse.response);
+});
+
 module.exports = router;

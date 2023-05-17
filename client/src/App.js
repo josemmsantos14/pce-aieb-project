@@ -9,8 +9,10 @@ import Home from "./components/outside/home";
 import SendEmail from "./components/outside/sendemail";
 import RecoverPass from "./components/outside/recoverpass";
 import AdminPage from "./components/admin/adminpage";
-import UserPage from "./components/userpage";
+import UserPage from "./components/user/userpage";
 import PacientForm from "./components/admin/pacientform";
+import UserForms from "./components/user/userforms";
+import FHIRMessage from "./components/user/fhirmessage";
 
 function App() {
   // const [currentForm, setCurrentForm] = useState("login");
@@ -26,6 +28,8 @@ function App() {
           <Route exact path="/adminpage" element={<AdminPage />} />
           <Route exact path="/adminpage/:id" element={<PacientForm />} />
           <Route exact path="/userpage" element={<UserPage />} />
+          <Route exact path="/userpage/forms" element={<UserForms />} />
+          <Route exact path="/userpage/:id" element={<FHIRMessage />} />
         </Routes>
       </Router>
     </div>
