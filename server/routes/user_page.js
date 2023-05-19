@@ -52,7 +52,7 @@ function getKeysByValue(obj, value) {
 
 // função post no node para adicionar à base de dados a composition submetida pelo user na página
 router.post("/new-composition", async (req, res) => {
-  let { composition } = req.body;
+  let { composition } = req.body; 
 
   //----------------- Criação da mensagem FHIR -----------------
   const fhirMessage = require("../notas_alta_fhir_2.json");
@@ -67,12 +67,14 @@ router.post("/new-composition", async (req, res) => {
     let text = "";
     try {
       new_composition[key] = JSON.parse(`${value}`);
-      
-      // AINDA NÃO FUNCIONA // caso dos blocks, para juntar o texto se tiver mais que 1 linha
-      // for (let i = 0; i < value["blocks"].length; i++) {
-      //   text = text + "\n" + value["blocks"][`${i}`]["text"];
-      // }
-      // new_composition[key] = text;
+
+      // caso dos blocks, para juntar o texto se tiver mais que 1 linha
+      if (new_composition[key]) {
+        for (let i = 0; i < new_composition[key]["blocks"].length; i++) {
+          text = text + "\n" + new_composition[key]["blocks"][`${i}`]["text"];
+        }
+        new_composition[key] = text;
+      }
     }
     catch {
       new_composition[key] = composition[key];
@@ -100,8 +102,7 @@ router.post("/new-composition", async (req, res) => {
   //console.log("FHIR MESSAGE: ", fhirMessage);
   // -----------------------------------------------------------
   
-  // console.log("COMPOSITION!!!!!!!!", composition);
-  // console.log("FHIR!!!!!!!!", fhirMessage);
+  
   const compositionResponse = await CompositionController.newComposition(composition, fhirMessage);
   // console.log(compositionResponse);
   if (!compositionResponse.success) {

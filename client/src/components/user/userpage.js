@@ -38,7 +38,7 @@ function UserPage() {
     try {
       const response = await axios.post(
         "http://localhost:8080/userpage/new-composition", //ligação à porta do NodeJS e ao respetivo caminho correspondente à acção de post de uma nova composition
-        JSON.stringify({ composition }),
+        JSON.stringify({ composition: values }),
         {
           headers: { "Content-Type": "application/json" },
         }
