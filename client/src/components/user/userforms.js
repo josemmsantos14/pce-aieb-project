@@ -72,7 +72,8 @@ function UserForms() {
           <table>
             <thead>
               <tr>
-                <th>FHIR Message</th>
+                <th>Entry</th>
+                <th>Description</th>
               </tr>
             </thead>
             <tbody>{tableCreater}</tbody>

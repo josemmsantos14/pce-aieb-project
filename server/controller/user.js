@@ -33,7 +33,7 @@ module.exports.getUserByEmailAndPassword = async (email, password) => {
   try {
     // console.log(email, password);
     let user = await UserModel.findOne({ UserEmail: email, UserPassword: password });
-    console.log(user)
+    //console.log(user)
     if (!user) {
       return {exists: false};
     }

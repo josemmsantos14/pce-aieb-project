@@ -12,10 +12,10 @@ module.exports.newComposition = async (items, fhir) => {
     }
 }
 
-module.exports.listCompositions = async () => {
+  module.exports.listCompositions = async () => {
     try {
       let composition = await CompositionModel.find({});
-      console.log(composition);
+      //console.log(composition);
       return {success: true, response: composition};
     } catch (err) {
         console.log(err);
@@ -35,3 +35,27 @@ module.exports.listCompositions = async () => {
         return {exists: false, response: err};
     }
   }
+
+
+  module.exports.listFhirMessages = async () => {
+    try {
+      let fhirMessage = await CompositionModel.find({}, 'fhirMessage');
+      //console.log(fhirMessage);
+      return {success: true, response: fhirMessage};
+    } catch (err) {
+        console.log(err);
+        return {success: false, response: err};
+    }
+  };
+
+
+  module.exports.listFhirMessageByID = async (id) => {
+    try {
+      let fhirMessage = await CompositionModel.findOne({_id: id}, 'fhirMessage');
+      //console.log(fhirMessage);
+      return {success: true, response: fhirMessage};
+    } catch (err) {
+        console.log(err);
+        return {success: false, response: err};
+    }
+  };

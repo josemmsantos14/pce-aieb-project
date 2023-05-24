@@ -27,7 +27,7 @@ function FHIRMessage() {
         })
     }, [params.id]);
 
-    console.log(entry);
+  console.log(entry);
 
 
   return (

@@ -1,12 +1,16 @@
-import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 // o admin vai ter uma tabela com as compositions já submetidas, ou seja, os forms já submetidos
 // e tmb as mensagens fhir
 // não precisa do form visto que vai só consultar o que já existe
 
+
 function AdminPage() {
+  const baseURL = "http://localhost:8080/adminpage/listFhirMessages";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
@@ -14,20 +18,21 @@ function AdminPage() {
   const location = useLocation();
   const user = location.state.user;
 
-  let data = [
-    { id: 123, name: "Anom", age: 19 },
-    { id: 456, name: "Megha", age: 19 },
-    { id: 789, name: "Subham", age: 25 },
-    { id: 321, name: "Jose", age: 24 },
-    { id: 654, name: "Santos", age: 30 },
-  ];
+  const [fhirMsgList, setFhirMsgList] = useState([]);
+  useEffect(() => {
+      axios.get(baseURL).then((response) => {
+        setFhirMsgList(response.data);
+      })
+  }, []);
 
-  const tableCreater = data.map((val, key) => {
+  //console.log("FHIR Message: ", fhirMsgList);
+
+  const tableCreater = fhirMsgList.map((row) => {
     return (
-      <tr key={key}>
-        <Link to={"/adminpage/" + val.id}>
-          <td>{val.name}</td>
-          <td>{val.age}</td>
+      <tr key={row._id}>
+        <Link to={"/adminpage/" + row._id}>
+          <td>{row._id}</td>
+          <td>Composition</td>
         </Link>
       </tr>
     );

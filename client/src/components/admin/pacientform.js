@@ -1,8 +1,11 @@
 import React from "react";
-import { useState } from "react";
 import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function PacientForm() {
+  const baseURL = "http://localhost:8080/adminpage/listFhirMessage/";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
@@ -16,6 +19,15 @@ function PacientForm() {
     setMsg("");
     navigate("/login");
   };
+
+  const [entry, setEntry] = useState([]);
+  useEffect(() => {
+      axios.get(baseURL + params.id).then((response) => {
+          setEntry(response.data);
+      })
+  }, [params.id]);
+
+console.log(entry);
 
   return (
     <div className="main-container">
@@ -47,7 +59,14 @@ function PacientForm() {
       </navbar>
       <div className="body">
         <div className="auth-form-container pacient-form-container">
-          <h1 className="id">ID: {params.id}</h1>
+        <p className="id">ID: {params.id}</p>
+          {entry && entry.fhirMessage && (
+                <div>
+                {Object.keys(entry.fhirMessage).map((key) => (
+                    <p key={key}>{`${key}: ${JSON.stringify(entry.fhirMessage[key])}`}</p>
+                ))}
+                </div>
+            )}
         </div>
       </div>
     </div>
