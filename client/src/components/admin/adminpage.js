@@ -1,12 +1,10 @@
-import { useNavigate, useLocation } from "react-router";
-import { Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 // o admin vai ter uma tabela com as compositions já submetidas, ou seja, os forms já submetidos
 // e tmb as mensagens fhir
 // não precisa do form visto que vai só consultar o que já existe
-
 
 function AdminPage() {
   const baseURL = "http://localhost:8080/adminpage/listFhirMessages";
@@ -16,24 +14,49 @@ function AdminPage() {
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-  const user = location.state.user;
 
   const [fhirMsgList, setFhirMsgList] = useState([]);
   useEffect(() => {
-      axios.get(baseURL).then((response) => {
-        setFhirMsgList(response.data);
-      })
+    axios.get(baseURL).then((response) => {
+      setFhirMsgList(response.data);
+    });
   }, []);
+
+  // console.log(fhirMsgList);
+
+  const sendinfo = async (fhir) => {
+    let id = fhir._id;
+    let fhirMsg = fhir.fhirMessage;
+
+    const response = await axios.post(
+      "http://localhost:8080/adminpage/fhirMessage", //ligação à porta do NodeJS e ao respetivo caminho relativo ao login
+      JSON.stringify({ fhirMsg }),
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    // console.log(response.data);
+
+    if (response.status === 200) {
+      let composition = response.data;
+      navigate("/adminpage/" + id, {
+        state: {
+          Composition: composition,
+        },
+      });
+    } else {
+      alert("Information not valid!");
+    }
+  };
 
   //console.log("FHIR Message: ", fhirMsgList);
 
   const tableCreater = fhirMsgList.map((row) => {
     return (
-      <tr key={row._id}>
-        <Link to={"/adminpage/" + row._id}>
-          <td>{row._id}</td>
-          <td>Composition</td>
-        </Link>
+      <tr key={row._id} onClick={(e) => sendinfo(row)}>
+        <td>{row._id}</td>
+        <td>Composition</td>
       </tr>
     );
   });

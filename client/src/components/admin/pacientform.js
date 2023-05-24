@@ -12,6 +12,7 @@ function PacientForm() {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
+  const composition = location.state.Composition;
 
   const handleLogout = async () => {
     setEmail("");
@@ -22,12 +23,12 @@ function PacientForm() {
 
   const [entry, setEntry] = useState([]);
   useEffect(() => {
-      axios.get(baseURL + params.id).then((response) => {
-          setEntry(response.data);
-      })
+    axios.get(baseURL + params.id).then((response) => {
+      setEntry(response.data);
+    });
   }, [params.id]);
 
-console.log(entry);
+  // console.log("entry: " + entry);
 
   return (
     <div className="main-container">
@@ -59,14 +60,16 @@ console.log(entry);
       </navbar>
       <div className="body">
         <div className="auth-form-container pacient-form-container">
-        <p className="id">ID: {params.id}</p>
+          <p className="id">ID: {params.id}</p>
           {entry && entry.fhirMessage && (
-                <div>
-                {Object.keys(entry.fhirMessage).map((key) => (
-                    <p key={key}>{`${key}: ${JSON.stringify(entry.fhirMessage[key])}`}</p>
-                ))}
-                </div>
-            )}
+            <div>
+              {Object.keys(entry.fhirMessage).map((key) => (
+                <p key={key}>{`${key}: ${JSON.stringify(
+                  entry.fhirMessage[key]
+                )}`}</p>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

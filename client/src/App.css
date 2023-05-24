@@ -162,8 +162,9 @@ table thead tr:first-child {
   border-top-right-radius: 0.4rem;
 }
 
-table tr:hover {
+table tbody tr:hover {
   background: rgba(128, 128, 128, 0.195);
+  cursor: pointer;
 }
 
 table tbody tr:last-child {
