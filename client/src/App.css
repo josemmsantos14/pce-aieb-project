@@ -181,6 +181,24 @@ tr td {
   text-align: center;
 }
 
+.fhirTable {
+  width: fit-content;
+  padding-left: 0rem;
+}
+
+.fhirTable tr {
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fhirTable tr td {
+  width: fit-content;
+  padding: 0 1rem;
+  text-align: left;
+}
+
 .title {
   color: #4299e1;
 }

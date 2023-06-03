@@ -27,9 +27,38 @@ function FHIRMessage() {
         })
     }, [params.id]);
 
-  console.log(entry);
+  console.log(JSON.stringify(entry));
 
-
+  const tableCreater = (data) => {
+    return Object.entries(data).map(([key, value]) => {
+      if (typeof value === 'object' && !Array.isArray(value)) {
+        return (
+          <tr key={key}>
+            <td>{key}</td>
+            <td>{tableCreater(value)}</td>
+          </tr>
+        );
+      } else if (Array.isArray(value)) {
+        return (
+          <tr key={key}>
+            <td>{key}</td>
+            <td>
+              <table>
+                <tbody>{tableCreater(value)}</tbody>
+              </table>
+            </td>
+          </tr>
+        );
+      }
+      return (
+        <tr key={key}>
+          <td>{key}</td>
+          <td>{JSON.stringify(value)}</td>
+        </tr>
+      );
+    });
+  };
+  
   return (
     <div className="main-container">
       <navbar className="navbar">
@@ -60,14 +89,14 @@ function FHIRMessage() {
       </navbar>
       <div className="body">
         <div className="auth-form-container pacient-form-container">
-          <p className="id">ID: {params.id}</p>
-          {entry && entry.fhirMessage && (
-                <div>
-                {Object.keys(entry.fhirMessage).map((key) => (
-                    <p key={key}>{`${key}: ${JSON.stringify(entry.fhirMessage[key])}`}</p>
-                ))}
-                </div>
-            )}
+        {entry && entry.fhirMessage && entry.fhirMessage.entry && (
+          <table className="fhirTable">
+            <thead>
+              <th>FHIR Message</th>
+            </thead>
+            <tbody>{tableCreater(entry.fhirMessage.entry)}</tbody>
+          </table>
+        )}
         </div>
       </div>
     </div>

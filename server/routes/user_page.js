@@ -20,22 +20,31 @@ function addAllValues(fieldMapping) {
 function getAllKeys(obj) {
   let keys = [];
   for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
       keys.push(key);
       if (typeof obj[key] === "object") {
         keys = keys.concat(
           getAllKeys(obj[key]).map((subKey) => `${key}.${subKey}`)
         );
-      }
     }
   }
   return keys;
 }
 
+const findAndReplaceValue = (obj, targetValue, newValue) => {
+  for (let key in obj) {
+      const value = obj[key];
+
+      if (value === targetValue) {
+        obj[key] = newValue;
+      } else if (typeof value === 'object') {
+        findAndReplaceValue(value, targetValue, newValue); 
+      }
+    }
+};
+
 function getKeysByValue(obj, value) {
   let keys = [];
   for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
       if (obj[key] === value) {
         keys.push(key);
       } else if (typeof obj[key] === "object") {
@@ -43,7 +52,6 @@ function getKeysByValue(obj, value) {
           getKeysByValue(obj[key], value).map((subKey) => `${key}.${subKey}`)
         );
       }
-    }
   }
   return keys;
 }
@@ -92,14 +100,16 @@ router.post("/new-composition", async (req, res) => {
       if (key === value) {
         //fhirKey = Object.keys(fhirMessage).find(key => fhirMessage[key] === value)
         fhirKey = getKeysByValue(fhirMessage, value)
-        //console.log(fhirKey)
-        fhirMessage[fhirKey] = new_composition[key]
-        //console.log("NEW VALUE: ", fhirMessage[fhirKey])
+        console.log(fhirKey)
+        fhirMessage[fhirKey] = new_composition[key] // cria nova entrada
+        findAndReplaceValue(fhirMessage, value, new_composition[key]) // substitui valor na entry formato json
+        console.log("NEW VALUE: ", fhirMessage[fhirKey])
       }
     }
   }
 
-  //console.log("FHIR MESSAGE: ", fhirMessage);
+  console.log("FHIR MESSAGE: ", fhirMessage);
+
   // -----------------------------------------------------------
   
   
