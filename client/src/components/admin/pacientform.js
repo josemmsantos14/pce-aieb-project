@@ -10,7 +10,7 @@ let style = require("../../style_notas_alta.json");
 
 
 function PacientForm() {
-  const baseURL = "http://localhost:8080/adminpage/listFhirMessages";
+  // const baseURL = "http://localhost:8080/adminpage/listFhirMessages";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,6 +40,8 @@ function PacientForm() {
 
   let new_jdt = replaceValuesJDT(json, composition);
   console.log("NEW JDT: ", new_jdt)
+
+  
 
   return (
     <div>
@@ -78,7 +80,8 @@ function PacientForm() {
       {/* <h2>Hello User!</h2> */}
 
       <div className="body">
-        <Form
+        <h1>Olá!</h1>
+        {/* <Form
           className="form-principal"
           template={new_jdt}
           dlm={{}}
@@ -92,6 +95,38 @@ function PacientForm() {
           canSubmit={false}
           canSave={false}
           canCancel={true}
+          submitButtonDisabled={true}
+          saveButtonDisabled={true}
+          formDesign={JSON.stringify(style)}
+        /> */}
+
+<Form
+          className="form-principal"
+          onSubmit={(values, changedFields) => console.log("SAVED VALUES: ",
+          values,
+          "CHANGED FIELDS: ",
+          changedFields)}
+          onSave={(values, changedFields) =>
+            console.log(
+              "SAVED VALUES: ",
+              values,
+              "CHANGED FIELDS: ",
+              changedFields
+            )
+          }
+          onCancel={(status) => console.log("CANCELLED:", status)}
+          template={new_jdt}
+          dlm={{}}
+          showPrint={true}
+          editMode={true}
+          professionalTasks={[
+            "Registar Pedido",
+            "Consultar Pedido",
+            "Anular Pedido",
+          ]}
+          canSubmit={false}
+          canSave={false}
+          canCancel={false}
           submitButtonDisabled={true}
           saveButtonDisabled={true}
           formDesign={JSON.stringify(style)}

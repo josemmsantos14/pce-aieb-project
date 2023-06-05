@@ -102,10 +102,7 @@
                         }
                     }
                 ],
-                "gender": {
-                    "code": "items.0.0.items.0.items.0.value",
-                    "text": "items.0.0.items.0.items.0.value"
-                },
+                "gender": "items.0.0.items.0.items.0.value",
                 "name": [
                     {
                         "text": "items.0.0.items.0.items.1.items.0.value",
@@ -156,18 +153,10 @@
                 "reason": "items.0.1.items.2.value",
                 "participant": {
                     "name": "items.0.1.items.3.items.0.value",
-                    "type": {
-                        "system": "http://hl7.org/fhir/v3/ParticipationType",
-                        "code": "items.0.1.items.3.items.1.value",
-                        "display": "items.0.1.items.3.items.1.value"
-                    }
+                    "type": "items.0.1.items.3.items.1.value"
                 },
                 "hospitalization": {
-                    "dischargeDisposition": {
-                        "system": "http://hl7.org/fhir/discharge-disposition",
-                        "code": "items.0.1.items.5.value",
-                        "display": "items.0.1.items.5.value"
-                    },
+                    "dischargeDisposition": "items.0.1.items.5.value",
                     "location": "Location/cd46b0ba-759a-4ad3-99a9-147f82c4b7f3"
                 }
             }
@@ -175,12 +164,7 @@
         {
             "resourceType": "Location",
             "id": "cd46b0ba-759a-4ad3-99a9-147f82c4b7f3",
-            "identifier": [
-                {
-                    "system": "http://spms.min-saude.pt/sges/identifiers/entity-id",
-                    "value": "items.0.1.items.6.items.1.value"
-                }
-            ],
+            "identifier": "items.0.1.items.6.items.1.value",
             "name": "items.0.1.items.6.items.0.value"
         },
         {
@@ -196,25 +180,9 @@
                 "patient": {
                     "reference": "Patient/987654321"
                 },
-                "substance": {
-                    "system": "http://snomed.info/sct",
-                    "code": "items.0.2.items.0.value",
-                    "display": "items.0.2.items.0.value"
-                },
-                "criticality": {
-                    "system": "http://hl7.org/fhir/allergy-intolerance-criticality",
-                    "code": "items.0.2.items.1.value",
-                    "display": "items.0.2.items.1.value"
-                },
-                "verificationStatus": {
-                    "coding": [
-                        {
-                        "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
-                        "code": "items.0.2.items.2.items.0.value",
-                        "display": "items.0.2.items.2.items.0.value"
-                        }
-                    ]
-                }
+                "substance": "items.0.2.items.0.value",
+                "criticality": "items.0.2.items.1.value",
+                "verificationStatus": "items.0.2.items.2.items.0.value"
             }
         },
         {
@@ -260,11 +228,7 @@
                 "subject": {
                     "reference": "Patient/987654321"
                 },
-                "reason": {
-                    "system": "http://snomed.info/sct",
-                    "code": "items.0.4.items.0.value",
-                    "display": "items.0.4.items.0.value"
-                },
+                "reason": "items.0.4.items.0.value",
                 "description": "items.0.4.items.1.value",
                 "participant": {
                     "type": {
@@ -296,17 +260,13 @@
                 "subject": {
                     "reference": "Patient/987654321"
                 },
-                "reason": {
-                    "system": "http://snomed.info/sct",
-                    "code": "items.0.5.items.0.value",
-                    "display": "items.0.5.items.0.value"
-                },
+                "reason": "items.0.5.items.0.value",
                 "description": "items.0.5.items.1.value",
                 "participant": {
                     "type": {
                         "system": "http://hl7.org/fhir/v3/ParticipationType",
                         "code": "DIS",
-                        "dispflay": "discharger"
+                        "display": "discharger"
                     },
                     "name": "items.0.5.items.3.items.0.value"
                 }
@@ -323,12 +283,7 @@
                 "resourceType": "MedicationAdministration",
                 "id": "4c5892f5-f291-45ea-b622-a7053f33a531",
                 "status": "completed",
-                "medication": {
-                    "medicationCodableConcept": {
-                        "code": "items.0.6.items.0.value",
-                        "display": "items.0.6.items.0.value"
-                    }
-                },
+                "medication": "items.0.6.items.0.value",
                 "dosage": {
                     "dose": "items.0.6.items.1.items.0.value.value",
                     "text": "items.0.6.items.1.items.1.value"
@@ -398,47 +353,8 @@
             "entry": {
                 "patient": "Patient/987654321",
                 "encounter": "Encounter/1bb497b9-ad6c-4141-85c4-9ef8262b54db",
-                "list": [
-                    {
-                        "resourceType": "List",
-                        "status": "current",
-                        "mode": "working",
-                        "entry": [
-                            {
-                                "title": "Médico de Família",
-                                "item": "Practitioner/items.0.9.items.0.items.1.value"
-                            }
-                        ]
-                    }
-                ]
+                "list": "items.0.9.items.0.value"
             }
-        },
-        
-        {
-            "resourceType": "Practitioner",
-            "id": "items.0.9.items.0.items.1.value",
-            "name": [
-                {
-                    "text": "items.0.9.items.0.value"
-                }
-            ],
-            "identifier": [
-                {
-                    "type": {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/v2/0203",
-                                "code": "MD",
-                                "display": "Medical License number"
-                            }
-                        ],
-                        "text": "OM"
-                    },
-                    "system": "https://www.ordemdosmedicos.pt",
-                    "value": "items.0.9.items.0.items.1.value"
-                }
-            ],
-            "role": "items.0.9.items.0.items.3.value"
         }
     ]
 }
