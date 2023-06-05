@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 
 function UserForms() {
-    const baseURL = "http://localhost:8080/userpage/list";
+  const baseURL = "http://localhost:8080/userpage/list";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -50,6 +50,9 @@ function UserForms() {
           </li>
           <li>
             <Link to="#">Help</Link>
+          </li>
+          <li>
+            <Link to="forms">Forms</Link>
           </li>
         </ul>
         <div className="navbar-right-items">

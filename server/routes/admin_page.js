@@ -17,12 +17,70 @@ router.get("/listFhirMessage/:id", async (req, res) => {
   res.status(200).json(fhirResponse.response);
 });
 
-router.post("/fhirMessage", async (req, res) => {
+router.post("/fhirMessageToComposition", async (req, res) => {
   let fhirMsg = req.body.fhirMsg;
+  // fhirMsg = JSON.parse(fhirMsg); 
   // console.log("fhir: " + fhirMsg);
   let comp = fhirToComposition(fhirMsg);
   res.status(200).json(comp);
 });
+
+
+// ----------------------- Funções para criação da composition a preencher o form -----------------------
+let values_extracted = [];
+let keys = [];
+function addAllValues(fieldMapping) {
+  for (const field in fieldMapping) {
+    if (typeof fieldMapping[field] === "object") {
+      addAllValues(fieldMapping[field]);
+    } else {
+      values_extracted.push(fieldMapping[field]);
+    }
+  }
+
+  return values_extracted;
+}
+
+function getAllKeys(obj) {
+  let keys = [];
+  for (let key in obj) {
+      keys.push(key);
+      if (typeof obj[key] === "object") {
+        keys = keys.concat(
+          getAllKeys(obj[key]).map((subKey) => `${key}.${subKey}`)
+        );
+    }
+  }
+  return keys;
+}
+
+const findAndReplaceValue = (obj, targetValue, newValue) => {
+  for (let key in obj) {
+      const value = obj[key];
+
+      if (value === targetValue) {
+        obj[key] = newValue;
+      } else if (typeof value === 'object') {
+        findAndReplaceValue(value, targetValue, newValue); 
+      }
+    }
+};
+
+function getKeysByValue(obj, value) {
+  let keys = [];
+  for (let key in obj) {
+      if (obj[key] === value) {
+        keys.push(key);
+      } else if (typeof obj[key] === "object") {
+        keys = keys.concat(
+          getKeysByValue(obj[key], value).map((subKey) => `${key}.${subKey}`)
+        );
+      }
+  }
+  return keys;
+}
+// ----------------------------------------------
+
 
 // ----------------------- Para criação da Composition pela mensagem Fhir -----------------------
 function fhirToComposition(fhirMessage) {
@@ -115,7 +173,25 @@ function fhirToComposition(fhirMessage) {
     "items.0.9.items.0.value": "entry.13.name.0.text",
   };
 
-  //código para mapeamento inverso ao que tínhamos feito
+
+  //------------------ código para mapeamento inverso ao que tínhamos feito ------------------
+
+  const keysFHIR = getAllKeys(fhirMessage); // keys da mensagem fhir
+  const valuesComposition = addAllValues(composition); // values da composition
+
+  for (var key of keysFHIR) {
+    for (var value of valuesComposition) {
+      if (key === value) {
+        compKey = getKeysByValue(composition, value)
+        // console.log(compKey)
+        composition[compKey] = fhirMessage[key] // cria nova entrada
+        findAndReplaceValue(composition, value, fhirMessage[key]) // substitui valor na entry formato json
+        console.log("NEW VALUE: ", composition[compKey])
+      }
+    }
+  }
+
+  console.log("COMPOSITION: ", composition);
 
   return composition;
 }

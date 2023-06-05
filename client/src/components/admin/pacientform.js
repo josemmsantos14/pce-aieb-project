@@ -3,8 +3,14 @@ import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+import { Form } from "protected-aidaforms";
+import { replaceValuesJDT } from "../../replace_values_jdt";
+let json = require("../../jdt_notas_alta.json");
+let style = require("../../style_notas_alta.json");
+
+
 function PacientForm() {
-  const baseURL = "http://localhost:8080/adminpage/listFhirMessage/";
+  const baseURL = "http://localhost:8080/adminpage/listFhirMessages";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +20,8 @@ function PacientForm() {
   const params = useParams();
   const composition = location.state.Composition;
 
+  console.log("COMPOSITION: ", composition)
+
   const handleLogout = async () => {
     setEmail("");
     setPassword("");
@@ -21,27 +29,33 @@ function PacientForm() {
     navigate("/login");
   };
 
-  const [entry, setEntry] = useState([]);
-  useEffect(() => {
-    axios.get(baseURL + params.id).then((response) => {
-      setEntry(response.data);
-    });
-  }, [params.id]);
+  // const [entry, setEntry] = useState([]);
+  // useEffect(() => {
+  //   axios.get(baseURL + params.id).then((response) => {
+  //     setEntry(response.data);
+  //   });
+  // }, [params.id]);
 
   // console.log("entry: " + entry);
 
+  let new_jdt = replaceValuesJDT(json, composition);
+  console.log("NEW JDT: ", new_jdt)
+
   return (
-    <div className="main-container">
+    <div>
       <navbar className="navbar">
         <ul className="navbar-left-items">
           <li>
-            <Link>Home</Link>
+            <Link to="#">Home</Link>
           </li>
           <li>
-            <Link>About</Link>
+            <Link to="#">About</Link>
           </li>
           <li>
-            <Link>Help</Link>
+            <Link to="#">Help</Link>
+          </li>
+          <li>
+            <Link to="#">Forms</Link>
           </li>
         </ul>
         <div className="navbar-right-items">
@@ -58,19 +72,30 @@ function PacientForm() {
           </button>
         </div>
       </navbar>
+      {/* <button type="button" onClick={handleGoBack} className="goback">
+        &#11164;
+      </button> */}
+      {/* <h2>Hello User!</h2> */}
+
       <div className="body">
-        <div className="auth-form-container pacient-form-container">
-          <p className="id">ID: {params.id}</p>
-          {entry && entry.fhirMessage && (
-            <div>
-              {Object.keys(entry.fhirMessage).map((key) => (
-                <p key={key}>{`${key}: ${JSON.stringify(
-                  entry.fhirMessage[key]
-                )}`}</p>
-              ))}
-            </div>
-          )}
-        </div>
+        <Form
+          className="form-principal"
+          template={new_jdt}
+          dlm={{}}
+          showPrint={true}
+          editMode={false}
+          // professionalTasks={[
+          //   "Registar Pedido",
+          //   "Consultar Pedido",
+          //   "Anular Pedido",
+          // ]}
+          canSubmit={false}
+          canSave={false}
+          canCancel={true}
+          submitButtonDisabled={true}
+          saveButtonDisabled={true}
+          formDesign={JSON.stringify(style)}
+        />
       </div>
     </div>
   );

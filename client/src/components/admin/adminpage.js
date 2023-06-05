@@ -29,7 +29,7 @@ function AdminPage() {
     let fhirMsg = fhir.fhirMessage;
 
     const response = await axios.post(
-      "http://localhost:8080/adminpage/fhirMessage", //ligação à porta do NodeJS e ao respetivo caminho relativo ao login
+      "http://localhost:8080/adminpage/fhirMessageToComposition", //ligação à porta do NodeJS e ao respetivo caminho relativo ao login
       JSON.stringify({ fhirMsg }),
       {
         headers: { "Content-Type": "application/json" },
@@ -56,7 +56,7 @@ function AdminPage() {
     return (
       <tr key={row._id} onClick={(e) => sendinfo(row)}>
         <td>{row._id}</td>
-        <td>Composition</td>
+        <td>Form</td>
       </tr>
     );
   });
@@ -80,6 +80,9 @@ function AdminPage() {
           </li>
           <li>
             <Link to="#">Help</Link>
+          </li>
+          <li>
+            <Link to="#">Forms</Link>
           </li>
         </ul>
         <div className="navbar-right-items">
