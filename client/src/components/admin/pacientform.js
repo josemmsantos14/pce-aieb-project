@@ -100,7 +100,7 @@ function PacientForm() {
           formDesign={JSON.stringify(style)}
         /> */}
 
-<Form
+      <Form
           className="form-principal"
           onSubmit={(values, changedFields) => console.log("SAVED VALUES: ",
           values,
@@ -118,7 +118,7 @@ function PacientForm() {
           template={new_jdt}
           dlm={{}}
           showPrint={true}
-          editMode={true}
+          editMode={false}
           professionalTasks={[
             "Registar Pedido",
             "Consultar Pedido",

@@ -157,7 +157,7 @@ router.post("/new-composition", async (req, res) => {
         //fhirKey = Object.keys(fhirMessage).find(key => fhirMessage[key] === value)
         fhirKey = getKeysByValue(fhirMessage, value)
         console.log(fhirKey)
-        // fhirMessage[fhirKey] = new_composition[key] // cria nova entrada
+        fhirMessage[fhirKey] = new_composition[key] // cria nova entrada
         findAndReplaceValue(fhirMessage, value, new_composition[key]) // substitui valor na entry formato json
         console.log("NEW VALUE: ", fhirMessage[fhirKey])
       }
