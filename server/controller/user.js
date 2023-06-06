@@ -57,3 +57,20 @@ module.exports.findUserByEmail = async (email) => {
       return {exists: false, response: err};
   }
 }
+
+
+module.exports.updateUserPass = async (email, password) => {
+  try {
+    const user = await UserModel.findOneAndUpdate(
+      { UserEmail : email },
+      { $set: { UserPassword: password } },
+    );
+    if (!user) {
+      throw new Error("Utilizador não existe.");
+    }
+    return { success: true, response: user };
+  } catch (error) {
+    console.log(error);
+    return { success: false, response: error };
+  }
+}

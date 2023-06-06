@@ -33,7 +33,7 @@ function SendEmail() {
     } catch (error) {
       console.error(error.message);
       if (error.response.status === 401) {
-        alert("Invalid credentials!");
+        alert("Email isn't registered!");
       }
       setMsg(error.message);
       console.log(msg);

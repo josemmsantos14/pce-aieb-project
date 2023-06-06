@@ -16,17 +16,27 @@ function RecoverPass() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/users", //ligação à porta do NodeJS
+        "http://localhost:8080/sendemail/recover", //ligação à porta do NodeJS
         JSON.stringify({ password, passwordverify }),
         {
           headers: { "Content-Type": "application/json" },
         }
       );
       console.log("Credentials sent!");
-    } catch (error) {
-      if (error.response) {
-        setMsg(error.response.data.msg);
+      if (response.status === 204) {
+        alert("Password changed!");
+        navigate("/login");
       }
+      else {
+        setMsg("Passwords should match.");
+      }
+    } catch (error) {
+      console.error(error.message);
+      if (error.response.status === 401) {
+        alert("Passwords should match.");
+      }
+      setMsg(error.message);
+      console.log(msg);
     }
   };
 
