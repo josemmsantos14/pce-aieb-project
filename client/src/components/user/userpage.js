@@ -59,12 +59,13 @@ function UserPage() {
   return (
     <div>
       <navbar className="navbar">
+        <h2 className="navbar-title">NA</h2>
         <ul className="navbar-left-items">
           <li>
             <Link to="/userpage">Form</Link>
           </li>
           <li>
-            <Link to="/userpage/forms">FHIR messages</Link>
+            <Link to="/userpage/forms">FHIR Messages</Link>
           </li>
         </ul>
         <div className="navbar-right-items">

@@ -4,6 +4,7 @@
   --btn-bg: #4c9fe2;
   --nav-bg: #134d7c;
   --high-light: #04dafa;
+  --nav-links: #04dafa;
 }
 
 .App {
@@ -126,6 +127,20 @@ button:hover {
   /* box-shadow: 0px 3px 8px 2px grey; */
   border-bottom: 1px solid black;
 }
+.navbar-title {
+  font-size: 1.5rem;
+  padding: 0.8rem;
+  font-weight: 700;
+  border: 1px solid var(--btn-bg);
+  border-radius: 50%;
+}
+.navbar-title:hover:after {
+  position: absolute;
+  background-color: var(--nav-bg);
+  content: "Notas de Alta";
+  transform: translateX(-2rem);
+  border-radius: 0.5rem;
+}
 .navbar * {
   color: white;
 }
@@ -134,6 +149,29 @@ button:hover {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+}
+.navbar-left-items li {
+  width: 10rem;
+  height: 2rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-left-items li a:hover {
+  /* height: 2rem; */
+  width: 100%;
+  font-weight: 700;
+  color: var(--btn-bg);
+  padding: 0.8rem 1rem;
+  border: 0.05rem solid var(--btn-bg);
+  border-radius: 0.5rem;
+}
+.navbar-left-items li a:active {
+  color: var(--nav-links);
+  border: 0.05rem solid var(--nav-links);
 }
 .navbar-right-items {
   display: flex;
@@ -155,10 +193,10 @@ button:hover {
 .navbar-right-items .user-type {
   position: absolute;
   /* padding: 0.3rem 1.5rem; */
-  top: 1.5rem;
+  top: 1.7rem;
   right: 18rem;
-  font-weight: 600;
-  font-size: 1.2rem;
+  font-weight: 500;
+  font-size: 1.1rem;
   letter-spacing: 0.2rem;
   text-transform: uppercase;
   transition: all 0.8s ease;
@@ -175,39 +213,20 @@ button:hover {
 .user-creds:hover .user-name {
   opacity: 0;
 }
-.navbar-left-items li {
-  width: 5rem;
-  height: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.navbar-left-items li a:hover {
-  width: 5rem;
-  height: 2rem;
-  color: #04dafa;
-}
-.navbar-left-items li a:active {
-  border: #04dafa;
-}
 .btn-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 5rem;
   height: 2rem;
   font-size: 1.2rem;
-  font-weight: 600;
-  border: none;
+  font-weight: 500;
+  border: 0.05rem solid var(--btn-bg);
   box-shadow: none;
-}
-.btn-logout {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 5rem;
-  margin: 1rem 0;
-  margin-left: 1rem;
-  font-weight: 700;
+  padding: 1rem 4rem;
+  margin: 1rem 0 1rem 1rem;
   border-radius: 0.5rem;
-  box-shadow: none;
+  transition: all 0.8s ease;
 }
 .btn-logout:hover {
   border: 0.05rem solid var(--nav-bg);
