@@ -7,7 +7,6 @@ import axios from "axios";
 // o user vai ter o form para preencher e tmb terá de ter acesso a uma tabela com todas as compositions guardadas na base de dados
 
 import { Form } from "protected-aidaforms";
-import { CLIENT_LOCAL_FILES } from "mysql/lib/protocol/constants/client";
 
 let json = require("../../jdt_notas_alta.json");
 let style = require("../../style_notas_alta.json");
