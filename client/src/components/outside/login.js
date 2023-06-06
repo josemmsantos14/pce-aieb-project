@@ -12,7 +12,7 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    console.log("email: ", email, " password: ", password);
 
     try {
       if (email !== "" && password !== "") {
@@ -24,7 +24,7 @@ function Login() {
           }
         );
         let user = response.data.body;
-        console.log("user: ", user);
+        // console.log("user: ", user);
 
         // console.log("Credentials sent!");
         if (user.response.UserType === "admin") {
@@ -33,13 +33,14 @@ function Login() {
               user: user.response,
             },
           });
+          localStorage.setItem("user", JSON.stringify(user.response));
         } else if (user.response.UserType === "user") {
           navigate("/userpage", {
             state: {
               user: user.response,
             },
           });
-          // navigate("/login");
+          localStorage.setItem("user", JSON.stringify(user.response));
         } else {
           alert("Invalid User!");
         }

@@ -13,25 +13,30 @@ function FHIRMessage() {
   const location = useLocation();
   const params = useParams();
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userName = user.UserName;
+  const userType = user.UserType;
+
   const handleLogout = async () => {
     setEmail("");
     setPassword("");
     setMsg("");
     navigate("/login");
+    localStorage.clear();
   };
 
   const [entry, setEntry] = useState([]);
-    useEffect(() => {
-        axios.get(baseURL + params.id).then((response) => {
-            setEntry(response.data);
-        })
-    }, [params.id]);
+  useEffect(() => {
+    axios.get(baseURL + params.id).then((response) => {
+      setEntry(response.data);
+    });
+  }, [params.id]);
 
   console.log(JSON.stringify(entry));
 
   const tableCreater = (data) => {
     return Object.entries(data).map(([key, value]) => {
-      if (typeof value === 'object' && !Array.isArray(value)) {
+      if (typeof value === "object" && !Array.isArray(value)) {
         return (
           <tr key={key}>
             <td>{key}</td>
@@ -58,7 +63,7 @@ function FHIRMessage() {
       );
     });
   };
-  
+
   return (
     <div className="main-container">
       <navbar className="navbar">
@@ -71,10 +76,10 @@ function FHIRMessage() {
           </li>
         </ul>
         <div className="navbar-right-items">
-          {/* <div className="user-creds">
-            <h5 className="user-name">{location.state.user.UserName}</h5>
-            <h5 className="user-type">{location.state.user.UserType}</h5>
-          </div> */}
+          <div className="user-creds">
+            <h5 className="user-name">{userName}</h5>
+            <h5 className="user-type">{userType}</h5>
+          </div>
           <button
             type="button"
             onClick={handleLogout}
@@ -86,14 +91,14 @@ function FHIRMessage() {
       </navbar>
       <div className="body">
         <div className="auth-form-container pacient-form-container">
-        {entry && entry.fhirMessage && entry.fhirMessage.entry && (
-          <table className="fhirTable">
-            <thead>
-              <th>Mensagem FHIR</th>
-            </thead>
-            <tbody>{tableCreater(entry.fhirMessage.entry)}</tbody>
-          </table>
-        )}
+          {entry && entry.fhirMessage && entry.fhirMessage.entry && (
+            <table className="fhirTable">
+              <thead>
+                <th>Mensagem FHIR</th>
+              </thead>
+              <tbody>{tableCreater(entry.fhirMessage.entry)}</tbody>
+            </table>
+          )}
         </div>
       </div>
     </div>

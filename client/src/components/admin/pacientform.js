@@ -8,7 +8,6 @@ import { replaceValuesJDT } from "../../replace_values_jdt";
 let json = require("../../jdt_notas_alta.json");
 let style = require("../../style_notas_alta.json");
 
-
 function PacientForm() {
   // const baseURL = "http://localhost:8080/adminpage/listFhirMessages";
 
@@ -20,13 +19,18 @@ function PacientForm() {
   const params = useParams();
   const composition = location.state.Composition;
 
-  console.log("COMPOSITION: ", composition)
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userName = user.UserName;
+  const userType = user.UserType;
+
+  console.log("COMPOSITION: ", composition);
 
   const handleLogout = async () => {
     setEmail("");
     setPassword("");
     setMsg("");
     navigate("/login");
+    localStorage.clear();
   };
 
   // const [entry, setEntry] = useState([]);
@@ -39,9 +43,7 @@ function PacientForm() {
   // console.log("entry: " + entry);
 
   let new_jdt = replaceValuesJDT(json, composition);
-  console.log("NEW JDT: ", new_jdt)
-
-  
+  console.log("NEW JDT: ", new_jdt);
 
   return (
     <div>
@@ -52,10 +54,10 @@ function PacientForm() {
           </li>
         </ul>
         <div className="navbar-right-items">
-          {/* <div className="user-creds">
-            <h5 className="user-name">{location.state.user.UserName}</h5>
-            <h5 className="user-type">{location.state.user.UserType}</h5>
-          </div> */}
+          <div className="user-creds">
+            <h5 className="user-name">{userName}</h5>
+            <h5 className="user-type">{userType}</h5>
+          </div>
           <button
             type="button"
             onClick={handleLogout}
@@ -90,12 +92,16 @@ function PacientForm() {
           formDesign={JSON.stringify(style)}
         /> */}
 
-      <Form
+        <Form
           className="form-principal"
-          onSubmit={(values, changedFields) => console.log("SAVED VALUES: ",
-          values,
-          "CHANGED FIELDS: ",
-          changedFields)}
+          onSubmit={(values, changedFields) =>
+            console.log(
+              "SAVED VALUES: ",
+              values,
+              "CHANGED FIELDS: ",
+              changedFields
+            )
+          }
           onSave={(values, changedFields) =>
             console.log(
               "SAVED VALUES: ",

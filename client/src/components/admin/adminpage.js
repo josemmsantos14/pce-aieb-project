@@ -15,6 +15,10 @@ function AdminPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userName = user.UserName;
+  const userType = user.UserType;
+
   const [fhirMsgList, setFhirMsgList] = useState([]);
   useEffect(() => {
     axios.get(baseURL).then((response) => {
@@ -70,6 +74,7 @@ function AdminPage() {
     setPassword("");
     setMsg("");
     navigate("/login");
+    localStorage.clear();
   };
 
   return (
@@ -86,8 +91,8 @@ function AdminPage() {
         </ul>
         <div className="navbar-right-items">
           <div className="user-creds">
-            <h5 className="user-name">{location.state.user.UserName}</h5>
-            <h5 className="user-type">{location.state.user.UserType}</h5>
+            <h5 className="user-name">{userName}</h5>
+            <h5 className="user-type">{userType}</h5>
           </div>
           <button
             type="button"

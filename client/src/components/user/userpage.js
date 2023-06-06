@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -7,6 +7,7 @@ import axios from "axios";
 // o user vai ter o form para preencher e tmb terá de ter acesso a uma tabela com todas as compositions guardadas na base de dados
 
 import { Form } from "protected-aidaforms";
+import { CLIENT_LOCAL_FILES } from "mysql/lib/protocol/constants/client";
 
 let json = require("../../jdt_notas_alta.json");
 let style = require("../../style_notas_alta.json");
@@ -17,17 +18,19 @@ function UserPage() {
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const [composition, setComposition] = React.useState("");
 
-  // const handleGoBack = async () => navigate(-1);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userName = user.UserName;
+  const userType = user.UserType;
 
   const handleLogout = async () => {
     setEmail("");
     setPassword("");
     setMsg("");
     navigate("/login");
+    localStorage.clear();
   };
-
-  const [composition, setComposition] = React.useState("");
 
   // função que faz comunicação react-node para adicionar composition
   const handleAdd = async (values, changedFields) => {
@@ -70,8 +73,8 @@ function UserPage() {
         </ul>
         <div className="navbar-right-items">
           <div className="user-creds">
-            <h5 className="user-name">{location.state.user.UserName}</h5>
-            <h5 className="user-type">{location.state.user.UserType}</h5>
+            <h5 className="user-name">{userName}</h5>
+            <h5 className="user-type">{userType}</h5>
           </div>
           <button
             type="button"
