@@ -71,7 +71,6 @@ function PacientForm() {
       {/* <h2>Hello User!</h2> */}
 
       <div className="body">
-        <h1>Olá!</h1>
         {/* <Form
           className="form-principal"
           template={new_jdt}
