@@ -43,16 +43,10 @@ function UserForms() {
       <navbar className="navbar">
         <ul className="navbar-left-items">
           <li>
-            <Link to="#">Home</Link>
+            <Link to="/userpage">Form</Link>
           </li>
           <li>
-            <Link to="#">About</Link>
-          </li>
-          <li>
-            <Link to="#">Help</Link>
-          </li>
-          <li>
-            <Link to="forms">Forms</Link>
+            <Link to="/userpage/forms">FHIR messages</Link>
           </li>
         </ul>
         <div className="navbar-right-items">

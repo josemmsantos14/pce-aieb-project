@@ -64,16 +64,10 @@ function FHIRMessage() {
       <navbar className="navbar">
         <ul className="navbar-left-items">
           <li>
-            <Link>Home</Link>
+            <Link to="/userpage">Form</Link>
           </li>
           <li>
-            <Link>About</Link>
-          </li>
-          <li>
-            <Link>Help</Link>
-          </li>
-          <li>
-            <Link to="forms">Forms</Link>
+            <Link to="/userpage/forms">FHIR messages</Link>
           </li>
         </ul>
         <div className="navbar-right-items">

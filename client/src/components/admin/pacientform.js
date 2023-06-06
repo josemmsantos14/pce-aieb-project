@@ -48,16 +48,7 @@ function PacientForm() {
       <navbar className="navbar">
         <ul className="navbar-left-items">
           <li>
-            <Link to="#">Home</Link>
-          </li>
-          <li>
-            <Link to="#">About</Link>
-          </li>
-          <li>
-            <Link to="#">Help</Link>
-          </li>
-          <li>
-            <Link to="#">Forms</Link>
+            <Link to="/adminpage">Forms</Link>
           </li>
         </ul>
         <div className="navbar-right-items">
