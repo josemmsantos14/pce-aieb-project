@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import NavbarUser from "./navbar-user";
 
 // o user vai ter o form para preencher e tmb terá de ter acesso a uma tabela com todas as compositions guardadas na base de dados
 

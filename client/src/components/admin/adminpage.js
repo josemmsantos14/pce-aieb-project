@@ -13,9 +13,7 @@ function AdminPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const user_intro = localStorage.getItem("user");
-  if (!user_intro) {
-    navigate("/login");
-  }
+
   const baseURL = "http://localhost:8080/adminpage/listFhirMessages";
 
   const user = JSON.parse(user_intro);
@@ -92,6 +90,9 @@ function AdminPage() {
         <ul className="navbar-left-items">
           <li>
             <Link to="/adminpage">Forms</Link>
+          </li>
+          <li>
+            <Link to="/adminpage/graphs">Graphs</Link>
           </li>
         </ul>
         <div className="navbar-right-items">
