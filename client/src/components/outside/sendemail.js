@@ -60,7 +60,7 @@ function SendEmail() {
           <label htmlFor="email">Email</label>
         </div>
         <button
-          className="btn btn-sendemail"
+          className="btn-sendemail btn"
           type="submit"
           onClick={(e) => handleSendemail(e)}
         >

@@ -18,7 +18,7 @@ function NavbarUser(location, handleLogout) {
           <h5 className="user-name">{location.state.user.UserName}</h5>
           <h5 className="user-type">{location.state.user.UserType}</h5>
         </div>
-        <button type="button" onClick={handleLogout} className="btn btn-logout">
+        <button type="button" onClick={handleLogout} className="btn-logout btn">
           Logout
         </button>
       </div>

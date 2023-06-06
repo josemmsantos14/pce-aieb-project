@@ -79,7 +79,7 @@ function UserPage() {
           <button
             type="button"
             onClick={handleLogout}
-            className="btn btn-logout"
+            className="btn-logout btn"
           >
             Logout
           </button>

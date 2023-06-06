@@ -98,7 +98,7 @@ function SignUp() {
           </select>
         </div>
         <button
-          className="btn btn-signup"
+          className="btn-signup btn"
           type="submit"
           onClick={(e) => handleSignUp(e)}
         >

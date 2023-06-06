@@ -98,11 +98,11 @@ input:required:invalid:not(:placeholder-shown) ~ label {
 :-ms-input-placeholder {
   color: red !important;
 }
-button {
+/* button.btn {
   position: relative;
-  /* border: none; */
+  border: none;
   box-shadow: 2px 2px 0.3rem 0 black;
-  /* background-color: #171828; */
+  background-color: #171828;
   padding: 10px;
   margin-top: 10%;
   border-radius: 0;
@@ -110,14 +110,14 @@ button {
   color: var(--high-light);
   transition: 0.5s;
 }
-button:hover {
+button.btn:hover {
   border: 2px solid var(--high-light);
   background: none;
   color: black;
   transform: translateY(-5px);
   box-shadow: 0 0.35em 0.25em -0.15em var(--high-light);
   font-weight: 700;
-}
+} */
 .title {
   color: #4299e1;
 }

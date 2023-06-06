@@ -26,8 +26,7 @@ function RecoverPass() {
       if (response.status === 204) {
         alert("Password changed!");
         navigate("/login");
-      }
-      else {
+      } else {
         setMsg("Passwords should match.");
       }
     } catch (error) {
@@ -72,7 +71,7 @@ function RecoverPass() {
           <label htmlFor="passwordverify">Confirm password</label>
         </div>
         <button
-          className="btn btn-recover"
+          className="btn-recover btn"
           type="submit"
           onClick={(e) => handleRecoverpass(e)}
         >

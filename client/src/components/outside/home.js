@@ -17,7 +17,7 @@ function FrontPage() {
         <button
           type="button"
           name="login"
-          className="btn btn-in-home"
+          className="btn-in-home btn "
           onClick={handleLogin}
         >
           Login
@@ -25,7 +25,7 @@ function FrontPage() {
         <button
           type="button"
           name="signup"
-          className="btn btn-in-home"
+          className="btn-in-home btn "
           onClick={handleSignup}
         >
           Sign Up

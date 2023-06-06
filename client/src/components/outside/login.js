@@ -100,7 +100,7 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="btn btn-login"
+            className="btn-login btn"
             onClick={(e) => handleLogin(e)}
           >
             Log In

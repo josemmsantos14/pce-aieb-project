@@ -9,7 +9,6 @@ let json = require("../../jdt_notas_alta.json");
 let style = require("../../style_notas_alta.json");
 
 function PacientForm() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
@@ -25,7 +24,7 @@ function PacientForm() {
   console.log("COMPOSITION: ", composition);
 
   const handleLogout = async () => {
-    setEmail(""); 
+    setEmail("");
     setPassword("");
     setMsg("");
     navigate("/login");
@@ -64,7 +63,7 @@ function PacientForm() {
           <button
             type="button"
             onClick={handleLogout}
-            className="btn btn-logout"
+            className="btn-logout btn "
           >
             Logout
           </button>
