@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import NavbarUser from "./navbar-user";
 
 // o user vai ter o form para preencher e tmb terá de ter acesso a uma tabela com todas as compositions guardadas na base de dados
 
@@ -57,8 +58,6 @@ function UserPage() {
     }
   };
 
-  // const formRef = React.useRef();
-
   return (
     <div>
       <navbar className="navbar">
@@ -85,10 +84,6 @@ function UserPage() {
           </button>
         </div>
       </navbar>
-      {/* <button type="button" onClick={handleGoBack} className="goback">
-        &#11164;
-      </button> */}
-      {/* <h2>Hello User!</h2> */}
 
       <div className="body">
         <Form
@@ -125,40 +120,3 @@ function UserPage() {
 }
 
 export default UserPage;
-
-/*  patientData={{
-          numSequencial: 1904865,
-          episodio: 21016848,
-          modulo: "INT",
-          processo: 99998888,
-          nome: "Manuel Utente Teste Teste Teste",
-          dtaNascimento: "1945-08-15",
-          idade: 77,
-          sexo: "Masculino",
-        }}
-        reportData={{
-          dtaEncerrada: "22-05-2019 13:02",
-          dtaCriada: "10-05-2019 18:47",
-          realizada: "Joana Pascoal",
-          responsavel: "José Costa",
-        }}
-        referenceModel={[
-          {
-            itemName: "Número mecanográfico",
-            item: "num_mecanografico",
-            value: "123456",
-            formVisible: true,
-          },
-          {
-            itemName: "Número sequencial",
-            item: "num_seq",
-            value: 1347095,
-            formVisible: true,
-          },
-          {
-            itemName: "Nome",
-            item: "Nome",
-            value: "José da Silva Pinto",
-            formVisible: true,
-          },
-        ]} */

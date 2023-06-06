@@ -84,7 +84,6 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
             <label htmlFor="email">Email</label>
-            {/* corrigir css que vem para baixo nao tendo email valido */}
           </div>
           <div className="inputbox">
             <span>&#128477;</span>

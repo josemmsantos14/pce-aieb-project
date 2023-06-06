@@ -31,15 +31,6 @@ function PacientForm() {
     localStorage.clear();
   };
 
-  // const [entry, setEntry] = useState([]);
-  // useEffect(() => {
-  //   axios.get(baseURL + params.id).then((response) => {
-  //     setEntry(response.data);
-  //   });
-  // }, [params.id]);
-
-  // console.log("entry: " + entry);
-
   let new_jdt = replaceValuesJDT(json, composition);
   console.log("NEW JDT: ", new_jdt);
 
@@ -69,31 +60,8 @@ function PacientForm() {
           </button>
         </div>
       </navbar>
-      {/* <button type="button" onClick={handleGoBack} className="goback">
-        &#11164;
-      </button> */}
-      {/* <h2>Hello User!</h2> */}
 
       <div className="body">
-        {/* <Form
-          className="form-principal"
-          template={new_jdt}
-          dlm={{}}
-          showPrint={true}
-          editMode={false}
-          // professionalTasks={[
-          //   "Registar Pedido",
-          //   "Consultar Pedido",
-          //   "Anular Pedido",
-          // ]}
-          canSubmit={false}
-          canSave={false}
-          canCancel={true}
-          submitButtonDisabled={true}
-          saveButtonDisabled={true}
-          formDesign={JSON.stringify(style)}
-        /> */}
-
         <Form
           className="form-principal"
           onSubmit={(values, changedFields) =>
