@@ -139,7 +139,7 @@ function fhirToComposition(fhirMessage) {
       if (key === value) {
         compKey = getKeysByValue(composition, value)
         // console.log(compKey)
-        composition[compKey] = fhirMessage[key] // cria nova entrada
+        // composition[compKey] = fhirMessage[key] // cria nova entrada
         findAndReplaceValue(composition, value, fhirMessage[key]) // substitui valor na entry formato json
         console.log("NEW VALUE: ", composition[compKey])
       }

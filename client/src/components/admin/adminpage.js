@@ -82,7 +82,7 @@ function AdminPage() {
             <Link to="#">Help</Link>
           </li>
           <li>
-            <Link to="#">Forms</Link>
+            <Link to="/adminpage">Forms</Link>
           </li>
         </ul>
         <div className="navbar-right-items">
