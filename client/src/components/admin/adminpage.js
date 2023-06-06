@@ -53,10 +53,11 @@ function AdminPage() {
   //console.log("FHIR Message: ", fhirMsgList);
 
   const tableCreater = fhirMsgList.map((row) => {
+    let date = row.fhirMessage['entry.3.entry.period.end.date'];
     return (
       <tr key={row._id} onClick={(e) => sendinfo(row)}>
-        <td>{row._id}</td>
-        <td>Form</td>
+        <td>{date}</td>
+        <td>{row.fhirMessage['entry.2.resource.name.0.text'] + row.fhirMessage['entry.2.resource.name.0.family']}</td>
       </tr>
     );
   });
@@ -96,8 +97,8 @@ function AdminPage() {
           <table>
             <thead>
               <tr>
-                <th>Entry</th>
-                <th>Description</th>
+                <th>Data de Alta</th>
+                <th>Nome do Paciente</th>
               </tr>
             </thead>
             <tbody>{tableCreater}</tbody>

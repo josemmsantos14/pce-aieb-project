@@ -89,7 +89,7 @@ function FHIRMessage() {
         {entry && entry.fhirMessage && entry.fhirMessage.entry && (
           <table className="fhirTable">
             <thead>
-              <th>FHIR Message</th>
+              <th>Mensagem FHIR</th>
             </thead>
             <tbody>{tableCreater(entry.fhirMessage.entry)}</tbody>
           </table>
