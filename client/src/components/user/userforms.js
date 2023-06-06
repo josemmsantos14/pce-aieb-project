@@ -24,7 +24,7 @@ function UserForms() {
     });
   }, []);
 
-  const tableCreater = formsList.map((row) => {
+  const tableCreator = formsList.map((row) => {
     let date = row.fhirMessage["entry.3.entry.period.end.date"];
     return (
       <tr key={row._id}>
@@ -84,7 +84,7 @@ function UserForms() {
                 <th>Nome do Paciente</th>
               </tr>
             </thead>
-            <tbody>{tableCreater}</tbody>
+            <tbody>{tableCreator}</tbody>
           </table>
         </div>
       </div>

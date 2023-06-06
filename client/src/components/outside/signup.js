@@ -62,7 +62,7 @@ function SignUp() {
           />
           <label htmlFor="name">Name</label>
         </div>
-        <div className="inputbox">
+        <div className="inputbox email-inp">
           <span>&#9993;</span>
           <input
             type="email"

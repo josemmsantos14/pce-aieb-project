@@ -90,6 +90,7 @@ input:valid ~ label {
 }
 input:required:invalid:not(:placeholder-shown) ~ label {
   color: red;
+  font-weight: 700;
   top: -5px;
 }
 .inputbox input::placeholder,
@@ -166,14 +167,17 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
-.navbar-left-items li a:hover {
-  /* height: 2rem; */
+.navbar-left-items li a {
   width: 100%;
+  padding: 0.2rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.8s ease;
+}
+.navbar-left-items li a:hover {
+  padding: 0.8rem 1rem;
   font-weight: 700;
   color: var(--btn-bg);
-  padding: 0.8rem 1rem;
   border: 0.05rem solid var(--btn-bg);
-  border-radius: 0.5rem;
 }
 .navbar-left-items li a:active {
   color: var(--nav-links);
@@ -248,8 +252,8 @@ button.goback {
   width: 3.2rem;
   height: 3.2rem;
   margin: 0.5rem;
-  top: 0;
-  left: 0;
+  top: 0.5rem;
+  left: 0.5rem;
   font-size: 150%;
   border-radius: 10rem;
 }
@@ -494,6 +498,7 @@ button:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0 !important;
 }
 
 .admin-table thead tr:first-child,

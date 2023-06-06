@@ -73,7 +73,7 @@ function Login() {
       <div>
         <h2 className="login-title">Login</h2>
         <form className="login-form">
-          <div className="inputbox">
+          <div className="inputbox email-inp">
             <span>&#9993;</span>
             <input
               type="email"
