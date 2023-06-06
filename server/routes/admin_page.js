@@ -13,7 +13,7 @@ router.get("/listFhirMessages", async (req, res) => {
 router.get("/listFhirMessage/:id", async (req, res) => {
   const fhirResponse = await CompositionController.listFhirMessageByID(
     req.params.id
-  );
+  ); 
   res.status(200).json(fhirResponse.response);
 });
 
@@ -137,7 +137,6 @@ function fhirToComposition(fhirMessage) {
   for (var key of keysFHIR) {
     for (var value of valuesComposition) {
       if (key === value) {
-        compKey = getKeysByValue(composition, value)
         findAndReplaceValue(composition, value, fhirMessage[key]) // substitui valor na entry formato json
         // console.log("NEW VALUE: ", composition[compKey])
       }

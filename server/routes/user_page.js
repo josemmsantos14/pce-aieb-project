@@ -34,8 +34,9 @@ const findAndReplaceValue = (obj, targetValue, newValue) => {
   for (let key in obj) {
       const value = obj[key];
 
-      if (value === targetValue) {
+      if (value == targetValue) {
         obj[key] = newValue;
+
       } else if (typeof value === 'object') {
         findAndReplaceValue(value, targetValue, newValue); 
       }
@@ -61,10 +62,11 @@ function getKeysByValue(obj, value) {
 // função post no node para adicionar à base de dados a composition submetida pelo user na página
 router.post("/new-composition", async (req, res) => {
   let { composition } = req.body; 
+  console.log("COMPOSITION SUBMETIDA: ", composition)
 
   //----------------- Criação da mensagem FHIR -----------------
   const fhirMessage = require("../notas_alta_fhir_2.json");
-  // console.log("MENSAGEM FHIR ORIGINAL: ", fhirMessage); // campos da mensagem fhir
+  // console.log("MENSAGEM FHIR ORIGINAL: ", fhirMessage);
   composition = JSON.parse(composition)
   // console.log(composition)
 
@@ -73,6 +75,7 @@ router.post("/new-composition", async (req, res) => {
   
   for (const [key, value] of Object.entries(composition)) {
     // console.log([key, value])
+    let text = "";
 
     if (Array.isArray(value)) {
       console.log("value: ", value)
@@ -86,13 +89,16 @@ router.post("/new-composition", async (req, res) => {
             obj.value = JSON.parse(`${obj.value}`);
             console.log("alteração para objeto? ", obj.value)
             
-            obj.value = obj.value["blocks"][0]["text"]
+            // obj.value = obj.value["blocks"][0]["text"]
+            text = obj.value["blocks"][0]["text"];
+            if (obj.value["blocks"].length > 1) {
+              for (let i = 1; i < obj.value["blocks"].length; i++) {
+                text = text + "\n" + obj.value["blocks"][`${i}`]["text"];
+              }
+            }
+            
+            obj.value = text
             console.log("texto? ", obj.value)
-          
-            // for (let i = 0; i < obj.value["blocks"].length; i++) {
-            //   text1 = text1 + "\n" + obj.value["blocks"][`${i}`]["text"];
-            // }
-            // obj.value = text1
 
           }
           catch {
@@ -107,14 +113,16 @@ router.post("/new-composition", async (req, res) => {
             try {
               obj.values[key1] = JSON.parse(`${value1}`);
 
-              obj.values[key1] = obj.values[key1]["blocks"][0]["text"]
-              console.log("texto? ", obj.values[key1])
+              // obj.values[key1] = obj.values[key1]["blocks"][0]["text"]
+              text = obj.values[key1]["blocks"][0]["text"];
+              if (obj.values[key1]["blocks"].length > 1) {
+                for (let i = 1; i < obj.values[key1]["blocks"].length; i++) {
+                  text = text + "\n" + obj.values[key1]["blocks"][`${i}`]["text"];
+                }
+              }
 
-              // for (let i = 0; i < value1["blocks"].length; i++) {
-              //   text2 = text2 + "\n" + value1["blocks"][`${i}`]["text"];
-              // }
-  
-              // obj.values[key1] = text2
+              obj.values[key1] = text
+              console.log("texto? ", obj.values[key1])
             }
             catch {
               obj.values[key1] = value1
@@ -126,15 +134,17 @@ router.post("/new-composition", async (req, res) => {
       new_composition[key] = value
     }
     else {
-      let text = "";
-
       try {
         new_composition[key] = JSON.parse(`${value}`);
 
         if (new_composition[key]) {
-          for (let i = 0; i < new_composition[key]["blocks"].length; i++) {
-            text = text + "\n" + new_composition[key]["blocks"][`${i}`]["text"];
+          text = new_composition[key]["blocks"][0]["text"];
+          if (new_composition[key]["blocks"].length > 1) {
+            for (let i = 1; i < new_composition[key]["blocks"].length; i++) {
+              text = text + "\n" + new_composition[key]["blocks"][`${i}`]["text"];
+            }
           }
+          
           new_composition[key] = text;
         }
       }
@@ -151,17 +161,23 @@ router.post("/new-composition", async (req, res) => {
   const keysComposition = getAllKeys(new_composition); // keys da composition
   const valuesFhir = addAllValues(fhirMessage); // values da mensagem fhir
 
+  // Primeira etapa: criar novas entradas em fhirMessage
   for (var key of keysComposition) {
     for (var value of valuesFhir) {
       if (key === value) {
-        fhirKey = getKeysByValue(fhirMessage, value)
-        console.log(fhirKey)
-        //fhirMessage[fhirKey] = new_composition[key] // cria nova entrada
-        findAndReplaceValue(fhirMessage, value, new_composition[key]) // substitui valor na entry formato json
-        console.log("NEW VALUE: ", fhirMessage[fhirKey])
+        fhirKey = getKeysByValue(fhirMessage, value);
+        fhirMessage[fhirKey] = new_composition[key]; // cria nova entrada
       }
     }
   }
+
+  // Segunda etapa: substituir valores existentes em fhirMessage
+  for (var value of valuesFhir) {
+    if (new_composition.hasOwnProperty(value)) {
+      findAndReplaceValue(fhirMessage, value, new_composition[value]);
+    }
+  }
+
 
   console.log("FHIR MESSAGE: ", fhirMessage);
 

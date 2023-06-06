@@ -9,7 +9,6 @@ let json = require("../../jdt_notas_alta.json");
 let style = require("../../style_notas_alta.json");
 
 function PacientForm() {
-  // const baseURL = "http://localhost:8080/adminpage/listFhirMessages";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +25,7 @@ function PacientForm() {
   console.log("COMPOSITION: ", composition);
 
   const handleLogout = async () => {
-    setEmail("");
+    setEmail(""); 
     setPassword("");
     setMsg("");
     navigate("/login");

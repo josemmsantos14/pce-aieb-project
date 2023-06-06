@@ -34,9 +34,9 @@ function UserPage() {
 
   // função que faz comunicação react-node para adicionar composition
   const handleAdd = async (values, changedFields) => {
-    setComposition(values);
-
     console.log("SAVED VALUES: ", values, "CHANGED FIELDS: ", changedFields);
+
+    // setComposition(values);
 
     try {
       const response = await axios.post(
