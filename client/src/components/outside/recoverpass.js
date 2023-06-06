@@ -41,12 +41,12 @@ function RecoverPass() {
   };
 
   return (
-    <div className="auth-form-container recover-container">
+    <div className="recover-container auth-form-container">
       <button type="button" onClick={handleGoBack} className="goback">
         &#11164;
       </button>
-      <h2 className="title">Recover Password</h2>
-      <form className="login-form">
+      <h2 className="recover-title">Recover Password</h2>
+      <form className="recover-form">
         <div className="inputbox">
           <span>&#128477;</span>
           <input

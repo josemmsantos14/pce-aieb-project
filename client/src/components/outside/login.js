@@ -63,12 +63,12 @@ function Login() {
   };
 
   return (
-    <div className="auth-form-container">
+    <div className="login-container auth-form-container">
       <button type="button" onClick={handleGoBack} className="goback">
         &#11164;
       </button>
       <div>
-        <h2 className="title">Login</h2>
+        <h2 className="login-title">Login</h2>
         <form className="login-form">
           <div className="inputbox">
             <span>&#9993;</span>

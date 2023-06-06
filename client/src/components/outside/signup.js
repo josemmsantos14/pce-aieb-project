@@ -44,12 +44,12 @@ function SignUp() {
   };
 
   return (
-    <div className="auth-form-container signup-container">
+    <div className="signup-container auth-form-container">
       <button type="button" onClick={handleGoBack} className="goback">
         &#11164;
       </button>
-      <h2 className="title">Sign Up</h2>
-      <form className="login-form">
+      <h2 className="signup-title">Sign Up</h2>
+      <form className="signup-form">
         <div className="inputbox">
           <span>&#10077;</span>
           <input

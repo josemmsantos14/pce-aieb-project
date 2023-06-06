@@ -11,8 +11,8 @@ function FrontPage() {
   const handleSignup = async () => navigate("/signup");
 
   return (
-    <div className="auth-form-container home-container">
-      <h2>Welcome to our page!</h2>
+    <div className="home-container auth-form-container">
+      <h2 className="home-title">Welcome to our page!</h2>
       <div className="btns-redirect">
         <button
           type="button"
