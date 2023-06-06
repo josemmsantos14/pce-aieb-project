@@ -21,11 +21,12 @@ function UserForms() {
     }, []);
 
   const tableCreater = formsList.map((row) => {
+    let date = row.fhirMessage['entry.3.entry.period.end.date'];
     return (
       <tr key={row._id}>
         <Link to={"/userpage/" + row._id}>
-          <td>{row._id}</td>
-          <td>FHIR Message</td>
+          <td>{date}</td>
+          <td>{row.fhirMessage['entry.2.resource.name.0.text'] + row.fhirMessage['entry.2.resource.name.0.family']}</td>
         </Link>
       </tr>
     );
@@ -69,8 +70,8 @@ function UserForms() {
           <table>
             <thead>
               <tr>
-                <th>Entry</th>
-                <th>Description</th>
+                <th>Data de Alta</th>
+                <th>Nome do Paciente</th>
               </tr>
             </thead>
             <tbody>{tableCreater}</tbody>
