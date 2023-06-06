@@ -34,22 +34,42 @@ function FHIRMessage() {
 
   console.log(JSON.stringify(entry));
 
-  const tableCreater = (data) => {
+  const tableCreator = (data) => {
     return Object.entries(data).map(([key, value]) => {
       if (typeof value === "object" && !Array.isArray(value)) {
+        if (value === null) {
+          return (
+            <tr key={key}>
+              <td className={"td_" + key}>{key}</td>
+              <td>{tableCreator("null")}</td>
+            </tr>
+          );
+        }
         return (
           <tr key={key}>
             <td>{key}</td>
-            <td>{tableCreater(value)}</td>
+            <td>{tableCreator(value)}</td>
           </tr>
         );
       } else if (Array.isArray(value)) {
+        if (value === null) {
+          return (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>
+                <table>
+                  <tbody>{tableCreator(undefined)}</tbody>
+                </table>
+              </td>
+            </tr>
+          );
+        }
         return (
           <tr key={key}>
             <td>{key}</td>
             <td>
               <table>
-                <tbody>{tableCreater(value)}</tbody>
+                <tbody>{tableCreator(value)}</tbody>
               </table>
             </td>
           </tr>
@@ -65,14 +85,15 @@ function FHIRMessage() {
   };
 
   return (
-    <div className="main-container">
+    <div>
       <navbar className="navbar">
+        <h2 className="navbar-title">NA</h2>
         <ul className="navbar-left-items">
           <li>
             <Link to="/userpage">Form</Link>
           </li>
           <li>
-            <Link to="/userpage/forms">FHIR messages</Link>
+            <Link to="/userpage/forms">FHIR Messages</Link>
           </li>
         </ul>
         <div className="navbar-right-items">
@@ -90,13 +111,11 @@ function FHIRMessage() {
         </div>
       </navbar>
       <div className="body">
-        <div className="auth-form-container pacient-form-container">
+        <div className="pacient-form-container auth-form-container">
+          <h2 className="pacient-form-title">FHIR Message</h2>
           {entry && entry.fhirMessage && entry.fhirMessage.entry && (
             <table className="fhirTable">
-              <thead>
-                <th>Mensagem FHIR</th>
-              </thead>
-              <tbody>{tableCreater(entry.fhirMessage.entry)}</tbody>
+              <tbody>{tableCreator(entry.fhirMessage.entry)}</tbody>
             </table>
           )}
         </div>

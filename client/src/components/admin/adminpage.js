@@ -7,15 +7,18 @@ import { useEffect, useState } from "react";
 // não precisa do form visto que vai só consultar o que já existe
 
 function AdminPage() {
-  const baseURL = "http://localhost:8080/adminpage/listFhirMessages";
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const user_intro = localStorage.getItem("user");
+  if (!user_intro) {
+    navigate("/login");
+  }
+  const baseURL = "http://localhost:8080/adminpage/listFhirMessages";
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(user_intro);
   const userName = user.UserName;
   const userType = user.UserType;
 
@@ -31,6 +34,7 @@ function AdminPage() {
   const sendinfo = async (fhir) => {
     let id = fhir._id;
     let fhirMsg = fhir.fhirMessage;
+    console.log("id: ", id);
 
     const response = await axios.post(
       "http://localhost:8080/adminpage/fhirMessageToComposition", //ligação à porta do NodeJS e ao respetivo caminho relativo ao login
@@ -56,13 +60,14 @@ function AdminPage() {
 
   //console.log("FHIR Message: ", fhirMsgList);
 
-  const tableCreater = fhirMsgList.map((row) => {
+  const tableCreator = fhirMsgList.map((row) => {
     let date = row.fhirMessage["entry.3.entry.period.end.date"];
     return (
       <tr key={row._id} onClick={(e) => sendinfo(row)}>
         <td>{date}</td>
         <td>
           {row.fhirMessage["entry.2.resource.name.0.text"] +
+            " " +
             row.fhirMessage["entry.2.resource.name.0.family"]}
         </td>
       </tr>
@@ -106,14 +111,14 @@ function AdminPage() {
       <div className="body">
         <div className="auth-form-container admin-container">
           <h2 className="admin-title">Notas de Alta</h2>
-          <table>
+          <table className="admin-table">
             <thead>
               <tr>
                 <th>Data de Alta</th>
                 <th>Nome do Paciente</th>
               </tr>
             </thead>
-            <tbody>{tableCreater}</tbody>
+            <tbody>{tableCreator}</tbody>
           </table>
         </div>
       </div>

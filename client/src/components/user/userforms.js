@@ -32,6 +32,7 @@ function UserForms() {
           <td>{date}</td>
           <td>
             {row.fhirMessage["entry.2.resource.name.0.text"] +
+              " " +
               row.fhirMessage["entry.2.resource.name.0.family"]}
           </td>
         </Link>
@@ -50,12 +51,13 @@ function UserForms() {
   return (
     <div className="main-container">
       <navbar className="navbar">
+        <h2 className="navbar-title">NA</h2>
         <ul className="navbar-left-items">
           <li>
             <Link to="/userpage">Form</Link>
           </li>
           <li>
-            <Link to="/userpage/forms">FHIR messages</Link>
+            <Link to="/userpage/forms">FHIR Messages</Link>
           </li>
         </ul>
         <div className="navbar-right-items">
@@ -75,7 +77,7 @@ function UserForms() {
       <div className="body">
         <div className="auth-form-container admin-container">
           <h2 className="admin-title">Notas de Alta</h2>
-          <table>
+          <table className="user-table">
             <thead>
               <tr>
                 <th>Data de Alta</th>

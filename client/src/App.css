@@ -5,6 +5,12 @@
   --nav-bg: #134d7c;
   --high-light: #04dafa;
   --nav-links: #04dafa;
+  --table-tr: rgba(128, 128, 128, 0.195);
+  --table-fhir: rgba(128, 128, 128, 0.2);
+}
+
+body {
+  background-color: var(--app-bg);
 }
 
 .App {
@@ -452,7 +458,7 @@ button:active {
   box-shadow: none;
 }
 
-/*-------------------------------------  RECOVER ------------------------------------*/
+/*-------------------------------------  ADMIN ------------------------------------*/
 .admin-container {
   height: auto;
   width: 50rem;
@@ -473,12 +479,15 @@ button:active {
   margin-bottom: 3rem;
 }
 
-table {
+/*-------------------------------------  ADMIN AND USER TABLES ------------------------------------*/
+.admin-table,
+.user-table {
   display: grid;
   place-items: center;
 }
 
-table tr {
+.admin-table tr,
+.user-table tr {
   border-bottom: 1px solid black;
   height: 2.5rem;
   width: 40rem;
@@ -487,49 +496,102 @@ table tr {
   align-items: center;
 }
 
-table thead tr:first-child {
-  background: rgba(128, 128, 128, 0.195);
+.admin-table thead tr:first-child,
+.user-table thead tr:first-child {
+  background: var(--table-tr);
   border-top-left-radius: 0.4rem;
   border-top-right-radius: 0.4rem;
 }
 
-table tbody tr:hover {
-  background: rgba(128, 128, 128, 0.195);
+.admin-table tbody tr:hover,
+.user-table tbody tr:hover {
+  background: var(--table-tr);
   cursor: pointer;
 }
 
-table tbody tr:last-child {
+.admin-table tbody tr:last-child,
+.user-table tbody tr:last-child {
   border: none;
   border-bottom-left-radius: 0.4rem;
   border-bottom-right-radius: 0.4rem;
 }
 
-tr th,
-tr td {
+.admin-table tr th,
+.admin-table tr td,
+.user-table tr th,
+.user-table tr td {
   margin: 0 3rem;
   width: 20rem;
   justify-self: center;
   text-align: center;
 }
 
-.fhirTable {
-  width: fit-content;
-  padding-left: 0rem;
+/*-------------------------------------  USER FHIR TABLE ------------------------------------*/
+.pacient-form-container {
+  width: 90rem;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
+.pacient-form-title {
+  font-size: 1.3rem;
+  margin: 1rem 0;
+  margin-bottom: 3rem;
+}
+.fhirTable {
+  /* width: fit-content; */
+  width: 80rem;
+  padding-left: 0rem;
+  border: 1px solid black;
+}
 .fhirTable tr {
   height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid gray;
 }
-
+.fhirTable tr:hover {
+  background: var(--table-fhir);
+}
+.fhirTable tbody tr td.td_0,
+.fhirTable tbody tr td.td_1,
+.fhirTable tbody tr td.td_2,
+.fhirTable tbody tr td.td_3,
+.fhirTable tbody tr td.td_4,
+.fhirTable tbody tr td.td_5,
+.fhirTable tbody tr td.td_6,
+.fhirTable tbody tr td.td_7,
+.fhirTable tbody tr td.td_8 {
+  width: 5rem;
+  margin: 0;
+}
+.fhirTable tr td:first-child {
+  width: 8rem;
+}
+/* .fhirTable tbody tr:last-child {
+  width: 90%;
+} */
 .fhirTable tr td {
   width: fit-content;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
   text-align: left;
 }
+tr {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+tr tr {
+  border-radius: 0.5rem;
+}
 
+/*-------------------------------------------------------------------------------------*/
 .id {
   font-size: 10rem;
 }

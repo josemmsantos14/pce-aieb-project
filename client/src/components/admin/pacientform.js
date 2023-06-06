@@ -48,6 +48,10 @@ function PacientForm() {
   return (
     <div>
       <navbar className="navbar">
+        <h2 className="navbar-title">
+          <span>N</span>
+          <span>A</span>
+        </h2>
         <ul className="navbar-left-items">
           <li>
             <Link to="/adminpage">Forms</Link>

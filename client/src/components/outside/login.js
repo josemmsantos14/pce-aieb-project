@@ -8,6 +8,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
 
+  console.log(localStorage);
+
   const handleGoBack = async () => navigate("/");
 
   const handleLogin = async (e) => {
