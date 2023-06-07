@@ -171,12 +171,12 @@ router.post("/new-composition", async (req, res) => {
     }
   }
 
-  // // Segunda etapa: substituir valores existentes em fhirMessage
-  // for (var value of valuesFhir) {
-  //   if (new_composition.hasOwnProperty(value)) {
-  //     findAndReplaceValue(fhirMessage, value, new_composition[value]);
-  //   }
-  // }
+  // Segunda etapa: substituir valores existentes em fhirMessage
+  for (var value of valuesFhir) {
+    if (new_composition.hasOwnProperty(value)) {
+      findAndReplaceValue(fhirMessage, value, new_composition[value]);
+    }
+  }
 
 
   console.log("FHIR MESSAGE: ", fhirMessage);
