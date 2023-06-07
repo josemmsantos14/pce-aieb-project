@@ -596,6 +596,17 @@ tr tr {
   border-radius: 0.5rem;
 }
 
+/*-------------------------------------  GRAPHS ------------------------------------*/
+.graph-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: 30rem;
+  padding: 4rem 7rem;
+  background: var(--form-bg);
+}
+
 /*-------------------------------------------------------------------------------------*/
 .id {
   font-size: 10rem;

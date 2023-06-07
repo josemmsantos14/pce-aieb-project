@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import {
   LineChart,
@@ -11,6 +12,15 @@ import {
 } from "recharts";
 
 function AdminGraphs() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState("");
+  const navigate = useNavigate();
+  const user_intro = localStorage.getItem("user");
+  const user = JSON.parse(user_intro);
+  const userName = user.UserName;
+  const userType = user.UserType;
+
   const baseURL = "http://localhost:8080/adminpage/listFhirMessages";
 
   const [fhirMsgList, setFhirMsgList] = useState([]);
@@ -19,6 +29,14 @@ function AdminGraphs() {
       setFhirMsgList(response.data);
     });
   }, []);
+
+  const handleLogout = async () => {
+    setEmail("");
+    setPassword("");
+    setMsg("");
+    navigate("/login");
+    localStorage.clear();
+  };
 
   const occurrences = [];
 
@@ -40,6 +58,15 @@ function AdminGraphs() {
 
   console.log("occu: ", occurrences);
 
+  occurrences.sort(function(a, b) {
+    var keyA = new Date(a.date),
+      keyB = new Date(b.date);
+    // Compare the 2 dates
+    if (keyA < keyB) return -1;
+    if (keyA > keyB) return 1;
+    return 0;
+  });
+
   //   const data = [
   //     { name: "Mon", uv: 4000, pv: 2400, amt: 2400, week: "Week 1" },
   //     { name: "Tue", uv: 3000, pv: 1398, amt: 2210, week: "Week 1" },
@@ -52,7 +79,7 @@ function AdminGraphs() {
 
   return (
     <div className="main-container">
-      {/* <navbar className="navbar">
+      <navbar className="navbar">
         <h2 className="navbar-title">
           <span>N</span>
           <span>A</span>
@@ -78,8 +105,10 @@ function AdminGraphs() {
             Logout
           </button>
         </div>
-      </navbar> */}
-      <div>
+      </navbar>
+      <div className="body">
+      <div className="graph-container auth-form-container">
+        <h2>Gráfico data vs nº relatórios de alta</h2>
         <LineChart
           width={1200}
           height={300}
@@ -88,17 +117,18 @@ function AdminGraphs() {
         >
           <Line
             type="monotone"
-            dataKey="date"
+            dataKey="count"
             stroke="#0000FF"
             activeDot={{ r: 8 }}
           />
           {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
-          <CartesianGrid strokeDasharray="3 3" fill="#ffffff" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <CartesianGrid strokeDasharray="3 3"  />
+          <XAxis dataKey="date" />
+          <YAxis/>
           <Tooltip />
           <Legend />
         </LineChart>
+      </div>
       </div>
     </div>
   );
